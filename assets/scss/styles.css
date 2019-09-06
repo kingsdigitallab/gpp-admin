@@ -1,0 +1,727 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700");
+body {
+  background-color: #FCFCFC;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.4em;
+  margin: 0;
+  display: flex;
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 0.1fr;
+  grid-column-gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+}
+.flex div {
+  margin-right: 30px;
+}
+
+button, a, .create, .link, input[type=submit], input[type=button] {
+  cursor: pointer;
+  white-space: nowrap;
+}
+button:hover, button:focus, a:hover, a:focus, .create:hover, .create:focus, .link:hover, .link:focus, input[type=submit]:hover, input[type=submit]:focus, input[type=button]:hover, input[type=button]:focus {
+  transition: 0.3s;
+}
+
+button, .create, input[type=submit] {
+  color: white;
+  border: none;
+  padding: 13px 25px;
+  font-size: 13px;
+  border-radius: 30px;
+}
+button:hover:not(.icon-only), button:focus:not(.icon-only), .create:hover:not(.icon-only), .create:focus:not(.icon-only), input[type=submit]:hover:not(.icon-only), input[type=submit]:focus:not(.icon-only) {
+  box-shadow: 0px 2px 2px #BABABA;
+}
+
+input[type=submit] {
+  max-width: 100px;
+}
+
+.icon-only {
+  border: none;
+  color: inherit;
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 300;
+  padding: 3px;
+  margin-bottom: 0px;
+  background-color: transparent;
+}
+
+.create {
+  background-color: #0791D5;
+}
+.create:hover:not(.button-link), .create:focus:not(.button-link) {
+  background-color: #0787c6;
+}
+.create.linked-button {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  margin-top: 0px;
+  margin-right: -1px;
+  max-width: max-content;
+}
+
+.save {
+  background-color: #6DA036;
+  min-width: 113px;
+}
+.save:hover:not(.button-link), .save:focus:not(.button-link) {
+  background-color: #659532;
+}
+
+.danger {
+  background-color: #b40000;
+}
+.danger:hover:not(.button-link), .danger:focus:not(.button-link) {
+  background-color: #a50000;
+}
+.danger .fas {
+  margin-right: 10px;
+}
+
+.danger-clear {
+  border: 1px solid #b40000;
+  color: #b40000;
+  background-color: transparent;
+}
+.danger-clear .fas {
+  margin-right: 10px;
+}
+
+.default {
+  border: 1px solid #002465;
+  color: #002465;
+}
+.default .fas, .default .fal {
+  margin-right: 10px;
+}
+
+.inactive {
+  background-color: #EBEBEB !important;
+  color: #BABABA !important;
+  box-shadow: none !important;
+  cursor: auto;
+}
+
+.button-link {
+  color: #002465;
+  background-color: transparent;
+  padding: 0;
+  text-align: center;
+  white-space: nowrap;
+}
+.button-link.danger {
+  color: #b40000;
+}
+.button-link:hover, .button-link:focus {
+  text-decoration: underline;
+}
+.button-link .fas, .button-link .fal {
+  margin-right: 5px;
+}
+.button-link .fas {
+  font-weight: 700;
+}
+.button-link .fa-question-circle, .button-link .fa-calendar-alt {
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+.optional-to-delete .danger-highlight, .optional-to-delete .danger {
+  color: #BABABA;
+  margin-bottom: 10px;
+}
+.optional-to-delete + .optional-to-delete .danger-highlight, .optional-to-delete + .optional-to-delete .danger {
+  color: #b40000;
+}
+
+#logout {
+  border-radius: 0px;
+}
+
+*:focus {
+  outline: none;
+}
+
+a {
+  color: #002465;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.dotted-underline {
+  border-bottom: 1px dotted #002465;
+}
+
+.margin-right {
+  margin-right: 10px;
+}
+
+.margin-left {
+  margin-left: 10px;
+}
+
+.hidden {
+  visibility: hidden !important;
+}
+
+.inline {
+  display: inline;
+}
+
+.required:after {
+  content: " *";
+  color: red;
+}
+
+.border-left {
+  border-left: 9px solid #002465 !important;
+  border-left-color: #002465 !important;
+}
+
+h2, h3, h4 {
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 500;
+  color: #002465;
+}
+
+h2 {
+  font-size: 20px;
+  color: #002465;
+  margin-top: 0px;
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+h4 {
+  font-size: 14px;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.4em;
+}
+
+header {
+  background: #002465 url("..//images/background-header.svg") no-repeat bottom;
+  height: 100vh;
+  width: 200px;
+  position: fixed;
+  left: 0;
+  box-shadow: 1px 0px 3px #BABABA;
+  z-index: 10;
+}
+header #logo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+header #logo img {
+  width: 100%;
+}
+header #menu-links {
+  margin-top: 40%;
+}
+header #menu-links, header #menu-account {
+  color: white;
+}
+header #menu-links a, header #menu-account a {
+  color: inherit;
+  text-decoration: none;
+}
+header #menu-links .link, header #menu-account .link {
+  max-height: 120px;
+  text-align: center;
+}
+header #menu-links .link a, header #menu-account .link a {
+  padding: 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+header #menu-links .link a h4, header #menu-account .link a h4 {
+  font-weight: 400;
+  margin: 0;
+}
+header #menu-links .link.active, header #menu-account .link.active {
+  color: #002465;
+  background-color: #FCFCFC;
+}
+header #menu-links .link.active h4, header #menu-account .link.active h4 {
+  font-weight: 700;
+}
+header #menu-links .link:hover:not(.active), header #menu-links .link:focus:not(.active), header #menu-account .link:hover:not(.active), header #menu-account .link:focus:not(.active) {
+  transition: 0.3s;
+  -moz-box-shadow: inset 0 0 5px #000000;
+  -webkit-box-shadow: inset 0 0 5px #000000;
+  box-shadow: inset 0 0 5px #000000;
+  background-color: #001f56;
+  color: white;
+}
+header #menu-links .link .fal, header #menu-account .link .fal {
+  font-size: 16px;
+  margin: 0px 15px 0px 10px;
+}
+header #menu-links .link h4, header #menu-account .link h4 {
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+header #menu-account {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+header #menu-account #logout {
+  cursor: pointer;
+  background-color: #b40000;
+  color: white;
+  padding: 20px 0px;
+  text-align: center;
+  width: 100%;
+  border: none;
+  font-size: 14px;
+}
+header #menu-account #logout:hover, header #menu-account #logout:focus {
+  background-color: #a50000;
+}
+
+main {
+  width: 100%;
+}
+main:not(#form-page) {
+  margin-left: 200px;
+  padding: 20px 40px 40px 40px;
+}
+main #page-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 10px;
+  align-items: center;
+}
+main #page-header #status-bar {
+  font-size: 14px;
+}
+main #page-header #status-bar ul {
+  margin: 0px;
+  margin-right: 10px;
+  padding: 0px;
+  display: inline-flex;
+  align-items: center;
+}
+main #page-header #status-bar ul li {
+  list-style: none;
+  margin: 0px 0px 5px 0px;
+}
+main #page-header #status-bar ul li:not(:last-child):after {
+  content: "|";
+  margin: 0px 10px;
+  color: #BABABA;
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 600;
+}
+main #page-header .filters {
+  margin: 10px 0px;
+}
+main #page-header .filters .filter {
+  background-color: #FCFCFC;
+  color: #002465;
+  margin-right: 10px;
+  border: 1px solid #002465;
+  border-radius: 30px;
+  padding: 10px 25px;
+  font-size: 13px;
+  cursor: pointer;
+}
+main #page-header .filters .filter:hover, main #page-header .filters .filter:focus {
+  box-shadow: 0px 2px 2px #BABABA;
+}
+main #page-header .filters input {
+  display: none;
+}
+main #page-header .filters input[type=checkbox]:checked + label {
+  background-color: #002465;
+  color: white;
+  border: none;
+}
+main #page-header .filters input[type=checkbox]:checked + label:before {
+  font-family: "Font Awesome 5 Pro";
+  content: "";
+  font-weight: 300;
+  margin-right: 10px;
+}
+main #page-header button:not(:last-child) {
+  margin-right: 10px;
+}
+main #page-header button.create {
+  margin-left: 20px;
+}
+main .header-fixed {
+  background-color: white;
+  border-bottom: 1px solid #BABABA;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  margin-left: 200px;
+  padding: 10px 40px;
+}
+main #form-header {
+  margin-top: 70px;
+}
+main #form-header #breadcrumbs {
+  font-size: 13px;
+  margin: 20px 0px;
+}
+main #form-header #breadcrumbs ul {
+  margin: 0px;
+  margin-right: 10px;
+  padding: 0px;
+  display: inline-flex;
+  align-items: center;
+}
+main #form-header #breadcrumbs ul li {
+  list-style: none;
+  margin: 0px 0px 5px 0px;
+}
+main #form-header #breadcrumbs ul li:not(:last-child):after {
+  content: "";
+  margin: 0px 10px;
+  color: #BABABA;
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 600;
+}
+main #form-header #breadcrumbs a {
+  color: #424242;
+  font-size: 13px;
+  text-decoration: none;
+  border-bottom: 1px dotted #BABABA;
+}
+main #form-header #breadcrumbs a:hover, main #form-header #breadcrumbs a:focus {
+  border-bottom: 1px dotted #424242;
+}
+main .user-control {
+  display: flex;
+}
+main .user-control #user-details, main .user-control #user-password {
+  width: 50%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0px 2px 2px #EBEBEB;
+  margin: 20px 0px;
+}
+main .user-control #user-details {
+  margin-right: 40px;
+}
+main .admin {
+  margin-top: 40px;
+}
+main table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+main table thead th {
+  text-align: left;
+  padding-left: 10px;
+  line-height: 1.3em;
+}
+main table thead th .fas {
+  margin-left: 10px;
+  color: #002465;
+}
+main table tbody tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+main table tbody td {
+  border: 1px solid #dedede;
+  padding: 10px;
+}
+main table tbody td a {
+  border-bottom: 1px dotted #BABABA;
+  text-decoration: none;
+  white-space: pre-wrap;
+}
+main table tbody td a:hover, main table tbody td a:focus {
+  border-bottom: 1px dotted #002465;
+}
+main table tbody td.description {
+  width: 50%;
+}
+main table tbody td.wide {
+  width: 25%;
+}
+main table tbody td.button-cell {
+  padding: 0px 5px;
+  text-align: center;
+}
+main table th {
+  padding: 15px 0px;
+  font-weight: 500;
+}
+main .two-column-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 30px;
+  justify-content: center;
+}
+main .two-column-table p {
+  margin-bottom: 15px;
+}
+main .two-column-table div {
+  width: 100%;
+}
+main .two-column-table div label {
+  margin-bottom: 5px;
+}
+main .two-column-table div label, main .two-column-table div input, main .two-column-table div select, main .two-column-table div textarea {
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: fill-available;
+}
+main .two-column-table input[type=submit] {
+  grid-column-start: 2;
+  width: 150px;
+  justify-self: end;
+  margin-top: 20px;
+}
+main form {
+  width: 100%;
+}
+main form label {
+  font-size: 14px;
+}
+main form select {
+  height: 39.76px;
+  background-color: white;
+}
+main form textarea {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+main form input, main form select, main form textarea {
+  font-family: "Roboto", sans-serif;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #707070;
+}
+main form input[type=date], main form select[type=date], main form textarea[type=date] {
+  margin-right: 5px;
+  max-width: max-content;
+}
+main form input[type=button], main form select[type=button], main form textarea[type=button] {
+  max-width: max-content;
+}
+main form input[type=radio], main form input[type=checkbox], main form select[type=radio], main form select[type=checkbox], main form textarea[type=radio], main form textarea[type=checkbox] {
+  height: 10px;
+  width: 10px;
+  margin: 0px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+main form .richText {
+  margin-bottom: 10px;
+}
+main form .richText .richText-editor {
+  height: 100px;
+  box-sizing: border-box;
+}
+main form .editable {
+  max-width: 80%;
+}
+main form .editable + button {
+  margin-left: 10px;
+}
+main form input:disabled {
+  background-color: #EBEBEB;
+  border: none;
+}
+main form .create {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+main form .form-section {
+  margin-top: 40px;
+}
+main form .form-section fieldset {
+  border: 0;
+  padding: 0;
+  background-color: white;
+  border: 1px solid #BABABA;
+  margin: 0;
+}
+main form .form-section fieldset:first-of-type {
+  border-top-left-radius: 10px;
+}
+main form .form-section fieldset:last-of-type {
+  border-bottom-left-radius: 10px;
+}
+main form .form-section fieldset .fieldset-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding-left: 20px;
+  border-bottom: 1px solid #BABABA;
+}
+main form .form-section fieldset .fieldset-header > div {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+main form .form-section fieldset .fieldset-header > div .toggle-tab-button {
+  color: #002465;
+  background-color: #EBEBEB;
+  border-radius: 0px;
+  height: 100%;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main form .form-section fieldset .fieldset-header > div .toggle-tab-button:after {
+  font-family: "Font Awesome 5 Pro";
+  content: "";
+  font-weight: 700;
+}
+main form .form-section fieldset .fieldset-header > div .toggle-tab-button.active:after {
+  font-family: "Font Awesome 5 Pro";
+  content: "";
+  font-weight: 700;
+}
+main form .form-section fieldset .fieldset-body {
+  -moz-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+main form .form-section fieldset .fieldset-body.expand {
+  opacity: 1;
+  padding: 40px;
+  height: auto;
+}
+main form .form-section fieldset .fieldset-body > h3:first-child {
+  margin-top: 0px;
+}
+main form .form-section fieldset .fieldset-body > h3:not(:first-child) {
+  margin-top: 40px;
+}
+main#form-page {
+  height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+main#form-page form {
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+main#form-page form input, main#form-page form label, main#form-page form a {
+  margin-right: 0px;
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+}
+main#form-page form label {
+  margin-bottom: 10px;
+}
+main#form-page form a {
+  text-align: right;
+}
+main #pagination {
+  background-color: white;
+  display: flex;
+  box-shadow: 0px 2px 2px #BABABA;
+  width: max-content;
+  margin: 40px auto 0px auto;
+  border-radius: 30px;
+}
+main #pagination #first, main #pagination #last, main #pagination #prev, main #pagination #next {
+  background-color: #002465;
+  border: none;
+  border-radius: 0px;
+}
+main #pagination #first .fal, main #pagination #last .fal, main #pagination #prev .fal, main #pagination #next .fal {
+  margin: auto;
+  font-weight: 600;
+}
+main #pagination #first .fa-caret-left, main #pagination #first .fa-caret-right, main #pagination #last .fa-caret-left, main #pagination #last .fa-caret-right, main #pagination #prev .fa-caret-left, main #pagination #prev .fa-caret-right, main #pagination #next .fa-caret-left, main #pagination #next .fa-caret-right {
+  font-size: 20px;
+}
+main #pagination #first:hover:not(.inactive), main #pagination #first:focus:not(.inactive), main #pagination #last:hover:not(.inactive), main #pagination #last:focus:not(.inactive), main #pagination #prev:hover:not(.inactive), main #pagination #prev:focus:not(.inactive), main #pagination #next:hover:not(.inactive), main #pagination #next:focus:not(.inactive) {
+  -moz-box-shadow: inset 0 0 5px #000000;
+  -webkit-box-shadow: inset 0 0 5px #000000;
+  box-shadow: inset 0 0 5px #000000;
+  background-color: #001f56;
+}
+main #pagination #first {
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+main #pagination #last {
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+main #pagination ul {
+  margin: 0px 10px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main #pagination ul li {
+  list-style: none;
+  padding: 5px 15px;
+  color: #002465;
+}
+main #pagination ul li.active {
+  color: #002465;
+  text-decoration: underline;
+}
+main .highlight {
+  font-weight: 700;
+  color: #002465;
+}
+
+footer {
+  height: 120px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+}
+footer img {
+  max-width: 200px;
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/scss/styles.css" />
+    <link rel="stylesheet" href="./assets/scss/all.min.css" />
+    <title>GPP admin</title>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <img src="./assets/images/GPPLogo.png" alt="GPP logo" />
+          </div>
+          <div id="menu-links">
+            <div class="link">
+                <a href="home.html">
+                    <i class="fal fa-home"></i>
+                    <h4>HOME</h4>
+                </a>
+            </div>
+            <div class="link active">
+                <a href="entities.html">
+                    <i class="fal fa-users"></i>
+                    <h4>ENTITIES</h4>
+                </a>
+            </div>
+            <div class="link">
+                <a href="archival-records.html">
+                    <i class="fal fa-archive"></i>
+                    <h4>ARCHIVAL RECORDS</h4>
+                </a>
+            </div>
+          </div>
+          <div id="menu-account">
+            <div class="link">
+                <a href="dashboard.html">
+                    <i class="fal fa-user"></i>
+                    <h4>MY DASHBOARD</h4>
+                </a>
+            </div>
+            <button aria-label="logout" id="logout">LOGOUT</button>
+          </div>
+    </header>
+    <main>
+        <a href="entity.html"><i class="fas fa-chevron-left margin-right"></i><span class="dotted-underline">Back to {{ display_name }}</span></a>
+        <!-- add a pipe to truncate lenghty record descriptions and add '...'' -->
+        <h1><span class="highlight">Change history:</span> Douglas, William, 1724-1810, 4th Duke of Queensberry</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Last edited</th>
+                    <th>User</th>
+                    <th>Status</th>
+                    <th>Logged comment</th>
+                    <th>Changes</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>May 1, 2019,<br>1:58 pm</td>
+                    <td>{{ username }}<br>{{ firstname }} {{ lastname }}</td>
+                    <td class="wide">Publication status: {{ publication_status}}<br>
+                        Maintenance status: {{ maintenance_status}}<br>
+                        Editing event type: {{ editing_event_status}}<br></td>
+                        <td class="wide">{{ logged_comment }}</td>
+                        <td class="wide">{{ changes }}</td>
+                    <td>
+                        <button aria-label="reset password" class="button-link"><i class="fas fa-history"></i>Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>May 1, 2019,<br>1:58 pm</td>
+                    <td>{{ username }}<br>{{ firstname }} {{ lastname }}</td>
+                    <td class="wide">Publication status: {{ publication_status}}<br>
+                        Maintenance status: {{ maintenance_status}}<br>
+                        Editing event type: {{ editing_event_status}}<br></td>
+                        <td class="wide">{{ logged_comment }}</td>
+                        <td class="wide">{{ changes }}</td>
+                    <td>
+                        <button aria-label="reset password" class="button-link"><i class="fas fa-history"></i>Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>May 1, 2019,<br>1:58 pm</td>
+                    <td>{{ username }}<br>{{ firstname }} {{ lastname }}</td>
+                    <td class="wide">Publication status: {{ publication_status}}<br>
+                        Maintenance status: {{ maintenance_status}}<br>
+                        Editing event type: {{ editing_event_status}}<br></td>
+                        <td class="wide">{{ logged_comment }}</td>
+                        <td class="wide">{{ changes }}</td>
+                    <td>
+                        <button aria-label="reset password" class="button-link"><i class="fas fa-history"></i>Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>May 1, 2019,<br>1:58 pm</td>
+                    <td>{{ username }}<br>{{ firstname }} {{ lastname }}</td>
+                    <td class="wide">Publication status: {{ publication_status}}<br>
+                        Maintenance status: {{ maintenance_status}}<br>
+                        Editing event type: {{ editing_event_status}}<br></td>
+                        <td class="wide">{{ logged_comment }}</td>
+                        <td class="wide">{{ changes }}</td>
+                    <td>
+                        <button aria-label="reset password" class="button-link"><i class="fas fa-history"></i>Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>May 1, 2019,<br>1:58 pm</td>
+                    <td>{{ username }}<br>{{ firstname }} {{ lastname }}</td>
+                    <td class="wide">Publication status: {{ publication_status}}<br>
+                        Maintenance status: {{ maintenance_status}}<br>
+                        Editing event type: {{ editing_event_status}}<br></td>
+                        <td class="wide">{{ logged_comment }}</td>
+                        <td class="wide">{{ changes }}</td>
+                    <td>
+                        <button aria-label="reset password" class="button-link"><i class="fas fa-history"></i>Reset</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>    
+        <div id="pagination">
+            <button id="first" class="inactive"><i class="fal fa-step-backward"></i></button>
+            <button id="prev" class="inactive"><i class="fal fa-caret-left"></i></button>
+            <ul>
+                <li class="active">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>...</li>
+                <li>24</li>
+                <li>25</li>
+                <li>26</li>
+            </ul>
+            <button id="next"><i class="fal fa-caret-right"></i></button>
+            <button id="last"><i class="fal fa-step-forward"></i></button>
+        </div>
+    </main>
+</body>
+</html>

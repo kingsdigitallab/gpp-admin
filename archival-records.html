@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/scss/styles.css" />
+    <link rel="stylesheet" href="./assets/scss/all.min.css" />
+    <title>GPP admin</title>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <img src="./assets/images/GPPLogo.png" alt="GPP logo" />
+          </div>
+          <div id="menu-links">
+            <div class="link">
+                <a href="home.html">
+                    <i class="fal fa-home"></i>
+                    <h4>HOME</h4>
+                </a>
+            </div>
+            <div class="link">
+                <a href="entities.html">
+                    <i class="fal fa-users"></i>
+                    <h4>ENTITIES</h4>
+                </a>
+            </div>
+            <div class="link active">
+                <a href="archival-records.html">
+                    <i class="fal fa-archive"></i>
+                    <h4>ARCHIVAL RECORDS</h4>
+                </a>
+            </div>
+          </div>
+          <div id="menu-account">
+            <div class="link">
+                <a href="dashboard.html">
+                    <i class="fal fa-user"></i>
+                    <h4>MY DASHBOARD</h4>
+                </a>
+            </div>
+            <button aria-label="logout" id="logout">LOGOUT</button>
+          </div>
+    </header>
+    <main>
+        <div id="page-header">
+            <h1>Archival records (420)</h1>
+            <div class="filters">
+                <input id="collection" type="checkbox" aria-label="collection" checked />
+                <label for="collection" class="filter">Collection (100)</label>
+                <input id="file" type="checkbox" aria-label="file" />
+                <label for="file" class="filter">File (40)</label>
+                <input id="item" type="checkbox" aria-label="item" />
+                <label for="item" class="filter">Item (80)</label>
+                <input id="series" type="checkbox" aria-label="series" />
+                <label for="series" class="filter">Series (200)</label>
+                <button aria-label="create entity" class="create">Create new entity</button>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name<i class="fas fa-sort"></i></th>
+                    <th>Type/level<i class="fas fa-sort"></i></th>
+                    <th>Publication status<i class="fas fa-sort"></i></th>
+                    <th>Last edited<i class="fas fa-sort"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- add a pipe to truncate lenghty record descriptions and add '...'' -->
+                    <td class="description"><a href="archival-record.html">Account book kept by General Jacob de Budé, 1772-1784</a></td>
+                    <td>Item</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record.html">Account book kept by General Jacob de Budé, 1772-1785</a></td>
+                    <td>File</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record.html">Account book kept by General Jacob de Budé, 1813-1814, listing bills paid and other miscellaneous payments, including some servants' wages.</a></td>
+                    <td>Collection</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record.html">Account of expenditure by Georg von Löw for General Jacob de Budé, for works by Voltaire and a lamp (enclosure of 511).</a></td>
+                    <td>File</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record.html">Articles of Agreement entered into by Adm. Sir George Brydges Rodney and Gen. John Vaughan that all merchandise on ships and all items in public stores and magazines, etc., taken at the surrender of the island of St Eustatius will be distributed according to the King's pleasure.</a></td>
+                    <td>Item</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record.html">Bank of England: Twenty Pounds, blue, green and purple, issue of 15 November 1984</a></td>
+                    <td>Collection</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record.html">Bill from John Augustus Streit for Indian fabric.</a></td>
+                    <td>Collection</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record.html">A Treatise on the identity of Herne's Oak, shewing the maiden tree to have been the real one</a></td>
+                    <td>Collection</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record.html">Bills, including unreceipted bills and unattached receipts, of General Jacob de Budé, 1802.</a></td>
+                    <td>Person</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record.html">Bills, including unreceipted bills and unattached receipts, of General Jacob de Budé, 1805.</a></td>
+                    <td>Person</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="pagination">
+            <button id="first" class="inactive"><i class="fal fa-step-backward"></i></button>
+            <button id="prev" class="inactive"><i class="fal fa-caret-left"></i></button>
+            <ul>
+                <li class="active">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>...</li>
+                <li>24</li>
+                <li>25</li>
+                <li>26</li>
+            </ul>
+            <button id="next"><i class="fal fa-caret-right"></i></button>
+            <button id="last"><i class="fal fa-step-forward"></i></button>
+        </div>
+    </main>
+</body>
+</html>

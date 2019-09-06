@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/scss/styles.css" />
+    <link rel="stylesheet" href="./assets/scss/all.min.css" />
+    <title>GPP admin</title>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <img src="./assets/images/GPPLogo.png" alt="GPP logo" />
+          </div>
+          <div id="menu-links">
+            <div class="link">
+                <a href="home.html">
+                    <i class="fal fa-home"></i>
+                    <h4>HOME</h4>
+                </a>
+            </div>
+            <div class="link">
+                <a href="entities.html">
+                    <i class="fal fa-users"></i>
+                    <h4>ENTITIES</h4>
+                </a>
+            </div>
+            <div class="link">
+                <a href="archival-records.html">
+                    <i class="fal fa-archive"></i>
+                    <h4>ARCHIVAL RECORDS</h4>
+                </a>
+            </div>
+          </div>
+          <div id="menu-account">
+            <div class="link active">
+                <a href="dashboard.html">
+                    <i class="fal fa-user"></i>
+                    <h4>MY DASHBOARD</h4>
+                </a>
+            </div>
+            <button aria-label="logout" id="logout">LOGOUT</button>
+          </div>
+    </header>
+    <main>
+        <div id="page-header">
+            <h1>My Dashboard</h1>
+            <p>Permission level: <span class="highlight">Admin</span></p>
+        </div>
+        <div class="user-control">
+            <div id="user-details">
+                <h2>Details</h2>
+                <form action="" class="two-column-table">
+                    <div>
+                        <label for="firstname">First name <span style="color: red">*</span></label>
+                        <input type="text" id="firstname" aria-label="first name" placeholder="First name" onfocus="this.placeholder=''" onblur="this.placeholder='First name'" required/>
+                        <label for="email">Email address <span style="color: red">*</span></label>
+                        <input type="email" id="email" aria-label="email" placeholder="Email address" onfocus="this.placeholder=''" onblur="this.placeholder='Email address'" required/>
+                    </div>
+                    <div>
+                        <label for="lastname">Last name <span style="color: red">*</span></label>
+                        <input type="text" id="lastname" aria-label="last name" placeholder="Last name" onfocus="this.placeholder=''" onblur="this.placeholder='Last name'" required/>
+                    </div>
+                    <input type="submit" class="save" value="Save" />
+                </form>
+            </div>
+            <div id="user-password">
+                <h2>Change Password</h2>
+                <form action="" class="two-column-table">
+                    <div>
+                        <label for="old-password">Old password <span style="color: red">*</span></label>
+                        <input type="password" id="old-password" aria-label="old password" placeholder="Old Password" onfocus="this.placeholder=''" onblur="this.placeholder='Old Password'" required/>
+                    </div>
+                    <div></div>
+                    <div>
+                        <label for="new-password">New password <span style="color: red">*</span></label>
+                        <input type="password" id="new-password" aria-label="new password" placeholder="New Password" onfocus="this.placeholder=''" onblur="this.placeholder='New Password'" required/>
+                    </div>
+                    <div>
+                        <label for="confirm-new-password">Confirm new password <span style="color: red">*</span></label>
+                        <input type="password" id="confirm-new-password" aria-label="confirm new password" placeholder="Confirm new password" onfocus="this.placeholder=''" onblur="this.placeholder='Confirm new password'" required/>
+                    </div>
+                    <input type="submit" class="save" value="Save" />
+                </form>
+            </div>
+        </div>
+        <div class="admin">
+            <h2>Admin table</h2>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Email address</th>
+                        <th>Permission level</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ username }}</td>
+                        <td>{{ first_name }}</td>
+                        <td>{{ last_name }}</td>
+                        <td>{{ email_address }}</td>
+                        <td>{{ admin/moderator/user }}</td>
+                        <td class="button-cell">
+                            <button aria-label="reset password" class="button-link"><i class="fas fa-unlock-alt"></i>Reset password</button>
+                        </td>
+                        <td class="button-cell">
+                            <button aria-label="delete user" class="button-link danger"><i class="fas fa-trash-alt"></i>Delete user</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ username }}</td>
+                        <td>{{ first_name }}</td>
+                        <td>{{ last_name }}</td>
+                        <td>{{ email_address }}</td>
+                        <td>{{ admin/moderator/user }}</td>
+                        <td class="button-cell">
+                            <button aria-label="reset password" class="button-link"><i class="fas fa-unlock-alt"></i>Reset password</button>
+                        </td>
+                        <td class="button-cell">
+                            <button aria-label="delete user" class="button-link danger"><i class="fas fa-trash-alt"></i>Delete user</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ username }}</td>
+                        <td>{{ first_name }}</td>
+                        <td>{{ last_name }}</td>
+                        <td>{{ email_address }}</td>
+                        <td>{{ admin/moderator/user }}</td>
+                        <td class="button-cell">
+                            <button aria-label="reset password" class="button-link"><i class="fas fa-unlock-alt"></i>Reset password</button>
+                        </td>
+                        <td class="button-cell">
+                            <button aria-label="delete user" class="button-link danger"><i class="fas fa-trash-alt"></i>Delete user</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button aria-label="add user" class="create linked-button"><i class="fal fa-plus"></i>Add new user</button>
+        </div>
+    </main>
+</body>
+</html>
