@@ -580,6 +580,7 @@ main form input, main form select, main form textarea {
 }
 main form input[type=date], main form select[type=date], main form textarea[type=date] {
   margin-right: 5px;
+  max-width: max-content;
 }
 main form input[type=button], main form select[type=button], main form textarea[type=button] {
   max-width: max-content;

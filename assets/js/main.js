@@ -2,6 +2,7 @@ $(document).ready(function() {
 
     var additionalInfo = {'general-date-from': 'some information'};
 
+    // check if additional information for the field exists
     $('.additional-info-icon').get().forEach((el) => {
         var key = $(el).attr("data-content-type");
         if (!additionalInfo[key]) {

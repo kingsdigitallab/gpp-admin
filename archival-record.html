@@ -63,7 +63,7 @@
             </div>
             <div>
                 <button aria-label="delete" class="danger-clear">Delete</button>
-                <input type="submit" value="Save" form="record-form" aria-label="Save" class="save"/>
+                <input type="submit" value="Save" form="record-form" class="save"/>
                 <button aria-label="create new entity" class="create"><i class="fas fa-plus"></i></button>
             </div>
         </div>
@@ -93,30 +93,32 @@
                                 <div>
                                     <label>
                                         <span class="required">Repository</span>
-                                        <select name="repository" required>
+                                        <select name="repository">
                                             <option value="">Select</option>
                                         </select>
                                     </label>
                                     <label>
                                         <span class="required">Repository code</span>
-                                        <input type="text" name="repository-code" required/>
+                                        <input type="text" name="repository-code"/>
                                     </label>
                                     <label>
                                         <span class="required">Record type</span>
-                                        <select name="repository" required>
-                                            <option value="">Select</option>
-                                        </select>
+                                        <div class="editable-field">
+                                            <select name="repository">
+                                                <option value="">Select</option>
+                                            </select>
+                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                        </div>
                                     </label>
-                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
                                     <label>
                                         Parent series
-                                        <select name="parent-series" required>
+                                        <select name="parent-series">
                                             <option value="">Select</option>
                                         </select>
                                     </label>
                                     <label>
                                         Parent file
-                                        <select name="parent-series" required>
+                                        <select name="parent-series">
                                             <option value="">Select</option>
                                         </select>
                                     </label>
@@ -128,22 +130,26 @@
                                     </label>
                                     <label>
                                         <span class="required">RCIN</span>
-                                        <input type="text" name="rcin" required/>
+                                        <input type="text" name="rcin"/>
                                     </label>
                                     <label>
                                         <span class="required">URL</span>
-                                        <input type="url" name="url" required/>
+                                        <input type="url" name="url"/>
                                     </label>
                                     <label>
                                         <span class="required">Location of originals</span>
-                                        <input type="text" name="location-of-originals" required/>
+                                        <div class="editable-field">
+                                            <input type="text" name="location-of-originals"/>
+                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                        </div>
                                     </label>
-                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
                                     <label>
                                         <span class="required">Related materials</span>
-                                        <input type="text" name="related-materials" required/>
+                                        <div class="editable-field">
+                                            <input type="text" name="related-materials"/>
+                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                        </div>
                                     </label>
-                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
                                 </div>
                             </div>
                         </div>
@@ -164,26 +170,22 @@
                                 <div>
                                     <label>
                                         <span class="required">Title</span>
-                                        <input type="text" name="title" required/>
+                                        <input type="text" name="title"/>
                                     </label>
                                     <div class="flex">
                                         <label>
                                             <span class="required">Start date</span>
-                                            <button aria-label="additional info" class="icon-only"><i class="fas fa-question-circle"></i></button>
-                                            <input type="date" name="start-date" value="" required/>
-                                            <button aria-label="calendar" class="icon-only"><i class="fas fa-calendar-alt"></i></button>
+                                            <input type="date" name="start-date" value=""/>
                                         </label>
                                         <label>
                                             <span class="required">End date</span>
-                                            <button aria-label="additional info" class="icon-only"><i class="fas fa-question-circle"></i></button>
-                                            <input type="date" name="end-date" value="" required/>
-                                            <button aria-label="calendar" class="icon-only"><i class="fas fa-calendar-alt"></i></button>
+                                            <input type="date" name="end-date" value=""/>
                                         </label>
                                     </div>
                                     <label>
                                         <span class="required">Creation dates</span>
-                                        <button aria-label="additional info" class="icon-only"><i class="fas fa-question-circle"></i></button>
-                                        <input type="text" name="creation-dates" value="" required/>
+                                        
+                                        <input type="text" name="creation-dates" value=""/>
                                     </label>
                                     <label>
                                         <span class="required">Extent</span>
@@ -191,39 +193,47 @@
                                     </label>
                                     <label>
                                         <span class="required">Languages</span>
-                                        <input type="text" name="languages" required/>
+                                        <input type="text" name="languages"/>
                                     </label>
                                 </div>
                                 <div>
                                     <label>
                                         <span>Writer</span>
-                                        <input type="text" name="writer"/>
+                                        <div class="editable-field">
+                                            <input type="text" name="writer"/>
+                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                        </div>
                                     </label>
-                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
                                     <label>
                                         <span>Place of writing</span>
-                                        <input type="text" name="place-of-writing"/>
+                                        <div class="editable-field">
+                                            <input type="text" name="place-of-writing"/>
+                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                        </div>   
                                     </label>
-                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
                                     <label>
                                         <span>Addressee</span>
-                                        <input type="text" name="addressee"/>
+                                        <div class="editable-field">
+                                            <input type="text" name="addressee"/>
+                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                        </div>
                                     </label>
-                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
                                     <label>
                                         <span>Receiving address</span>
-                                        <input type="text" name="receiving-address"/>
+                                        <div class="editable-field">
+                                            <input type="text" name="receiving-address"/>
+                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                        </div>
                                     </label>
-                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">       
                                 </div>
                             </div>
                             <label>
                                 <span>Description</span>
-                                <textarea class="richtext" name="description" rows="8" required></textarea>
+                                <textarea class="richtext" name="description" rows="8"></textarea>
                             </label>
                             <label>
                                 <span>Notes</span>
-                                <textarea class="richtext" name="notes" rows="8" required></textarea>
+                                <textarea class="richtext" name="notes" rows="8"></textarea>
                             </label>
                             <label>
                                 <span>Physical description</span>
@@ -247,7 +257,7 @@
                                 <div>
                                     <label>
                                         <span class="required">Cataloguer</span>
-                                        <input type="text" name="cataloguer" required/>
+                                        <input type="text" name="cataloguer"/>
                                     </label>
                                     <label>
                                         <span class="required">Arrangement</span>
@@ -258,8 +268,7 @@
                                     <label>
                                         <span class="required">Description date</span>
                                         <button aria-label="additional info" class="icon-only"><i class="fas fa-question-circle"></i></button><br>
-                                        <input type="date" name="description-date" value="" required/>
-                                        <button aria-label="calendar" class="icon-only"><i class="fas fa-calendar-alt"></i></button>
+                                        <input type="date" name="description-date" value=""/>
                                     </label>
                                     <label>
                                         Custodial history/Provenance
@@ -270,32 +279,40 @@
                             
                             <label>
                                 <span class="required">Administrative history</span>
-                                <textarea class="richtext" name="administrative-history" rows="8" required></textarea>
+                                <textarea class="richtext" name="administrative-history" rows="8"></textarea>
                             </label>
                             <div class="two-column-table">
                                 <div>
                                     <label>
                                         <span>Subjects</span>
-                                        <input type="text" name="subjects"/>
+                                        <div class="editable-field">
+                                            <input type="text" name="subjects"/>
+                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                        </div>
                                     </label>
-                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
                                     <label>
                                         <span>Organisations as subjects</span>
-                                        <input type="text" name="organisations-as-subjects"/>
+                                        <div class="editable-field">
+                                            <input type="text" name="organisations-as-subjects"/>
+                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                        </div>
                                     </label>
-                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
                                 </div>
                                 <div>
                                     <label>
                                         <span>Persons as subjects</span>
-                                        <input type="text" name="persons-as-subjects"/>
+                                        <div class="editable-field">
+                                            <input type="text" name="persons-as-subjects"/>
+                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                        </div>
                                     </label>
-                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
                                     <label>
                                         <span>Places as subjects</span>
-                                        <input type="text" name="places-as-subjects"/>
+                                        <div class="editable-field">
+                                            <input type="text" name="places-as-subjects"/>
+                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                        </div>
                                     </label>
-                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
                                 </div>
                             </div>
                         </div>
@@ -314,9 +331,11 @@
                         <div class="fieldset-body expand">
                             <label>
                                 <span class="required">Administrative history</span>
-                                <textarea class="richtext" name="administrative-history" rows="8" required></textarea>
+                                <div class="editable-field">
+                                    <textarea class="richtext" name="administrative-history" rows="8"></textarea>
+                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                </div>
                             </label>
-                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
                             <div class="two-column-table">
                                 <div>
                                     <label>
@@ -353,7 +372,7 @@
                                 <div>
                                     <label for="control-language">
                                         <span class="required">Language</span>
-                                        <select required>
+                                        <select>
                                             <option>English</option>
                                         </select>
                                     </label>
@@ -365,7 +384,7 @@
                                 <div>
                                     <label>
                                         <span class="required">Script</span>
-                                        <select id="control-script" required>
+                                        <select id="control-script">
                                             <option>Latn, 215, Latin</option>
                                         </select>
                                     </label>
@@ -376,11 +395,55 @@
                                 </div>
                             </div>
                             <label><span class="required">Rights declaration</span></label>
-                            <textarea aria-label="rights-declaration" class="richtext" rows="4" required></textarea>
+                            <textarea aria-label="rights-declaration" class="richtext" rows="4"></textarea>
                         </div>
                     </fieldset>
                 </div>
             </form>
+        </div>
+        <div class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Save changes</h2>
+                    <input type="button" class="icon-only" aria-label="close" onclick="closeBlock('modal')" value="&#xf00d;" />
+                </div>
+                <div class="modal-body">
+                    <form action="" method="" id="record-modal-form">
+                        <div class="two-column-table">
+                            <div>
+                                <label>
+                                    <span class="required">Publication status</span>
+                                    <select name="publication-status" required>
+                                        <option value="In process">In process</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span class="required">Editing event type</span>
+                                    <select name="maintenance-status" required>
+                                        <option value="Revised">Revised</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <span class="required">Maintenance status</span>
+                                    <select name="maintenance-status">
+                                        <option value="New">New</option>
+                                    </select>
+                                </label>
+                            </div>
+                            
+                        </div>
+                        <label>
+                            <span class="required">Comments</span>
+                            <textarea rows="4"></textarea>
+                        </label>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Save" form="record-modal-form" class="save"/>
+                </div>
+            </div>
         </div>
     </main>
 </body>
