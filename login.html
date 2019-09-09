@@ -15,14 +15,14 @@
 <body>
     <main id="form-page">
         <h1>Login</h1>
-        <form action="">
+        <form action="" method="">
             <label>
-                Email address <span style="color: red">*</span><br/>
-                <input type="email" id="email" aria-label="email" placeholder="Email address" onfocus="this.placeholder=''" onblur="this.placeholder='Email address'" required/>
+                <span class="requried">Email address</span>
+                <input type="email" name="email" placeholder="Email address" onfocus="this.placeholder=''" onblur="this.placeholder='Email address'" required/>
             </label>
             <label>
-                Password <span style="color: red">*</span><br/>
-                <input type="password" id="password" aria-label="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'" required/>
+                <span class="requried">Password</span>
+                <input type="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'" required/>
             </label>
             <a href="changepassword.html">Forgot your password?</a>
             <input type="submit" class="save" value="Login" />

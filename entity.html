@@ -63,7 +63,7 @@
             </div>
             <div>
                 <button aria-label="delete" class="danger-clear">Delete</button>
-                <input type="submit" value="Save" form="record-form" aria-label="Save" class="save"/>
+                <input type="submit" value="Save" form="record-form" class="save"/>
                 <button aria-label="create new entity" class="create"><i class="fas fa-plus"></i></button>
             </div>
         </div>
@@ -82,41 +82,44 @@
                     <div>
                         <label>
                             <span class="required">Date from</span>
-                            <button aria-label="additional info" class="button-link"><i class="fas fa-question-circle"></i></button>
-                            <input type="date" aria-label="date from" value="" required/>
-                            <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                            <input type="button" aria-label="additional info" data-content-type="general-date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                            <!-- indsert database values into value="" -->
+                            <input type="date" value="" name="general-date-from"/>
+                            
                         </label>
                     </div>
                     <div>
                         <label>
                             <span class="required">Date to</span>
-                            <button aria-label="additional info" class="button-link"><i class="fas fa-question-circle"></i></button>
-                            <input type="date" aria-label="date to" value="" required/>
-                            <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                            <input type="button" aria-label="additional info" data-content-type="general-date-to" class="icon-only additional-info-icon" value="&#xf059;">
+                            <input type="date" name="general-date-to" value=""/>
+                            
                         </label>
                     </div>
                     <div>
                         <label>
                             <span class="required">Display date</span>
-                            <button aria-label="additional info" class="button-link"><i class="fas fa-question-circle"></i></button>
-                            <input type="text" aria-label="display date" value="" required/>
+                            <input type="button" aria-label="additional info" data-content-type="general-display-date" class="icon-only additional-info-icon" value="&#xf059;">
+                            <input type="text" name="general-display-date" value=""/>
                         </label>
                     </div>
                 </div>
+                <!-- add a loop in case of multiple identities (the same applies for identity sections below) -->
                 <div class="form-section">
                     <h2>IDENTITIES (2)</h2>
-                    <fieldset class="optional-to-delete">
+                    <fieldset class="optional-to-delete" id="identity-1">
                         <div class="fieldset-header">
                             <h3>{{ display_name }}</h3>
                             <div class="flex">
                                 <div>
                                     <label>
-                                        <input type="radio" name="preferred-identity" checked/> Preferred identity
+                                        <!-- add 'checked' attribute for preferred identity -->
+                                        <input type="radio" name="identity-1-preferred-identity" checked/> Preferred identity
                                     </label>
                                 </div>
                                 <div>
                                     <label class="button-link danger">
-                                        <input type="button" class="icon-only danger-highlight" aria-label="delete field" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                        <input type="button" class="icon-only danger-highlight" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
                                     </label>
                                 </div>
                                 <a class="toggle-tab-button"></a>
@@ -124,18 +127,18 @@
                         </div>
                         <div class="fieldset-body expand">
                             <h3>NAME ENTRIES (1)</h3>
-                            <fieldset class="optional-to-delete">
+                            <fieldset class="optional-to-delete" id="identity-1-name-entry-1">
                                 <div class="fieldset-header">
                                     <h3>{{ display_name }}</h3>
                                     <div class="flex">
                                         <div>
                                             <label>
-                                                <input type="radio" name="preferred-name" checked/> Preferred name form
+                                                <input type="radio" name="identity-1-name-entry-1-preferred-name" checked/> Preferred name form
                                             </label>
                                         </div>
                                         <div>
                                             <label class="button-link danger">
-                                                <input type="button" class="icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
                                             </label>
                                         </div>
                                         <a class="toggle-tab-button"></a>
@@ -145,106 +148,108 @@
                                     <div class="two-column-table">
                                         <div>
                                             <div>
-                                                <label class="inline"><input type="checkbox" aria-label="royal name checkbox" name=""/>Royal name</label>
-                                            </div>
-                                            <!--start REQUIRED FIELD start-->
-                                            <div class="grid">
-                                                <label>
-                                                    <span class="required">Surname</span>
-                                                    <input type="text" aria-label="surname"  placeholder="Surname" onfocus="this.placeholder=''" onblur="this.placeholder='Surname'" required/>
+                                                <label class="inline">
+                                                    <input type="checkbox" name="identity-1-name-entry-1-royal-name"/>Royal name
                                                 </label>
+                                            </div>
+
+                                            <!--start REQUIRED FIELD start-->
+                                            <!-- required fields when royal name is checked are different from the field below -->
+                                            <div class="grid">
+                                                <label for="identity-1-name-entry-1-surname">
+                                                    <span class="required">Surname</span>
+                                                </label>
+                                                <input type="text"  placeholder="Surname" onfocus="this.placeholder=''" onblur="this.placeholder='Surname'" value="" id="identity-1-name-entry-1-surname" name="identity-1-name-entry-1-surname"/>
                                             </div>
                                             <!--end REQUIRED FIELD end-->
 
                                             <!--start OPTIONAL FIELDS start-->
                                             <div class="grid optional-to-delete">
                                                 <label>
-                                                    <span hidden>Title</span>
-                                                    <select>
-                                                        <option>Title</option>
-                                                    </select>
-                                                </label>
-                                                <label>
                                                     <span hidden>Name part field</span>
-                                                    <input type="text"/>
-                                                </label>
-                                                <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
-                                            </div>
-                                            <div class="grid optional-to-delete">
-                                                <label>
-                                                    <span hidden>Forename</span>
                                                     <select>
-                                                        <option>Forename</option>
+                                                        <!-- add 'selected' attribute to selected option -->
+                                                        <!-- add a loop for all possible options for titles (e.g., for o in options...) -->  
+                                                        <option value="{{ o.value }}">{{ o.value }}</option>
                                                     </select>
                                                 </label>
-                                                <label><span hidden>Name part field</span>
-                                                    <input type="text"/>
+                                                <label>
+                                                    <span hidden>Title</span>
+                                                    <!-- bind the 'name' attribute to the selected option from the dropdown above? -->
+                                                    <input type="text" name="identity-1-name-entry-1-{{ o.value }}" value="" />
                                                 </label>
                                                 <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
                                             </div>
                                             <!--end OPTIONAL FIELDS end-->
 
-                                            <input type="button" class="create"  aria-label="create field" value="Add name part" onclick="addField(this)">
+                                            <input type="button" class="create" aria-label="create field" value="Add name part" onclick="addField(this)">
                                         </div>
                                         <div>
                                             <label>
                                                 <span class="required">Display Name</span>
-                                                <input type="text" aria-label="display name" required/>
+                                                <input type="text" name="identity-1-name-entry-1-display-name" value=""/>
                                             </label>
                                             <div class="two-column-table">
                                                 <div>
                                                     <label>
                                                         <span class="required">Language</span>
-                                                        <select required>
-                                                                <option>English</option>
-                                                            </select>
+                                                        <select name="identity-1-name-entry-1-language">
+                                                            <option value="English">English</option>
+                                                        </select>
                                                     </label>
                                                 </div>
                                                 <div>
                                                     <label>
                                                         <span class="required">Script</span>
-                                                        <select required>
-                                                                <option>Latn, 215, Latin</option>
-                                                            </select>
+                                                        <select name="identity-1-name-entry-1-script">
+                                                            <option value="Latn, 215, Latin">Latn, 215, Latin</option>
+                                                        </select>
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="two-column-table">
                                                 <div>
-                                                    <label class="inline">Name used from
-                                                        <button aria-label="additional info" class="button-link"><i class="fas fa-question-circle"></i></button><br>
-                                                        <input type="date" aria-label="name date from" value=""/>
-                                                        <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                                                    <label>
+                                                        <span class="inline">Name used from</span>
+                                                        <input type="button" aria-label="additional info" data-content-type="name-used-from" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                        <div class="editable-field">
+                                                            <input type="date" name="identity-1-name-entry-1-name-used-from" value=""/>
+                                                            
+                                                        </div>
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <label class="inline">Name used until 
-                                                        <button aria-label="additional info" class="button-link"><i class="fas fa-question-circle"></i></button><br>
-                                                        <input type="date" aria-label="name date until" value=""/>
-                                                        <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                                                    <label>
+                                                        <span class="inline">Name used until</span>
+                                                        <input type="button" aria-label="additional info" data-content-type="name-used-until" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                        <div class="editable-field">
+                                                            <input type="date" name="identity-1-name-entry-1-name-used-until" value=""/>
+                                                            
+                                                        </div>
                                                     </label>
                                                 </div>
                                             </div>
-                                            <label class="inline">Display date name used
-                                                    <button aria-label="additional info" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                    <input type="text" aria-label="display date" value=""/>
+                                            <label>
+                                                <span class="inline">Display date name used</span>
+                                                <input type="button" aria-label="additional info" data-content-type="display-date-name-used" class="icon-only additional-info-icon" value="&#xf059;">
+                                                <input type="text" name="identity-1-name-entry-1-display-date-name-used" value=""/>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
                             <label class="create linked-button">
-                                <input type="button" class="icon-only" aria-label="add name entry" value="&#xf067;" onclick="addBlock(this)">Add name entry
+                                <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add name entry
                             </label>
                             <br>
                             <h3>DESCRIPTIONS (1)</h3>
-                            <fieldset class="optional-to-delete">
+                            <fieldset class="optional-to-delete" id="identity-1-description-1">
                                 <div class="fieldset-header">
                                     <h3>{{ gender }}  |   {{  language }}  |  {{ place }}  |  {{ function }} </h3>
                                     <div class="flex">
                                         <div>
                                             <label class="button-link danger">
-                                                <input type="button" class="icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
                                             </label>
                                         </div>
                                         <a class="toggle-tab-button"></a>
@@ -253,13 +258,13 @@
                                 <div class="fieldset-body expand">
                                     <!--start   ONLY FOR PERSON   start-->
                                     <h3>GENDER (1)</h3>
-                                    <fieldset class="optional-to-delete">
+                                    <fieldset class="optional-to-delete" id="identity-1-description-1-gender-1">
                                         <div class="fieldset-header">
                                             <h3>{{ gender }}</h3>
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
                                                     </labels>
                                                 </div>
                                                 <a class="toggle-tab-button"></a>
@@ -268,38 +273,45 @@
                                         <div class="fieldset-body expand">
                                             <div class="two-column-table">
                                                 <div>
-                                                    <label><span class="required">Gender</span>
-                                                        <select required>
-                                                            <option>Title</option>
+                                                    <label>
+                                                        <span class="required">Gender</span>
+                                                        <select name="identity-1-description-1-gender-1-gender">
+                                                            <!-- for g in gender -->
+                                                            <option value="{{ g.value }}">{{ g.value }}</option>
                                                         </select>
                                                     </label>
                                                     <div class="two-column-table">
                                                         <div>
                                                             <label>Gender used from
-                                                                <button aria-label="gender used from" class="button-link"><i class="fas fa-question-circle"></i></button><br>
-                                                                <input aria-label="gender date from" type="date" value=""/>
-                                                                <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                                                                    <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                                <div class="editable-field">
+                                                                    <input type="date" name="identity-1-description-1-gender-1-gender-used-from" value=""/>
+                                                                    
+                                                                </div>
                                                             </label>
                                                         </div>
                                                         <div>
                                                             <label>Gender used until
-                                                                <button aria-label="gender date until" class="button-link"><i class="fas fa-question-circle"></i></button><br>
-                                                                <input type="date" aria-label="gender date until" value=""/>
-                                                                <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                                                                    <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                                <div class="editable-field">
+                                                                    <input type="date" name="identity-1-description-1-gender-1-gender-used-until" value=""/>
+                                                                    
+                                                                </div>
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <label>Display date gender used
-                                                            <button aria-label="gender used from" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                            <input aria-label="display date gender used" value=""/>
+                                                            <input type="button" aria-label="additional info" data-content-type="display-date" class="icon-only additional-info-icon" value="&#xf059;">
+                                                        <input type="text" name="identity-1-description-1-gender-1-display-date-gender-used" value=""/>
                                                     </label>
                                                 </div>
                                                 <div>
                                                     <label>Descriptive notes
-                                                        <textarea aria-label="description" rows="8" class="richtext"></textarea>
+                                                        <input type="button" aria-label="additional info" data-content-type="descriptive-notes" class="icon-only additional-info-icon" value="&#xf059;">
+                                                        <input type="text" name="identity-1-description-1-gender-1-descriptive-notes" value=""/>
                                                     </label>
                                                     <label>Citation
-                                                        <textarea aria-label="citation" rows="3" class="richtext"></textarea>
+                                                        <textarea class="richtext" name="identity-1-description-1-gender-1-citation" rows="3"></textarea>
                                                     </label>
                                                 </label>
                                                 </div>
@@ -307,53 +319,58 @@
                                         </div>
                                     </fieldset>
                                     <label class="create linked-button">
-                                        <input type="button" class="icon-only" aria-label="add gender" value="&#xf067;" onclick="addBlock(this)">Add gender
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add gender
                                     </label>
                                     <!--end   ONLY FOR PERSON   end-->
 
 
                                     <h3>BIOGRAPHY/HISTORY (1)</h3>
-                                    <fieldset class="optional-to-delete">
+                                    <fieldset class="optional-to-delete" id="identity-1-description-1-biography-1">
                                         <div class="fieldset-header">
                                             <h3>{{ abstract | limit length }}</h3>
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
                                                     </label>
                                                 </div>
                                                 <a class="toggle-tab-button"></a>
                                             </div>
                                         </div>
                                         <div class="fieldset-body expand">
-                                            <label><span class="required">Abstract</span>
-                                                <textarea class="richtext" rows="8" required></textarea>
+                                            <label>
+                                                <span class="required">Abstract</span>
+                                                <textarea class="richtext" name="identity-1-description-1-biography-1-abstract" rows="8"></textarea>
                                             </label>
-                                            <label><span>Content</span>
-                                                <textarea class="richtext" rows="8"></textarea>
+                                            <label>
+                                                <span>Content</span>
+                                                <textarea class="richtext" name="identity-1-description-1-biography-1-content" rows="8"></textarea>
                                             </label>
-                                            <label><span>Structure or genealogy</span>
-                                                <textarea class="richtext" rows="8"></textarea>
+                                            <label>
+                                                <span>Structure or genealogy</span>
+                                                <textarea class="richtext" name="identity-1-description-1-biography-1-structure" rows="8"></textarea>
                                             </label>
-                                            <label><span>Sources</span>
-                                                <textarea class="richtext" rows="8"></textarea>
+                                            <label>
+                                                <span>Sources</span>
+                                                <textarea class="richtext" name="identity-1-description-1-biography-1-sources" rows="8"></textarea>
                                             </label>
-                                            <label><span>Copyright</span>
-                                                <textarea class="richtext" rows="8"></textarea>
+                                            <label>
+                                                <span>Copyright</span>
+                                                <textarea class="richtext" name="identity-1-description-1-biography-1-copyright" rows="8"></textarea>
                                             </label>
                                         </div>
                                     </fieldset>
                                     <label class="create linked-button">
-                                        <input type="button" class="icon-only" aria-label="add biography/history" value="&#xf067;" onclick="addBlock(this)">Add biography/history
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add biography/history
                                     </label>
                                     <h3>LANGUAGES USED (1)</h3>
-                                    <fieldset class="optional-to-delete">
+                                    <fieldset class="optional-to-delete" id="identity-1-description-1-languages-1">
                                         <div class="fieldset-header">
                                             <h3>{{ language }}</h3>
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
                                                     </label>
                                                 </div>
                                                 <a class="toggle-tab-button"></a>
@@ -362,31 +379,31 @@
                                         <div class="fieldset-body expand">
                                             <div class="two-column-table">
                                                 <div>
-                                                    <label for="identity-{{ identity.index }}-language-{{ language.index }}-term">Language</label>
-                                                    <select id="identity-{{ identity.index }}-language-{{ language.index }}-term">
-                                                        <option>English</option>
+                                                    <label>Language</label>
+                                                    <select name="identity-1-description-1-languages-1-language">
+                                                        <option value="English">English</option>
                                                     </select>
                                                 </div>
                                                 <div>
-                                                    <label for="identity-{{ identity.index }}-language-{{ language.index }}-script">Script</label>
-                                                    <select id="identity-{{ identity.index }}-language-{{ language.index }}-script">
-                                                        <option>Script: Latn, 215, Latin</option>
+                                                    <label>Script</label>
+                                                    <select name="identity-1-description-1-languages-1-script">
+                                                        <option value="Latn">Script: Latn, 215, Latin</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                     </fieldset>
                                     <label class="create linked-button">
-                                        <input type="button" class="icon-only" aria-label="add language" value="&#xf067;" onclick="addBlock(this)">Add language
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add language
                                     </label>
                                     <h3>PLACES (1)</h3>
-                                    <fieldset class="optional-to-delete">
+                                    <fieldset class="optional-to-delete" id="identity-1-description-1-place-1">
                                         <div class="fieldset-header">
                                             <h3>{{ place }}</h3>
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
                                                     </label>
                                                 </div>
                                                 <a class="toggle-tab-button"></a>
@@ -397,57 +414,63 @@
                                                 <div>
                                                     <label>
                                                         <span class="required">Place</span>
-                                                        <select class="editable" required>
-                                                            <option>Select</option>
-                                                        </select>
-                                                        <button aria-label="edit" class="button-link"><i class="fas fa-pen"></i></button>
+                                                        <div class="editable-field">
+                                                            <select name="identity-1-description-1-place-1-place">
+                                                                <option value="">Select</option>
+                                                            </select>
+                                                            <button aria-label="edit" class="icon-only"><i class="fas fa-pen"></i></button>
+                                                        </div>
                                                     </label>
                                                     <label>
                                                         <span class="required">Address</span>
-                                                        <textarea aria-label="address" rows="8" required></textarea>
+                                                        <textarea name="identity-1-description-1-place-1-address" rows="8"></textarea>
                                                     </label>
                                                 </div>
                                                 <div>
                                                     <label>
                                                         <span class="required">Role</span>
-                                                        <textarea aria-label="role" rows="2" required></textarea>
+                                                        <textarea name="identity-1-description-1-place-1-role" rows="2"></textarea>
                                                     </label>
                                                     <div class="two-column-table">
                                                         <div>
                                                             <label>
                                                                 Date from
-                                                                <button aria-label="place date from" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                                <input type="date" aria-label="place date from" value=""/>
-                                                                <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                                                                <input type="button" aria-label="additional info" data-content-type="place-date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <div class="editable-field">
+                                                                    <input type="date" name="identity-1-description-1-place-1-date-from" value=""/>
+                                                                    
+                                                                </div>
                                                             </label>
                                                         </div>
                                                         <div>
                                                             <label>Date to
-                                                                <button aria-label="place to" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                                <input type="date" aria-label="place date until" value=""/>
-                                                                <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                                                                    <input type="button" aria-label="additional info" data-content-type="place-date-to" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <div class="editable-field">
+                                                                    <input type="date" name="identity-1-description-1-place-1-date-to" value=""/>
+                                                                    
+                                                                </div>
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <label>Display date
-                                                        <button aria-label="additional info" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                        <input type="text" aria-label="display date" value=""/>
+                                                        <input type="button" aria-label="additional info" data-content-type="display-date" class="icon-only additional-info-icon" value="&#xf059;">
+                                                        <input type="text" name="identity-1-description-1-place-1-display-date" value=""/>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
                                     </fieldset>
                                     <label class="create linked-button">
-                                        <input type="button" class="icon-only" aria-label="add place" value="&#xf067;" onclick="addBlock(this)">Add place
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add place
                                     </label>
                                     <h3>EVENTS (1)</h3>
-                                    <fieldset class="optional-to-delete">
+                                    <fieldset class="optional-to-delete" id="identity-1-description-1-event-1">
                                         <div class="fieldset-header">
                                             <h3>{{ event }}</h3>
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
                                                     </label>
                                                 </div>
                                                 <a class="toggle-tab-button"></a>
@@ -458,56 +481,63 @@
                                                 <div>
                                                     <label>
                                                         <span class="required">Event</span>
-                                                        <textarea id="event-{{ event.index }}-term" aria-label="event" rows="9" required></textarea>
+                                                        <textarea name="identity-1-description-1-event-1-event" rows="9"></textarea>
                                                     </label>
                                                 </div>
                                                 <div>
                                                     <label>
                                                         <span class="required">Place</span>
-                                                        <select class="editable" required>
-                                                            <option>Select</option>
-                                                        </select>
+                                                        <div class="editable-field">
+                                                            <select>
+                                                                <option>Select</option>
+                                                            </select>
+                                                            <button aria-label="edit" class="icon-only"><i class="fas fa-pen"></i></button>
+                                                        </div>
                                                     </label>
-                                                    <button aria-label="edit" class="button-link"><i class="fas fa-pen"></i></button>
                                                     <div class="two-column-table">
                                                         <div>
                                                             <label>
                                                                 <span class="required">Event date from</span>
-                                                                <button aria-label="event date from" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                                <input type="date" aria-label="event date from" value="" required/>
-                                                                <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                                                                <input type="button" aria-label="additional info" data-content-type="event-date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <div class="editable-field">
+                                                                    <input type="date" name="identity-1-description-1-event-1-date-from" value=""/>
+                                                                    
+                                                                </div>
                                                             </label>
                                                         </div>
                                                         <div>
-                                                            <label><span class="required">Event date</span>
-                                                                <button aria-label="event date to" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                                <input type="date" aria-label="event date to" value="" required/>
-                                                                <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                                                            <label>
+                                                                <span class="required">Event date</span>
+                                                                <input type="button" aria-label="additional info" data-content-type="event-date-to" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <div class="editable-field">
+                                                                    <input type="date" name="identity-1-description-1-event-1-date-to" value=""/>
+                                                                    
+                                                                </div>
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <label>
                                                         <span class="required">Display date</span>
-                                                        <button aria-label="additional info" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                        <input type="text" aria-label="display date" value="" required/>
+                                                        <input type="button" aria-label="additional info" data-content-type="display-date" class="icon-only additional-info-icon" value="&#xf059;">
+                                                        <input type="text" name="identity-1-description-1-event-1-display-date" value=""/>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
                                     </fieldset>
                                     <label class="create linked-button">
-                                        <input type="button" class="icon-only" aria-label="add event" value="&#xf067;" onclick="addBlock(this)">Add event
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add event
                                     </label>
 
                                     <!--start   ONLY FOR CORPORATE BODIES   start-->
                                     <h3>MANDATE (1)</h3>
-                                    <fieldset class="optional-to-delete">
+                                    <fieldset class="optional-to-delete" id="identity-1-description-1-mandate-1">
                                         <div class="fieldset-header">
                                             <h3>{{ mandate_term }}</h3>
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
                                                     </label>
                                                 </div>
                                                 <a class="toggle-tab-button"></a>
@@ -517,52 +547,56 @@
                                             <div class="two-column-table">
                                                 <div>
                                                     <label>Term
-                                                        <input type="text" id="identity-{{ identity.index }}-mandate-{{ mandate.index }}-term" aria-label="term" name=""/>
+                                                        <input type="text" name="identity-1-description-1-mandate-1-term" value=""/>
                                                     </label>
                                                     <label>Descriptive notes
-                                                        <textarea class="richtext" aria-label="descriptive-notes" rows="8"></textarea>
+                                                        <textarea class="richtext" name="identity-1-description-1-mandate-1-descriptive-notes" rows="8"></textarea>
                                                     </label>
                                                 </div>
                                                 <div>
                                                     <div class="two-column-table">
                                                         <div>
                                                             <label>Date from
-                                                                <button aria-label="mandate date from" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                                <input type="date" aria-label="mandate date from" value=""/>
-                                                                <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                                                                <input type="button" aria-label="additional info" data-content-type="mandate-date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <div class="editable-field">
+                                                                    <input type="date" name="identity-1-description-1-mandate-1-date-from" value=""/>
+                                                                    
+                                                                </div>
                                                             </label>
                                                         </div>
                                                         <div>
                                                             <label>Date to
-                                                                <button aria-label="mandate date to" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                                <input type="date" aria-label="mandate date until" value=""/>
-                                                                <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                                                                <input type="button" aria-label="additional info" data-content-type="mandate-date-to" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <div class="editable-field">
+                                                                    <input type="date" name="identity-1-description-1-mandate-1-date-to" value=""/>
+                                                                    
+                                                                </div>
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <label>Display date
-                                                        <button aria-label="additional info" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                        <input type="text" aria-label="display date" value=""/>
+                                                        <input type="button" aria-label="additional info" data-content-type="display-date" class="icon-only additional-info-icon" value="&#xf059;">
+                                                        <input type="text" name="identity-1-description-1-mandate-1-display-date" value=""/>
                                                     </label>
                                                     
                                                     <label>Citation
-                                                        <textarea class="richtext" aria-label="citation" rows="3"></textarea>
+                                                        <textarea class="richtext" name="identity-1-description-1-mandate-1-citation" rows="3"></textarea>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
                                     </fieldset>
                                     <label class="create linked-button">
-                                        <input type="button" class="icon-only" aria-label="add mandate" value="&#xf067;" onclick="addBlock(this)">Add mandate
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add mandate
                                     </label>
                                     <h3>LEGAL STATUS (1)</h3>
-                                    <fieldset class="optional-to-delete">
+                                    <fieldset class="optional-to-delete" id="identity-1-description-1-legal-status-1">
                                         <div class="fieldset-header">
                                             <h3>{{ legal_status_term }}</h3>
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
                                                     </label>
                                                 </div>
                                                 <a class="toggle-tab-button"></a>
@@ -572,103 +606,115 @@
                                             <div class="two-column-table">
                                                 <div>
                                                     <label>Term
-                                                    <input type="text" aria-label="term" name="" ></label>
+                                                        <input type="text" name="identity-1-description-1-legal-status-1-term">
+                                                    </label>
                                                     <label>Descriptive notes
-                                                    <textarea class="richtext" aria-label="descriptive-notes" rows="8"></textarea></label>
+                                                        <textarea class="richtext" name="identity-1-description-1-legal-status-1-descriptive-notes" rows="8"></textarea>
+                                                    </label>
                                                 </div>
                                                 <div>
                                                     <div class="two-column-table">
                                                         <div>
                                                             <label>Date from
-                                                                <button aria-label="mandate date from" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                                <input type="date" aria-label="mandate date from" value=""/>
-                                                                <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                                                                <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <div class="editable-field">
+                                                                    <input type="date" name="identity-1-description-1-legal-status-1-date-from" value=""/>
+                                                                    
+                                                                </div>
                                                             </label>
                                                         </div>
                                                         <div>
                                                             <label >Date to
-                                                                <button aria-label="mandate date to" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                                <input type="date" aria-label="mandate date to" value=""/>
-                                                                <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                                                                    <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <div class="editable-field">
+                                                                    <input type="date" name="identity-1-description-1-legal-status-1-date-to" value=""/>
+                                                                    
+                                                                </div>
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <label>Display date
-                                                        <button aria-label="additional info" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                        <input type="text" aria-label="display date" value=""/>
+                                                        <input type="button" aria-label="additional info" data-content-type="display-date" class="icon-only additional-info-icon" value="&#xf059;">
+                                                        <input type="text" name="identity-1-description-1-legal-status-1-display-date" value=""/>
                                                     </label>
                                                     <label>Citation
-                                                        <textarea class="richtext" aria-label="citation" rows="3"></textarea>
+                                                        <textarea class="richtext" name="identity-1-description-1-legal-status-1-citation" rows="3"></textarea>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
                                     </fieldset>
                                     <label class="create linked-button">
-                                        <input type="button" class="icon-only" aria-label="add legal status" value="&#xf067;" onclick="addBlock(this)">Add legal status
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add legal status
                                     </label>
                                     <!--end   ONLY FOR CORPORATE BODIES   end-->
-                            </fieldset>
-                            <button aria-label="add description" class="create linked-button"><i class="fal fa-plus"></i>Add description</button><br>
-                            <h3>FUNCTION (1)</h3>
-                            <fieldset class="optional-to-delete">
-                                <div class="fieldset-header">
-                                    <h3>{{ function }}</h3>
-                                    <div class="flex">
-                                        <div>
-                                            <label class="button-link danger">
-                                                <input type="button" class="icon-only danger-highlight" aria-label="delete field" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
-                                            </label>
+
+                                    <h3>FUNCTION (1)</h3>
+                                    <fieldset class="optional-to-delete" id="identity-1-description-1-function-1">
+                                        <div class="fieldset-header">
+                                            <h3>{{ function }}</h3>
+                                            <div class="flex">
+                                                <div>
+                                                    <label class="button-link danger">
+                                                        <input type="button" class="icon-only danger-highlight" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                    </label>
+                                                </div>
+                                                <a class="toggle-tab-button"></a>
+                                            </div>
                                         </div>
-                                        <a class="toggle-tab-button"></a>
-                                    </div>
-                                </div>
-                                <div class="fieldset-body expand">
-                                    <div class="two-column-table">
-                                        <div>
-                                            <label>Function <span style="color: red">*</span>
-                                                <select required>
-                                                    <option>Select</option>
-                                                </select>
-                                            </label>
-                                        </div>
-                                        <div>
+                                        <div class="fieldset-body expand">
                                             <div class="two-column-table">
                                                 <div>
-                                                    <label>Date from
-                                                        <button aria-label="function date from" class="button-link"><i class="fas fa-question-circle"></i></button><br>
-                                                        <input type="date" aria-label="function date from" value=""/>
-                                                        <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                                                    <label>
+                                                        <span class="required">Function</span>
+                                                        <select name="identity-1-description-1-function-1-function">
+                                                            <option value="">Select</option>
+                                                        </select>
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <label>Date to
-                                                        <button aria-label="function date to" class="button-link"><i class="fas fa-question-circle"></i></button><br>
-                                                        <input type="date" aria-label="function date to" value=""/>
-                                                        <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
+                                                    <div class="two-column-table">
+                                                        <div>
+                                                            <label>Date from
+                                                                <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <div class="editable-field">
+                                                                    <input type="date" name="identity-1-description-1-function-1-date-from" value=""/>
+                                                                    
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label>Date to
+                                                                <button aria-label="function date to" class="icon-only"><i class="fas fa-question-circle"></i></button><br>
+                                                                <div class="editable-field">
+                                                                    <input type="date" name="identity-1-description-1-function-1-date-to" value=""/>
+                                                                    
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <label>Display date
+                                                        <input type="button" aria-label="additional info" data-content-type="display-date" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                        <input type="text" name="identity-1-description-1-function-1-display-date" value=""/>
                                                     </label>
                                                 </div>
                                             </div>
-                                            <label>Display date
-                                                <button aria-label="additional info" class="button-link"><i class="fas fa-question-circle"></i></button><br>
-                                                <input type="text" aria-label="function display date" value=""/>
-                                            </label>
                                         </div>
-                                    </div>
-                                </div>
+                                    </fieldset>
+                                    <label class="create linked-button">
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add function
+                                    </label>
                             </fieldset>
-                            <label class="create linked-button">
-                                <input type="button" class="icon-only" aria-label="add function" value="&#xf067;" onclick="addBlock(this)">Add function
-                            </label>
+                            <button aria-label="add description" class="create linked-button"><i class="fal fa-plus"></i>Add description</button><br>
                             
                             <h3>RELATIONS (1)</h3>
-                            <fieldset class="optional-to-delete">
+                            <fieldset class="optional-to-delete" id="identity-1-relation-1">
                                 <div class="fieldset-header">
                                     <h3>{{ relation }}</h3>
                                     <div class="flex">
                                         <div>
                                             <label class="button-link danger">
-                                                <input type="button" class="icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
                                             </label>
                                         </div>
                                         <a class="toggle-tab-button"></a>
@@ -679,64 +725,71 @@
                                         <div>
                                             <label>
                                                 <span class="required">Relationship type</span>
-                                                <select required>
-                                                    <option>Select</option>
+                                                <select name="identity-1-relation-1-relationship-type">
+                                                    <option value="">Select</option>
                                                 </select>
                                             </label>
                                             <label>
                                                 <span class="required">Relatated person or corporate body</span>
-                                                <select required>
-                                                    <option>Select</option>
+                                                <select name="identity-1-relation-1-related">
+                                                    <option value="">Select</option>
                                                 </select>
                                             </label>
                                             <div class="two-column-table">
-                                                    <div>
-                                                        <label>
-                                                            Date from
-                                                            <button aria-label="relations date from" class="button-link"><i class="fas fa-question-circle"></i></button><br>
-                                                            <input type="date" aria-label="relations date from" value=""/>
-                                                            <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
-                                                        </label>
-                                                    </div>
-                                                    <div>
-                                                        <label>Date to
-                                                            <button aria-label="relations used to" class="button-link"><i class="fas fa-question-circle"></i></button><br>
-                                                            <input type="date" aria-label="relations date to" value=""/>
-                                                            <button aria-label="calendar" class="button-link"><i class="fas fa-calendar-alt"></i></button>
-                                                        </label>
-                                                    </div>
+                                                <div>
+                                                    <label>
+                                                        Date from
+                                                        <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                        <div class="editable-field">
+                                                            <input type="date" name="identity-1-relation-1-date-from" value=""/>
+                                                            
+                                                        </div>
+                                                    </label>
                                                 </div>
-                                                <label>Display date
-                                                    <button aria-label="additional info" class="button-link"><i class="fas fa-question-circle"></i></button>
-                                                    <input type="text" aria-label="relations display date" value=""/>
-                                                </label>
+                                                <div>
+                                                    <label>Date to
+                                                        <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                        <div class="editable-field">
+                                                            <input type="date" name="identity-1-relation-1-date-to" value=""/>
+                                                            
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <label>Display date
+                                                <input type="button" aria-label="additional info" data-content-type="display-date" class="icon-only additional-info-icon" value="&#xf059;"></button>
+                                                <input type="text" name="identity-1-relation-1-display-date" value=""/>
+                                            </label>
                                         </div>
                                         <div>
-                                            <label><span class="required">Description</span>
-                                                <textarea aria-label="description" rows="9" required></textarea>
+                                            <label>
+                                                <span class="required">Description</span>
+                                                <textarea name="identity-1-relation-1-description" rows="9"></textarea>
                                             </label>
                                             <label>Place related to relationship
-                                                    <select class="editable">
+                                                <div class="editable-field">
+                                                    <select name="identity-1-relation-1-place">
                                                         <option>Select</option>
                                                     </select>
-                                                    <button aria-label="edit" class="button-link"><i class="fas fa-pen"></i></button>
+                                                    <button aria-label="edit" class="icon-only"><i class="fas fa-pen"></i></button>
+                                                </div>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
                             <label class="create linked-button">
-                                <input type="button" class="icon-only" aria-label="add relation" value="&#xf067;" onclick="addBlock(this)">Add relation
+                                <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add relation
                             </label>
                             <br>
                             <h3>RESOURCES (1)</h3>
-                            <fieldset class="optional-to-delete">
+                            <fieldset class="optional-to-delete" id="identity-1-resource-1">
                                 <div class="fieldset-header">
                                     <h3>{{ resource }}</h3>
                                     <div class="flex">
                                         <div>
                                             <label class="button-link danger">
-                                                <input type="button" class="icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
                                             </label>
                                         </div>
                                         <a class="toggle-tab-button"></a>
@@ -747,49 +800,49 @@
                                             <div>
                                                 <label>
                                                     <span class="required">Resource relationship type</span>
-                                                    <select required>
+                                                    <select name="identity-1-resource-1-relationship-type">
                                                         <option>Select</option>
                                                     </select>
                                                 </label>
                                                
                                                 <label>
                                                     <span class="required">Citation</span>
-                                                    <textarea class="richtext" aria-label="citation" rows="4" required></textarea>
+                                                    <textarea name="identity-1-resource-1-citation" class="richtext" rows="4"></textarea>
                                                 </label>
                                             </div>
                                             <div>
                                                 <label>
                                                     <span class="required">URL</span>
-                                                    <input type="text" aria-label="url" name="" required/>
+                                                    <input type="text" name="identity-1-resource-1-url"/>
                                                 </label>
                                                 <label>
                                                     <span class="required">Notes</span>
-                                                    <textarea aria-label="notes" rows="4" required></textarea>
+                                                    <textarea name="identity-1-resource-1-notes" rows="4"></textarea>
                                                 </label>
                                             </div>
                                     </div>
                                 </div>
                             </fieldset>
                             <label class="create linked-button">
-                                <input type="button" class="icon-only" aria-label="add resource" value="&#xf067;" onclick="addBlock(this)">Add resource
+                                <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add resource
                             </label>
                             <br>
                         </div>
                     </fieldset>
                 </div>
                 <label class="create linked-button">
-                    <input type="button" class="icon-only" aria-label="add identity" value="&#xf067;" onclick="addBlock(this)">Add identity
+                    <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add identity
                 </label>
                 <br>
                 <div class="form-section">
                     <h2>SOURCES (1)</h2>
-                    <fieldset class="optional-to-delete">
+                    <fieldset class="optional-to-delete" id="sources-1">
                         <div class="fieldset-header">
                             <h3>{{ source }}</h3>
                             <div class="flex">
                                 <div>
                                     <label class="button-link danger">
-                                        <input type="button" class="icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
                                     </label>
                                 </div>
                                 <a class="toggle-tab-button"></a>
@@ -799,28 +852,28 @@
                             <div class="two-column-table">
                                 <div>
                                     <label><span class="required">Name</span></label>
-                                    <input type="text" name="" aria-label="name" required/>
+                                    <input type="text" name="sources-1-name" value=""/>
                                 </div>
                                 <div>
                                     <label>URL
-                                        <input type="text" aria-label="url" name="" id="sources-entry-{{ source.index }}-url"/>
+                                        <input type="text" name="sources-1-url"/>
                                     </label>
                                 </div>
                             </div>
                             <label>
                                 <span class="required">Notes</span>
-                                <textarea aria-label="notes" rows="4" required></textarea>
+                                <textarea name="sources-1-notes" rows="4"></textarea>
                             </label>
                         </div>
                     </fieldset>
                     <label class="create linked-button">
-                        <input type="button" class="icon-only" aria-label="add source" value="&#xf067;" onclick="addBlock(this)">Add source
+                        <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add source
                     </label>
                     <br>
                 </div>
                 <div class="form-section">
                     <h2>CONTROL</h2>
-                    <fieldset class="optional-to-delete">
+                    <fieldset id="control">
                         <div class="fieldset-header">
                             <h3>Record ID: 441</h3>
                             <div>
@@ -830,36 +883,82 @@
                         <div class="fieldset-body expand">
                             <div class="two-column-table">
                                 <div>
-                                    <label for="control-language">
+                                    <label>
                                         <span class="required">Language</span>
-                                        <select required>
-                                            <option>English</option>
+                                        <select name="language">
+                                            <option value="English">English</option>
                                         </select>
                                     </label>
                                     <label>
                                         <span class="required">Rights citation</span>
-                                        <input type="text" aria-label="control rights citation" name="rights-citation" disabled/>
+                                        <input type="text" name="rights-citation" disabled/>
                                     </label>
                                 </div>
                                 <div>
                                     <label>
                                         <span class="required">Script</span>
-                                        <select id="control-script" required>
-                                            <option>Latn, 215, Latin</option>
+                                        <select name="script">
+                                            <option value="Latn">Latn, 215, Latin</option>
                                         </select>
                                     </label>
                                     <label>
                                         <span class="required">Rights abbreviation</span>
-                                        <input type="text" aria-label="control rights abbreviation" name="rights-abbreviation" disabled/>
+                                        <input type="text" name="rights-abbreviation" disabled/>
                                     </label>
                                 </div>
                             </div>
-                            <label><span class="required">Rights declaration</span></label>
-                            <textarea aria-label="rights-declaration" class="richtext" rows="4" required></textarea>
+                            <label>
+                                <span class="required">Rights declaration</span>
+                                <textarea class="richtext" name="rights-declaration" rows="4"></textarea>
+                            </label>
                         </div>
                     </fieldset>
                 </div>
             </form>
+        </div>
+        <div class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Save changes</h2>
+                    <input type="button" class="icon-only" aria-label="close" onclick="closeBlock('modal')" value="&#xf00d;" />
+                </div>
+                <div class="modal-body">
+                    <form action="" method="" id="record-modal-form">
+                        <div class="two-column-table">
+                            <div>
+                                <label>
+                                    <span class="required">Publication status</span>
+                                    <select name="publication-status" required>
+                                        <option value="In process">In process</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span class="required">Editing event type</span>
+                                    <select name="maintenance-status" required>
+                                        <option value="Revised">Revised</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <span class="required">Maintenance status</span>
+                                    <select name="maintenance-status">
+                                        <option value="New">New</option>
+                                    </select>
+                                </label>
+                            </div>
+                            
+                        </div>
+                        <label>
+                            <span class="required">Comments</span>
+                            <textarea rows="4"></textarea>
+                        </label>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Save" form="record-modal-form" class="save"/>
+                </div>
+            </div>
         </div>
     </main>
 </body>

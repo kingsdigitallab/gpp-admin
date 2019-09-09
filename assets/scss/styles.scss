@@ -75,6 +75,49 @@ body {
     }
 }
 
+*:focus {
+    outline: none;
+}
+
+.required {
+    &:after {
+        content: " *";
+        color: red;
+
+    }
+}
+
+.margin-right {
+    margin-right: 10px;
+}
+
+.margin-left {
+    margin-left: 10px;
+}
+
+.hidden {
+    visibility: hidden !important;
+}
+
+.none {
+    display: none;
+}
+
+.inline {
+    display: inline;
+}
+
+.dotted-underline {
+    border-bottom: 1px dotted $primary;
+}
+
+.border-left {
+    border-left: 9px solid $primary !important;
+    border-left-color: $primary !important;
+}
+
+
+
 button, a, .create, .link, input[type=submit], input[type=button] {
     cursor: pointer;
     white-space: nowrap;
@@ -87,7 +130,7 @@ button, .create, input[type=submit] {
     color: white;
     border: none;
     padding: 13px 25px;
-    font-size: 13px;
+    font-size: 15px;
     border-radius: 30px;
     &:hover:not(.icon-only), &:focus:not(.icon-only) {
         box-shadow: 0px 2px 2px $medium-grey;
@@ -95,32 +138,21 @@ button, .create, input[type=submit] {
 }
 
 input[type=submit] {
-    max-width: 100px;
-}
-
-.icon-only {
-    border: none;
-    color: inherit;
-    font-family: $fontawesome;
-    font-weight: 300;
-    padding: 3px;
-    margin-bottom: 0px;
-    background-color: transparent;
+    max-width: max-content;
 }
 
 .create {
     @include button($add);
     &.linked-button {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
         margin-top: 0px;
         margin-right: -1px;
-        // margin-bottom: 40px;
         max-width: max-content;
     }
-    // .fal {
-    //     margin-right: 10px;
-    // }
 }
 
 .save {
@@ -157,6 +189,21 @@ input[type=submit] {
     color: $medium-grey !important;
     box-shadow: none !important;
     cursor: auto;
+    &:hover, &:focus {
+        text-decoration: none;
+    }
+}
+
+.icon-only {
+    border: none;
+    color: inherit;
+    font-family: $fontawesome;
+    font-weight: 300;
+    font-size: 16px;
+    margin-left: 5px;
+    padding: 3px;
+    margin-bottom: 0px;
+    background-color: transparent;
 }
 
 .button-link {
@@ -170,10 +217,6 @@ input[type=submit] {
         color: $danger;
     }
 
-    &:hover, &:focus {
-        text-decoration: underline;
-    }
-
     .fas, .fal {
         margin-right: 5px;
     }
@@ -184,16 +227,27 @@ input[type=submit] {
         font-size: 16px;
         margin-left: 5px;
     }
+
+    &:hover, &:focus {
+        text-decoration: underline;
+    }
 }
 
 .optional-to-delete {
     .danger-highlight, .danger {
         color: $medium-grey;
-        margin-bottom: 10px;
+        &:hover, &:focus {
+            text-decoration: none;
+            cursor: auto;
+        }
     }
     & + .optional-to-delete {
         .danger-highlight, .danger {
             color: $danger;
+            &:hover, &:focus {
+                text-decoration: underline;
+                cursor: pointer;
+            }
         }
     }
 }
@@ -202,48 +256,12 @@ input[type=submit] {
     border-radius: 0px;
 }
 
-
-*:focus {
-    outline: none;
-}
-
 a {
     color: $primary;
     font-size: 14px;
     text-decoration: none;
 }
 
-.dotted-underline {
-    border-bottom: 1px dotted $primary;
-}
-
-.margin-right {
-    margin-right: 10px;
-}
-.margin-left {
-    margin-left: 10px;
-}
-
-.hidden {
-    visibility: hidden !important;
-}
-
-.inline {
-    display: inline;
-}
-
-.required {
-    &:after {
-        content: " *";
-        color: red;
-
-    }
-}
-
-.border-left {
-    border-left: 9px solid $primary !important;
-    border-left-color: $primary !important;
-}
 
 h2, h3, h4 {
     font-weight: 400;
@@ -256,7 +274,7 @@ h1 {
 }
 
 h2 {
-    font-size: 20px;
+    font-size: 18px;
     color: $primary;
     margin-top: 0px;
     margin-bottom: 30px;
@@ -273,6 +291,15 @@ h4 {
 p {
     font-size: 14px;
     line-height: 1.4em;
+
+    &.additional-info {
+        background-color: white;
+        color: $primary;
+        box-shadow: 0px 0px 2px black;
+        position: absolute;
+        max-width: 200px;
+        padding: 5px;
+    }
 }
 
 
@@ -301,6 +328,11 @@ header {
             color: inherit;
             text-decoration: none;
         }
+        h4 {
+            font-size: 14px;
+            margin-top: 10px;
+            margin-bottom: 0px;
+        }
         .link {
             max-height: 120px;
             text-align: center;
@@ -322,21 +354,16 @@ header {
                 }
             }
             &:hover:not(.active), &:focus:not(.active) {
-                transition: 0.3s;
-                -moz-box-shadow: inset 0 0 5px #000000;
-                -webkit-box-shadow: inset 0 0 5px #000000;
-                box-shadow: inset 0 0 5px #000000;
                 @include darken($primary);
+                transition: 0.3s;
+                box-shadow: inset 0 0 5px black;
+                -moz-box-shadow: inset 0 0 5px black;
+                -webkit-box-shadow: inset 0 0 5px black;
                 color: white;
             }
             .fal {
                 font-size: 16px;
                 margin: 0px 15px 0px 10px;
-            }
-            h4 {
-                font-size: 14px;
-                margin-top: 10px;
-                margin-bottom: 0px;
             }
         }
     }
@@ -360,22 +387,50 @@ header {
     }
 }
 
+
+
 main {
     width: 100%;
-
+    
     &:not(#form-page) {
         margin-left: 200px;
         padding: 20px 40px 40px 40px;
     }
     
+    &#form-page {
+        height: calc(100vh - 120px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        form {
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            input,label {
+                margin-right: 0px;
+                width: 100%;
+                margin: auto;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+            }
+            a {
+                text-align: right;
+            }
+            input[type=submit] {
+                margin-top: 20px;
+            }
+        }
+    }
+
     #page-header {
         display: grid;
         grid-template-columns: 1fr auto;
         grid-column-gap: 10px;
         align-items: center;
         #status-bar {
-            font-size: 14px;
             @include inline-list("|");
+            font-size: 14px;
         }
         .filters {
             margin: 10px 0px;
@@ -429,24 +484,6 @@ main {
         padding: 10px 40px;
     }
 
-    #form-header{
-        margin-top: 70px;
-        #breadcrumbs {
-            font-size: 13px;
-            margin: 20px 0px;
-            @include inline-list("\f0da");
-            a {
-                color: $dark-grey;
-                font-size: 13px;
-                text-decoration: none;
-                border-bottom: 1px dotted $medium-grey;
-                &:hover, &:focus {
-                    border-bottom: 1px dotted $dark-grey;
-                }
-            }
-        }
-    }
-
     .user-control {
         display: flex;
         #user-details, #user-password {
@@ -466,15 +503,36 @@ main {
         margin-top: 40px;
     }
 
+    #form-header{
+        margin-top: 70px;
+        #breadcrumbs {
+            font-size: 13px;
+            margin: 20px 0px;
+            @include inline-list("\f0da");
+            a {
+                color: $dark-grey;
+                font-size: 13px;
+                text-decoration: none;
+                border-bottom: 1px dotted $medium-grey;
+                &:hover, &:focus {
+                    border-bottom: 1px dotted $dark-grey;
+                }
+            }
+        }
+    }
+
     table {
         width: 100%;
         margin-top: 20px;
         border-collapse: collapse;
         font-size: 13px;
-        thead th {
+        thead {
             text-align: left;
-            padding-left: 10px;
             line-height: 1.3em;
+            th {
+                padding: 15px 0px;
+                font-weight: 500;
+            }
             .fas {
                 margin-left: 10px;
                 color: $primary;
@@ -507,10 +565,6 @@ main {
                 }
             }
         }
-        th {
-            padding: 15px 0px;
-            font-weight: 500;
-        }
     }
 
     .two-column-table {
@@ -523,13 +577,11 @@ main {
         }
         div {
             width: 100%;
-            label {
-                margin-bottom: 5px;
-            }
             label, input, select, textarea {
                 width: -moz-available;
                 width: -webkit-fill-available;
                 width: fill-available;
+                margin-bottom: 10px;
             }
         }
         input[type=submit] {
@@ -539,34 +591,40 @@ main {
             margin-top: 20px;
         }
     }
+
+    .editable-field {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-column-gap: 5px;
+    }
     
     form {
         width: 100%;
 
         label {
             font-size: 14px;
+            display: block;
+            position: relative;
+            input, select {
+                margin-top: 0px !important;
+                margin-bottom: 0px !important;
+            }
+            // &:not(.button-link) {
+            //     margin-bottom: 10px;
+            // }
         }
-        select {
-            height: 39.76px;
-            background-color: white;
-        }
-        textarea {
-            width: 100%;
-            -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
+
+
         input, select, textarea {
             font-family: $font-primary;
             border-radius: 5px;
             font-size: 14px;
             padding: 10px;
-            margin-bottom: 10px;
             border: 1px solid $input;
             // margin-right: 20px;
             &[type=date] {
                 margin-right: 5px;
-                max-width: max-content;
+                // max-width: max-content;
             }
             &[type=button] {
                 max-width: max-content;
@@ -579,7 +637,17 @@ main {
                 vertical-align: middle;
             }
         }
-
+        select {
+            height: 39.76px;
+            background-color: white;
+        }
+        textarea {
+            width: 100%;
+            display: block;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
         .richText {
             margin-bottom: 10px;
             .richText-editor {
@@ -587,25 +655,15 @@ main {
                 box-sizing: border-box;
             }
         }
-
-        .editable {
-            max-width: 80%;
-            + button {
-                margin-left: 10px;
-            }
-        }
-
         input:disabled {
             background-color: $light-grey;
             border: none;
         }
-
         .create {
             display: flex;
             align-items: center;
             margin-left: auto;
         }
-
         .form-section {
             margin-top: 40px;
 
@@ -614,13 +672,13 @@ main {
                 padding: 0;
                 background-color: white;
                 border: 1px solid $medium-grey;
-                
                 margin: 0;
                 &:first-of-type {
                     border-top-left-radius: 10px;
                 }
                 &:last-of-type {
                     border-bottom-left-radius: 10px;
+                    overflow: hidden;
                 }
                 .fieldset-header {
                     display: flex;
@@ -656,6 +714,9 @@ main {
                             }
                         }
                     }
+                    label {
+                        margin-bottom: 0px !important;
+                    }
                 }
                 .fieldset-body {
                     -moz-transition: all .4s;
@@ -674,37 +735,56 @@ main {
                     > h3:first-child {
                         margin-top: 0px;
                     }
-                    >h3:not(:first-child) {
+                    > h3:not(:first-child) {
                         margin-top: 40px;
+                    }
+
+                    label, input, textarea {
+                        margin-bottom: 10px;
                     }
                 }
             }
         }
     }
 
-    &#form-page {
-        height: calc(100vh - 120px);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        form {
-            max-width: 300px;
+    .modal {
+        display: none;
+        &.active {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 11;
             display: flex;
-            flex-direction: column;
-            input,label, a {
-                margin-right: 0px;
-                width: 100%;
-                margin: auto;
-                box-sizing: border-box;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(31, 31, 31, 0.5);
+            .modal-content {
+                background-color: white;
+                padding: 40px;
+                border-radius: 20px;
+                animation-duration: 0.3s;
+                animation-name: modalSlide;
             }
-            label {
-                margin-bottom: 10px;
+            .modal-header, .modal-body {
+                margin-bottom: 30px;
             }
-            a {
+            .modal-header{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                h2 {
+                    margin-bottom: 0px;
+                }
+            }
+            .modal-footer {
                 text-align: right;
             }
         }
+        
     }
 
     #pagination {
@@ -726,10 +806,10 @@ main {
                 font-size: 20px;
             }
             &:hover:not(.inactive), &:focus:not(.inactive) {
-                -moz-box-shadow: inset 0 0 5px #000000;
-                -webkit-box-shadow: inset 0 0 5px #000000;
-                box-shadow: inset 0 0 5px #000000;
                 @include darken($primary);
+                box-shadow: inset 0 0 5px black;
+                -moz-box-shadow: inset 0 0 5px black;
+                -webkit-box-shadow: inset 0 0 5px black;
             }
         }
         #first {
@@ -757,14 +837,11 @@ main {
             }
         }
     }
-
     .highlight {
         font-weight: 700;
         color: $primary;
     }
 }
-
-
 
 footer {
     height: 120px;
@@ -776,3 +853,13 @@ footer {
         max-width: 200px;
     }
 }
+
+@keyframes modalSlide {
+    from {
+      margin-top: -15%;
+    }
+  
+    to {
+      margin-top: 0%;
+    }
+  }

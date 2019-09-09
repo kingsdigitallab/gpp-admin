@@ -55,35 +55,47 @@
         <div class="user-control">
             <div id="user-details">
                 <h2>Details</h2>
-                <form action="" class="two-column-table">
+                <form action="" method="" class="two-column-table">
                     <div>
-                        <label for="firstname">First name <span style="color: red">*</span></label>
-                        <input type="text" id="firstname" aria-label="first name" placeholder="First name" onfocus="this.placeholder=''" onblur="this.placeholder='First name'" required/>
-                        <label for="email">Email address <span style="color: red">*</span></label>
-                        <input type="email" id="email" aria-label="email" placeholder="Email address" onfocus="this.placeholder=''" onblur="this.placeholder='Email address'" required/>
+                        <label>
+                            <span class="required">First name</span>
+                            <input type="text" name="firstname" placeholder="First name" onfocus="this.placeholder=''" onblur="this.placeholder='First name'" required/>
+                        </label>
+                        <label>
+                            <span class="required">Email address</span>
+                            <input type="email" name="email" placeholder="Email address" onfocus="this.placeholder=''" onblur="this.placeholder='Email address'" required/>
+                        </label>
                     </div>
                     <div>
-                        <label for="lastname">Last name <span style="color: red">*</span></label>
-                        <input type="text" id="lastname" aria-label="last name" placeholder="Last name" onfocus="this.placeholder=''" onblur="this.placeholder='Last name'" required/>
+                        <label>
+                            <span class="required">Last name</span>
+                            <input type="text" name="lastname" placeholder="Last name" onfocus="this.placeholder=''" onblur="this.placeholder='Last name'" required/>
+                        </label>
                     </div>
                     <input type="submit" class="save" value="Save" />
                 </form>
             </div>
             <div id="user-password">
                 <h2>Change Password</h2>
-                <form action="" class="two-column-table">
+                <form action="" method="" class="two-column-table">
                     <div>
-                        <label for="old-password">Old password <span style="color: red">*</span></label>
-                        <input type="password" id="old-password" aria-label="old password" placeholder="Old Password" onfocus="this.placeholder=''" onblur="this.placeholder='Old Password'" required/>
+                        <label>
+                            <span class="required">Old password</span>
+                            <input type="password" name="old-password" placeholder="Old Password" onfocus="this.placeholder=''" onblur="this.placeholder='Old Password'" required/>
+                        </label>
                     </div>
                     <div></div>
                     <div>
-                        <label for="new-password">New password <span style="color: red">*</span></label>
-                        <input type="password" id="new-password" aria-label="new password" placeholder="New Password" onfocus="this.placeholder=''" onblur="this.placeholder='New Password'" required/>
+                        <label for="new-password">
+                            New password
+                            <input type="password" id="new-password" aria-label="new password" placeholder="New Password" onfocus="this.placeholder=''" onblur="this.placeholder='New Password'" required/>
+                        </label>
                     </div>
                     <div>
-                        <label for="confirm-new-password">Confirm new password <span style="color: red">*</span></label>
-                        <input type="password" id="confirm-new-password" aria-label="confirm new password" placeholder="Confirm new password" onfocus="this.placeholder=''" onblur="this.placeholder='Confirm new password'" required/>
+                        <label>
+                            <span class="required">Confirm new password</span>
+                            <input type="password" name="confirm-new-password" placeholder="Confirm new password" onfocus="this.placeholder=''" onblur="this.placeholder='Confirm new password'" required/>
+                        </label>
                     </div>
                     <input type="submit" class="save" value="Save" />
                 </form>

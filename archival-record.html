@@ -24,13 +24,13 @@
                     <h4>HOME</h4>
                 </a>
             </div>
-            <div class="link active">
+            <div class="link">
                 <a href="entities.html">
                     <i class="fal fa-users"></i>
                     <h4>ENTITIES</h4>
                 </a>
             </div>
-            <div class="link">
+            <div class="link active">
                 <a href="archival-records.html">
                     <i class="fal fa-archive"></i>
                     <h4>ARCHIVAL RECORDS</h4>
@@ -48,97 +48,339 @@
           </div>
     </header>
     <main>
-        <a href="entity.html"><i class="fas fa-chevron-left margin-right"></i><span class="dotted-underline">Back to {{ display_name }}</span></a>
-        <!-- add a pipe to truncate lenghty record descriptions and add '...'' -->
-        <h1><span class="highlight">Change history:</span> Douglas, William, 1724-1810, 4th Duke of Queensberry</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Last edited</th>
-                    <th>User</th>
-                    <th>Status</th>
-                    <th>Logged comment</th>
-                    <th>Changes</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>May 1, 2019,<br>1:58 pm</td>
-                    <td>{{ username }}<br>{{ firstname }} {{ lastname }}</td>
-                    <td class="wide">Publication status: {{ publication_status}}<br>
-                        Maintenance status: {{ maintenance_status}}<br>
-                        Editing event type: {{ editing_event_status}}<br></td>
-                        <td class="wide">{{ logged_comment }}</td>
-                        <td class="wide">{{ changes }}</td>
-                    <td>
-                        <button aria-label="reset password" class="button-link"><i class="fas fa-history"></i>Reset</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>May 1, 2019,<br>1:58 pm</td>
-                    <td>{{ username }}<br>{{ firstname }} {{ lastname }}</td>
-                    <td class="wide">Publication status: {{ publication_status}}<br>
-                        Maintenance status: {{ maintenance_status}}<br>
-                        Editing event type: {{ editing_event_status}}<br></td>
-                        <td class="wide">{{ logged_comment }}</td>
-                        <td class="wide">{{ changes }}</td>
-                    <td>
-                        <button aria-label="reset password" class="button-link"><i class="fas fa-history"></i>Reset</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>May 1, 2019,<br>1:58 pm</td>
-                    <td>{{ username }}<br>{{ firstname }} {{ lastname }}</td>
-                    <td class="wide">Publication status: {{ publication_status}}<br>
-                        Maintenance status: {{ maintenance_status}}<br>
-                        Editing event type: {{ editing_event_status}}<br></td>
-                        <td class="wide">{{ logged_comment }}</td>
-                        <td class="wide">{{ changes }}</td>
-                    <td>
-                        <button aria-label="reset password" class="button-link"><i class="fas fa-history"></i>Reset</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>May 1, 2019,<br>1:58 pm</td>
-                    <td>{{ username }}<br>{{ firstname }} {{ lastname }}</td>
-                    <td class="wide">Publication status: {{ publication_status}}<br>
-                        Maintenance status: {{ maintenance_status}}<br>
-                        Editing event type: {{ editing_event_status}}<br></td>
-                        <td class="wide">{{ logged_comment }}</td>
-                        <td class="wide">{{ changes }}</td>
-                    <td>
-                        <button aria-label="reset password" class="button-link"><i class="fas fa-history"></i>Reset</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>May 1, 2019,<br>1:58 pm</td>
-                    <td>{{ username }}<br>{{ firstname }} {{ lastname }}</td>
-                    <td class="wide">Publication status: {{ publication_status}}<br>
-                        Maintenance status: {{ maintenance_status}}<br>
-                        Editing event type: {{ editing_event_status}}<br></td>
-                        <td class="wide">{{ logged_comment }}</td>
-                        <td class="wide">{{ changes }}</td>
-                    <td>
-                        <button aria-label="reset password" class="button-link"><i class="fas fa-history"></i>Reset</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>    
-        <div id="pagination">
-            <button id="first" class="inactive"><i class="fal fa-step-backward"></i></button>
-            <button id="prev" class="inactive"><i class="fal fa-caret-left"></i></button>
-            <ul>
-                <li class="active">1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>...</li>
-                <li>24</li>
-                <li>25</li>
-                <li>26</li>
-            </ul>
-            <button id="next"><i class="fal fa-caret-right"></i></button>
-            <button id="last"><i class="fal fa-step-forward"></i></button>
+        <div id="page-header" class="header-fixed">
+            <div id="status-bar">
+                <ul>
+                    <li>Publication status: <span class="highlight">In process</span></li>
+                    <li>Maintenance status: <span class="highlight">New</span></li>
+                    <li>Last edited: <span class="highlight">{{username}}</span></li>
+                    <li><span class="highlight">May 1, 2019, 1:58 pm</span></li>
+                </ul>
+                <a href="history.html">
+                    <i class="far fa-clock"></i>
+                    <span class="dotted-underline">History</span>
+                </a>
+            </div>
+            <div>
+                <button aria-label="delete" class="danger-clear">Delete</button>
+                <input type="submit" value="Save" form="record-form" aria-label="Save" class="save"/>
+                <button aria-label="create new entity" class="create"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+        <div id="form-header">
+            <div id="breadcrumbs">
+                <ul>
+                    <li><a href="home.html">HOME</a></li>
+                    <li><a href="entities.html" class="dotted-underline">ARCHIVAL RECORDS</a></li>
+                    <li>Account book kept by General Jacob de Budé, 1772-1784</li>
+                </ul>
+            </div>
+            <!-- Limit the length of archival record description -->
+            <h1>Account book kept by General Jacob de Budé, 1772-1784</h1>
+            <h4>Collection</h4>
+            <form action="" method="" id="record-form">
+                <div class="form-section">
+                    <h2>SUMMARY</h2>
+                    <fieldset id="summary">
+                        <div class="fieldset-header">
+                            <h3>{{ repository }}</h3>
+                            <div>
+                                <a class="toggle-tab-button"></a>
+                            </div>
+                        </div>
+                        <div class="fieldset-body expand">
+                            <div class="two-column-table">
+                                <div>
+                                    <label>
+                                        <span class="required">Repository</span>
+                                        <select name="repository" required>
+                                            <option value="">Select</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        <span class="required">Repository code</span>
+                                        <input type="text" name="repository-code" required/>
+                                    </label>
+                                    <label>
+                                        <span class="required">Record type</span>
+                                        <select name="repository" required>
+                                            <option value="">Select</option>
+                                        </select>
+                                    </label>
+                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
+                                    <label>
+                                        Parent series
+                                        <select name="parent-series" required>
+                                            <option value="">Select</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        Parent file
+                                        <select name="parent-series" required>
+                                            <option value="">Select</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        <span class="required">References</span>
+                                        <textarea name="references" rows="3"></textarea>
+                                    </label>
+                                    <label>
+                                        <span class="required">RCIN</span>
+                                        <input type="text" name="rcin" required/>
+                                    </label>
+                                    <label>
+                                        <span class="required">URL</span>
+                                        <input type="url" name="url" required/>
+                                    </label>
+                                    <label>
+                                        <span class="required">Location of originals</span>
+                                        <input type="text" name="location-of-originals" required/>
+                                    </label>
+                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
+                                    <label>
+                                        <span class="required">Related materials</span>
+                                        <input type="text" name="related-materials" required/>
+                                    </label>
+                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="form-section">
+                    <h2>DESCRIPTION</h2>
+                    <fieldset id="description">
+                        <div class="fieldset-header">
+                            <h3>{{ title }}</h3>
+                            <div>
+                                <a class="toggle-tab-button"></a>
+                            </div>
+                        </div>
+                        <div class="fieldset-body expand">
+                            <div class="two-column-table">
+                                <div>
+                                    <label>
+                                        <span class="required">Title</span>
+                                        <input type="text" name="title" required/>
+                                    </label>
+                                    <div class="flex">
+                                        <label>
+                                            <span class="required">Start date</span>
+                                            <button aria-label="additional info" class="icon-only"><i class="fas fa-question-circle"></i></button>
+                                            <input type="date" name="start-date" value="" required/>
+                                            <button aria-label="calendar" class="icon-only"><i class="fas fa-calendar-alt"></i></button>
+                                        </label>
+                                        <label>
+                                            <span class="required">End date</span>
+                                            <button aria-label="additional info" class="icon-only"><i class="fas fa-question-circle"></i></button>
+                                            <input type="date" name="end-date" value="" required/>
+                                            <button aria-label="calendar" class="icon-only"><i class="fas fa-calendar-alt"></i></button>
+                                        </label>
+                                    </div>
+                                    <label>
+                                        <span class="required">Creation dates</span>
+                                        <button aria-label="additional info" class="icon-only"><i class="fas fa-question-circle"></i></button>
+                                        <input type="text" name="creation-dates" value="" required/>
+                                    </label>
+                                    <label>
+                                        <span class="required">Extent</span>
+                                        <input type="text" name="extent" disabled/>
+                                    </label>
+                                    <label>
+                                        <span class="required">Languages</span>
+                                        <input type="text" name="languages" required/>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        <span>Writer</span>
+                                        <input type="text" name="writer"/>
+                                    </label>
+                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
+                                    <label>
+                                        <span>Place of writing</span>
+                                        <input type="text" name="place-of-writing"/>
+                                    </label>
+                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
+                                    <label>
+                                        <span>Addressee</span>
+                                        <input type="text" name="addressee"/>
+                                    </label>
+                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
+                                    <label>
+                                        <span>Receiving address</span>
+                                        <input type="text" name="receiving-address"/>
+                                    </label>
+                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">       
+                                </div>
+                            </div>
+                            <label>
+                                <span>Description</span>
+                                <textarea class="richtext" name="description" rows="8" required></textarea>
+                            </label>
+                            <label>
+                                <span>Notes</span>
+                                <textarea class="richtext" name="notes" rows="8" required></textarea>
+                            </label>
+                            <label>
+                                <span>Physical description</span>
+                                <textarea class="richtext" name="physical-description" rows="8" disabled></textarea>
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="form-section">
+                    <h2>CONTEXT AREA</h2>
+                    <fieldset id="description">
+                        <div class="fieldset-header">
+                            <h3>{{ cataloguer }}</h3>
+                            <div>
+                                <a class="toggle-tab-button"></a>
+                            </div>
+                        </div>
+                        <div class="fieldset-body expand">
+                            <div class="two-column-table">
+                                <div>
+                                    <label>
+                                        <span class="required">Cataloguer</span>
+                                        <input type="text" name="cataloguer" required/>
+                                    </label>
+                                    <label>
+                                        <span class="required">Arrangement</span>
+                                        <textarea name="arrangement" rows="8" disabled></textarea>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        <span class="required">Description date</span>
+                                        <button aria-label="additional info" class="icon-only"><i class="fas fa-question-circle"></i></button><br>
+                                        <input type="date" name="description-date" value="" required/>
+                                        <button aria-label="calendar" class="icon-only"><i class="fas fa-calendar-alt"></i></button>
+                                    </label>
+                                    <label>
+                                        Custodial history/Provenance
+                                        <input type="text" name="custodial-history" disabled/>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <label>
+                                <span class="required">Administrative history</span>
+                                <textarea class="richtext" name="administrative-history" rows="8" required></textarea>
+                            </label>
+                            <div class="two-column-table">
+                                <div>
+                                    <label>
+                                        <span>Subjects</span>
+                                        <input type="text" name="subjects"/>
+                                    </label>
+                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
+                                    <label>
+                                        <span>Organisations as subjects</span>
+                                        <input type="text" name="organisations-as-subjects"/>
+                                    </label>
+                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
+                                </div>
+                                <div>
+                                    <label>
+                                        <span>Persons as subjects</span>
+                                        <input type="text" name="persons-as-subjects"/>
+                                    </label>
+                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
+                                    <label>
+                                        <span>Places as subjects</span>
+                                        <input type="text" name="places-as-subjects"/>
+                                    </label>
+                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="form-section">
+                    <h2>ACCESS AREA</h2>
+                    <fieldset id="description">
+                        <div class="fieldset-header">
+                            <h3>{{ known_previous_publications | limit length }}</h3>
+                            <div>
+                                <a class="toggle-tab-button"></a>
+                            </div>
+                        </div>
+                        <div class="fieldset-body expand">
+                            <label>
+                                <span class="required">Administrative history</span>
+                                <textarea class="richtext" name="administrative-history" rows="8" required></textarea>
+                            </label>
+                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;" onclick="">
+                            <div class="two-column-table">
+                                <div>
+                                    <label>
+                                        Copyright status
+                                        <input type="text" name="copyright-status" disabled/>
+                                    </label>
+                                    <label>
+                                        Withheld
+                                        <input type="text" name="copyright-status" disabled/>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        Credit
+                                        <textarea type="text" name="credit" rows="4"></textarea>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="form-section">
+                    <h2>CONTROL</h2>
+                    <fieldset class="optional-to-delete">
+                        <div class="fieldset-header">
+                            <h3>Record ID: 441</h3>
+                            <div>
+                                <a class="toggle-tab-button"></a>
+                            </div>
+                        </div>
+                        <div class="fieldset-body expand">
+                            <div class="two-column-table">
+                                <div>
+                                    <label for="control-language">
+                                        <span class="required">Language</span>
+                                        <select required>
+                                            <option>English</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        <span class="required">Rights citation</span>
+                                        <input type="text" aria-label="control rights citation" name="rights-citation" disabled/>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        <span class="required">Script</span>
+                                        <select id="control-script" required>
+                                            <option>Latn, 215, Latin</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        <span class="required">Rights abbreviation</span>
+                                        <input type="text" aria-label="control rights abbreviation" name="rights-abbreviation" disabled/>
+                                    </label>
+                                </div>
+                            </div>
+                            <label><span class="required">Rights declaration</span></label>
+                            <textarea aria-label="rights-declaration" class="richtext" rows="4" required></textarea>
+                        </div>
+                    </fieldset>
+                </div>
+            </form>
         </div>
     </main>
 </body>
