@@ -74,7 +74,7 @@ button, .create, input[type=submit] {
   color: white;
   border: none;
   padding: 13px 25px;
-  font-size: 15px;
+  font-size: 14px;
   border-radius: 30px;
 }
 button:hover:not(.icon-only), button:focus:not(.icon-only), .create:hover:not(.icon-only), .create:focus:not(.icon-only), input[type=submit]:hover:not(.icon-only), input[type=submit]:focus:not(.icon-only) {
