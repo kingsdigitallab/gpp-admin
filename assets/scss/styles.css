@@ -132,6 +132,9 @@ input[type=submit] {
 .default {
   border: 1px solid #002465;
   color: #002465;
+  padding: 13px 25px;
+  font-size: 14px;
+  border-radius: 30px;
 }
 .default .fas, .default .fal {
   margin-right: 10px;
@@ -145,10 +148,12 @@ input[type=submit] {
 }
 .inactive:hover, .inactive:focus {
   text-decoration: none;
+  box-shadow: none;
 }
 
 .icon-only {
   border: none;
+  border-radius: 0px;
   color: inherit;
   font-family: "Font Awesome 5 Pro";
   font-weight: 300;
@@ -157,6 +162,9 @@ input[type=submit] {
   padding: 3px;
   margin-bottom: 0px;
   background-color: transparent;
+}
+.icon-only:hover, .icon-only:focus {
+  box-shadow: none;
 }
 
 .button-link {
@@ -169,6 +177,15 @@ input[type=submit] {
 .button-link.danger {
   color: #b40000;
 }
+.button-link.danger:hover, .button-link.danger:focus {
+  box-shadow: none;
+}
+.button-link.create {
+  color: #0791D5;
+}
+.button-link.create:hover, .button-link.create:focus {
+  box-shadow: none;
+}
 .button-link .fas, .button-link .fal {
   margin-right: 5px;
 }
@@ -178,9 +195,6 @@ input[type=submit] {
 .button-link .fa-question-circle, .button-link .fa-calendar-alt {
   font-size: 16px;
   margin-left: 5px;
-}
-.button-link:hover, .button-link:focus {
-  text-decoration: underline;
 }
 
 .optional-to-delete .danger-highlight, .optional-to-delete .danger {
@@ -554,6 +568,10 @@ main .two-column-table input[type=submit] {
   justify-self: end;
   margin-top: 20px;
 }
+main .two-column-table.date {
+  grid-template-columns: auto auto;
+  justify-content: start;
+}
 main .editable-field {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -605,6 +623,19 @@ main form textarea {
 }
 main form .richText {
   margin-bottom: 10px;
+  border: 1px solid #707070;
+  border-radius: 5px;
+  overflow: hidden;
+}
+main form .richText .richText-toolbar ul li a {
+  border-right: 1px solid #707070;
+  border-bottom: 1px solid #707070;
+}
+main form .richText .richText-toolbar ul li a:hover, main form .richText .richText-toolbar ul li a:focus {
+  background-color: #EBEBEB;
+}
+main form .richText .richText-toolbar {
+  border-bottom: 1px solid #707070;
 }
 main form .richText .richText-editor {
   height: 100px;
@@ -616,6 +647,7 @@ main form input:disabled {
 }
 main form .create {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   margin-left: auto;
 }
@@ -731,7 +763,8 @@ main .modal.active .modal-header h2 {
   margin-bottom: 0px;
 }
 main .modal.active .modal-footer {
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
 }
 main #pagination {
   background-color: white;

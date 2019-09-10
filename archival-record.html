@@ -71,7 +71,7 @@
             <div id="breadcrumbs">
                 <ul>
                     <li><a href="home.html">HOME</a></li>
-                    <li><a href="entities.html" class="dotted-underline">ARCHIVAL RECORDS</a></li>
+                    <li><a href="archival-records.html" class="dotted-underline">ARCHIVAL RECORDS</a></li>
                     <li>Account book kept by General Jacob de Budé, 1772-1784</li>
                 </ul>
             </div>
@@ -101,14 +101,17 @@
                                         <span class="required">Repository code</span>
                                         <input type="text" name="repository-code"/>
                                     </label>
-                                    <label>
+                                    <label data-content-reference="record-type" class="optional-to-delete">
                                         <span class="required">Record type</span>
                                         <div class="editable-field">
-                                            <select name="repository">
+                                            <select name="record-type-1">
                                                 <option value="">Select</option>
                                             </select>
-                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                            <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
                                         </div>
+                                    </label>
+                                    <label class="button-link create">
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addField(this)">Add record type
                                     </label>
                                     <label>
                                         Parent series
@@ -136,19 +139,25 @@
                                         <span class="required">URL</span>
                                         <input type="url" name="url"/>
                                     </label>
-                                    <label>
+                                    <label data-content-reference="location-of-originals" class="optional-to-delete">
                                         <span class="required">Location of originals</span>
                                         <div class="editable-field">
-                                            <input type="text" name="location-of-originals"/>
-                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                            <input type="text" name="location-of-originals-1"/>
+                                            <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
                                         </div>
                                     </label>
-                                    <label>
+                                    <label class="button-link create">
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addField(this)">Add location of originals
+                                    </label>
+                                    <label data-content-reference="related-materials" class="optional-to-delete">
                                         <span class="required">Related materials</span>
                                         <div class="editable-field">
-                                            <input type="text" name="related-materials"/>
-                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                            <input type="text" name="related-materials-1"/>
+                                            <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
                                         </div>
+                                    </label>
+                                    <label class="button-link create">
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addField(this)">Add related materials
                                     </label>
                                 </div>
                             </div>
@@ -172,13 +181,13 @@
                                         <span class="required">Title</span>
                                         <input type="text" name="title"/>
                                     </label>
-                                    <div class="flex">
+                                    <div class="two-column-table date">
                                         <label>
-                                            <span class="required">Start date</span>
+                                            <span class="required">Start date</span><br>
                                             <input type="date" name="start-date" value=""/>
                                         </label>
                                         <label>
-                                            <span class="required">End date</span>
+                                            <span class="required">End date</span><br>
                                             <input type="date" name="end-date" value=""/>
                                         </label>
                                     </div>
@@ -197,33 +206,45 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <label>
+                                    <label data-content-reference="writer" class="optional-to-delete">
                                         <span>Writer</span>
                                         <div class="editable-field">
-                                            <input type="text" name="writer"/>
-                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                            <input type="text" name="writer-1"/>
+                                            <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
                                         </div>
                                     </label>
-                                    <label>
+                                    <label class="button-link create">
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addField(this)">Add writer
+                                    </label>
+                                    <label data-content-reference="place-of-writing" class="optional-to-delete">
                                         <span>Place of writing</span>
                                         <div class="editable-field">
-                                            <input type="text" name="place-of-writing"/>
-                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
-                                        </div>   
+                                            <input type="text" name="place-of-writing-1"/>
+                                            <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
+                                        </div>
                                     </label>
-                                    <label>
+                                    <label class="button-link create">
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addField(this)">Add place of writing
+                                    </label>
+                                    <label data-content-reference="addressee" class="optional-to-delete">
                                         <span>Addressee</span>
                                         <div class="editable-field">
-                                            <input type="text" name="addressee"/>
-                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                            <input type="text" name="addressee-1"/>
+                                            <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
                                         </div>
                                     </label>
-                                    <label>
+                                    <label class="button-link create">
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addField(this)">Add addressee
+                                    </label>
+                                    <label data-content-reference="receiving-address" class="optional-to-delete">
                                         <span>Receiving address</span>
                                         <div class="editable-field">
-                                            <input type="text" name="receiving-address"/>
-                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                            <input type="text" name="receiving-address-1"/>
+                                            <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
                                         </div>
+                                    </label>
+                                    <label class="button-link create">
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addField(this)">Add receiving address
                                     </label>
                                 </div>
                             </div>
@@ -266,8 +287,8 @@
                                 </div>
                                 <div>
                                     <label>
-                                        <span class="required">Description date</span>
-                                        <button aria-label="additional info" class="icon-only"><i class="fas fa-question-circle"></i></button><br>
+                                        <span class="required">Description date</span><br>
+                                        <input type="button" aria-label="additional info" data-content-type="general-display-date" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="date" name="description-date" value=""/>
                                     </label>
                                     <label>
@@ -283,36 +304,48 @@
                             </label>
                             <div class="two-column-table">
                                 <div>
-                                    <label>
+                                    <label data-content-reference="subjects" class="optional-to-delete">
                                         <span>Subjects</span>
                                         <div class="editable-field">
-                                            <input type="text" name="subjects"/>
-                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                            <input type="text" name="subjects-1"/>
+                                            <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
                                         </div>
                                     </label>
-                                    <label>
+                                    <label class="button-link create">
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addField(this)">Add subjects
+                                    </label>    
+                                    <label data-content-reference="organisations-as-subjects" class="optional-to-delete">
                                         <span>Organisations as subjects</span>
                                         <div class="editable-field">
-                                            <input type="text" name="organisations-as-subjects"/>
-                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                            <input type="text" name="organisations-as-subjects-1"/>
+                                            <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
                                         </div>
                                     </label>
+                                    <label class="button-link create">
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addField(this)">Add organisations as subjects
+                                    </label>                                    
                                 </div>
                                 <div>
-                                    <label>
+                                    <label data-content-reference="persons-as-subjects" class="optional-to-delete">
                                         <span>Persons as subjects</span>
                                         <div class="editable-field">
-                                            <input type="text" name="persons-as-subjects"/>
-                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                            <input type="text" name="persons-as-subjects-1"/>
+                                            <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
                                         </div>
                                     </label>
-                                    <label>
+                                    <label class="button-link create">
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addField(this)">Add persons as subjects
+                                    </label>    
+                                    <label data-content-reference="places-as-subjects" class="optional-to-delete">
                                         <span>Places as subjects</span>
                                         <div class="editable-field">
-                                            <input type="text" name="places-as-subjects"/>
-                                            <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                            <input type="text" name="places-as-subjects-1"/>
+                                            <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
                                         </div>
                                     </label>
+                                    <label class="button-link create">
+                                        <input type="button" class="icon-only" value="&#xf067;" onclick="addField(this)">Add places as subjects
+                                    </label>                                
                                 </div>
                             </div>
                         </div>
@@ -329,12 +362,15 @@
                             </div>
                         </div>
                         <div class="fieldset-body expand">
-                            <label>
+                            <label class="optional-to-delete">
                                 <span class="required">Administrative history</span>
                                 <div class="editable-field">
                                     <textarea class="richtext" name="administrative-history" rows="8"></textarea>
-                                    <input type="button" class="icon-only" aria-label="create field" value="&#xf067;">
+                                    <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
                                 </div>
+                            </label>
+                            <label class="button-link create">
+                                <input type="button" class="icon-only" value="&#xf067;" onclick="addField(this)">Add administrative history
                             </label>
                             <div class="two-column-table">
                                 <div>
@@ -360,7 +396,7 @@
 
                 <div class="form-section">
                     <h2>CONTROL</h2>
-                    <fieldset class="optional-to-delete">
+                    <fieldset>
                         <div class="fieldset-header">
                             <h3>Record ID: 441</h3>
                             <div>

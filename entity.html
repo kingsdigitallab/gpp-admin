@@ -62,7 +62,7 @@
                 </a>
             </div>
             <div>
-                <button aria-label="delete" class="danger-clear">Delete</button>
+                <button aria-label="delete" class="danger-clear" onclick="deleteRecord()">Delete</button>
                 <input type="submit" value="Save" form="record-form" class="save"/>
                 <button aria-label="create new entity" class="create"><i class="fas fa-plus"></i></button>
             </div>
@@ -85,7 +85,6 @@
                             <input type="button" aria-label="additional info" data-content-type="general-date-from" class="icon-only additional-info-icon" value="&#xf059;">
                             <!-- indsert database values into value="" -->
                             <input type="date" value="" name="general-date-from"/>
-                            
                         </label>
                     </div>
                     <div>
@@ -93,7 +92,6 @@
                             <span class="required">Date to</span>
                             <input type="button" aria-label="additional info" data-content-type="general-date-to" class="icon-only additional-info-icon" value="&#xf059;">
                             <input type="date" name="general-date-to" value=""/>
-                            
                         </label>
                     </div>
                     <div>
@@ -107,7 +105,7 @@
                 <!-- add a loop in case of multiple identities (the same applies for identity sections below) -->
                 <div class="form-section">
                     <h2>IDENTITIES (2)</h2>
-                    <fieldset class="optional-to-delete" id="identity-1">
+                    <fieldset class="optional-to-delete" data-content-reference="identity">
                         <div class="fieldset-header">
                             <h3>{{ display_name }}</h3>
                             <div class="flex">
@@ -127,7 +125,7 @@
                         </div>
                         <div class="fieldset-body expand">
                             <h3>NAME ENTRIES (1)</h3>
-                            <fieldset class="optional-to-delete" id="identity-1-name-entry-1">
+                            <fieldset class="optional-to-delete" data-content-reference="name-entry">
                                 <div class="fieldset-header">
                                     <h3>{{ display_name }}</h3>
                                     <div class="flex">
@@ -147,19 +145,15 @@
                                 <div class="fieldset-body expand">
                                     <div class="two-column-table">
                                         <div>
-                                            <div>
-                                                <label class="inline">
-                                                    <input type="checkbox" name="identity-1-name-entry-1-royal-name"/>Royal name
-                                                </label>
-                                            </div>
+                                            <input type="checkbox" class="inline" aria-label="royal name" name="identity-1-name-entry-1-royal-name" onclick="updateBlock(this)"/>Royal name
 
                                             <!--start REQUIRED FIELD start-->
                                             <!-- required fields when royal name is checked are different from the field below -->
-                                            <div class="grid">
-                                                <label for="identity-1-name-entry-1-surname">
+                                            <div class="required-fields">
+                                                <div class="grid">
                                                     <span class="required">Surname</span>
-                                                </label>
-                                                <input type="text"  placeholder="Surname" onfocus="this.placeholder=''" onblur="this.placeholder='Surname'" value="" id="identity-1-name-entry-1-surname" name="identity-1-name-entry-1-surname"/>
+                                                    <input type="text"  placeholder="Surname" onfocus="this.placeholder=''" onblur="this.placeholder='Surname'" value="" aria-label="surname" name="identity-1-name-entry-1-surname"/>
+                                                </div>
                                             </div>
                                             <!--end REQUIRED FIELD end-->
 
@@ -174,6 +168,7 @@
                                                     </select>
                                                 </label>
                                                 <label>
+                                                    <!-- the same name part should not be selected twice or more for the same name entry -->
                                                     <span hidden>Title</span>
                                                     <!-- bind the 'name' attribute to the selected option from the dropdown above? -->
                                                     <input type="text" name="identity-1-name-entry-1-{{ o.value }}" value="" />
@@ -181,8 +176,9 @@
                                                 <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
                                             </div>
                                             <!--end OPTIONAL FIELDS end-->
-
-                                            <input type="button" class="create" aria-label="create field" value="Add name part" onclick="addField(this)">
+                                            <label class="button-link create">
+                                                <input type="button" class="icon-only" value="&#xf067;" onclick="addField(this)">Add name part
+                                            </label>    
                                         </div>
                                         <div>
                                             <label>
@@ -243,7 +239,7 @@
                             </label>
                             <br>
                             <h3>DESCRIPTIONS (1)</h3>
-                            <fieldset class="optional-to-delete" id="identity-1-description-1">
+                            <fieldset class="optional-to-delete" data-content-reference="description">
                                 <div class="fieldset-header">
                                     <h3>{{ gender }}  |   {{  language }}  |  {{ place }}  |  {{ function }} </h3>
                                     <div class="flex">
@@ -258,7 +254,7 @@
                                 <div class="fieldset-body expand">
                                     <!--start   ONLY FOR PERSON   start-->
                                     <h3>GENDER (1)</h3>
-                                    <fieldset class="optional-to-delete" id="identity-1-description-1-gender-1">
+                                    <fieldset class="optional-to-delete" data-content-reference="gender">
                                         <div class="fieldset-header">
                                             <h3>{{ gender }}</h3>
                                             <div class="flex">
@@ -280,7 +276,7 @@
                                                             <option value="{{ g.value }}">{{ g.value }}</option>
                                                         </select>
                                                     </label>
-                                                    <div class="two-column-table">
+                                                    <div class="two-column-table date">
                                                         <div>
                                                             <label>Gender used from
                                                                     <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;"><br>
@@ -325,7 +321,7 @@
 
 
                                     <h3>BIOGRAPHY/HISTORY (1)</h3>
-                                    <fieldset class="optional-to-delete" id="identity-1-description-1-biography-1">
+                                    <fieldset class="optional-to-delete" data-content-reference="biography">
                                         <div class="fieldset-header">
                                             <h3>{{ abstract | limit length }}</h3>
                                             <div class="flex">
@@ -364,7 +360,7 @@
                                         <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add biography/history
                                     </label>
                                     <h3>LANGUAGES USED (1)</h3>
-                                    <fieldset class="optional-to-delete" id="identity-1-description-1-languages-1">
+                                    <fieldset class="optional-to-delete" data-content-reference="languages">
                                         <div class="fieldset-header">
                                             <h3>{{ language }}</h3>
                                             <div class="flex">
@@ -397,7 +393,7 @@
                                         <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add language
                                     </label>
                                     <h3>PLACES (1)</h3>
-                                    <fieldset class="optional-to-delete" id="identity-1-description-1-place-1">
+                                    <fieldset class="optional-to-delete" data-content-reference="place">
                                         <div class="fieldset-header">
                                             <h3>{{ place }}</h3>
                                             <div class="flex">
@@ -431,7 +427,7 @@
                                                         <span class="required">Role</span>
                                                         <textarea name="identity-1-description-1-place-1-role" rows="2"></textarea>
                                                     </label>
-                                                    <div class="two-column-table">
+                                                    <div class="two-column-table date">
                                                         <div>
                                                             <label>
                                                                 Date from
@@ -464,7 +460,7 @@
                                         <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add place
                                     </label>
                                     <h3>EVENTS (1)</h3>
-                                    <fieldset class="optional-to-delete" id="identity-1-description-1-event-1">
+                                    <fieldset class="optional-to-delete" data-content-reference="event">
                                         <div class="fieldset-header">
                                             <h3>{{ event }}</h3>
                                             <div class="flex">
@@ -531,7 +527,7 @@
 
                                     <!--start   ONLY FOR CORPORATE BODIES   start-->
                                     <h3>MANDATE (1)</h3>
-                                    <fieldset class="optional-to-delete" id="identity-1-description-1-mandate-1">
+                                    <fieldset class="optional-to-delete" data-content-reference="mandate">
                                         <div class="fieldset-header">
                                             <h3>{{ mandate_term }}</h3>
                                             <div class="flex">
@@ -554,7 +550,7 @@
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <div class="two-column-table">
+                                                    <div class="two-column-table date">
                                                         <div>
                                                             <label>Date from
                                                                 <input type="button" aria-label="additional info" data-content-type="mandate-date-from" class="icon-only additional-info-icon" value="&#xf059;">
@@ -590,7 +586,7 @@
                                         <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add mandate
                                     </label>
                                     <h3>LEGAL STATUS (1)</h3>
-                                    <fieldset class="optional-to-delete" id="identity-1-description-1-legal-status-1">
+                                    <fieldset class="optional-to-delete" data-content-reference="legal-status">
                                         <div class="fieldset-header">
                                             <h3>{{ legal_status_term }}</h3>
                                             <div class="flex">
@@ -613,7 +609,7 @@
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <div class="two-column-table">
+                                                    <div class="two-column-table date">
                                                         <div>
                                                             <label>Date from
                                                                 <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;">
@@ -624,7 +620,7 @@
                                                             </label>
                                                         </div>
                                                         <div>
-                                                            <label >Date to
+                                                            <label>Date to
                                                                     <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;">
                                                                 <div class="editable-field">
                                                                     <input type="date" name="identity-1-description-1-legal-status-1-date-to" value=""/>
@@ -650,7 +646,7 @@
                                     <!--end   ONLY FOR CORPORATE BODIES   end-->
 
                                     <h3>FUNCTION (1)</h3>
-                                    <fieldset class="optional-to-delete" id="identity-1-description-1-function-1">
+                                    <fieldset class="optional-to-delete" data-content-reference="function">
                                         <div class="fieldset-header">
                                             <h3>{{ function }}</h3>
                                             <div class="flex">
@@ -673,7 +669,7 @@
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <div class="two-column-table">
+                                                    <div class="two-column-table date">
                                                         <div>
                                                             <label>Date from
                                                                 <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;">
@@ -685,7 +681,7 @@
                                                         </div>
                                                         <div>
                                                             <label>Date to
-                                                                <button aria-label="function date to" class="icon-only"><i class="fas fa-question-circle"></i></button><br>
+                                                                    <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;">
                                                                 <div class="editable-field">
                                                                     <input type="date" name="identity-1-description-1-function-1-date-to" value=""/>
                                                                     
@@ -705,10 +701,12 @@
                                         <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add function
                                     </label>
                             </fieldset>
-                            <button aria-label="add description" class="create linked-button"><i class="fal fa-plus"></i>Add description</button><br>
+                            <label class="create linked-button">
+                                    <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add description
+                                </label>
                             
                             <h3>RELATIONS (1)</h3>
-                            <fieldset class="optional-to-delete" id="identity-1-relation-1">
+                            <fieldset class="optional-to-delete" data-content-reference="relation">
                                 <div class="fieldset-header">
                                     <h3>{{ relation }}</h3>
                                     <div class="flex">
@@ -735,7 +733,7 @@
                                                     <option value="">Select</option>
                                                 </select>
                                             </label>
-                                            <div class="two-column-table">
+                                            <div class="two-column-table date">
                                                 <div>
                                                     <label>
                                                         Date from
@@ -783,7 +781,7 @@
                             </label>
                             <br>
                             <h3>RESOURCES (1)</h3>
-                            <fieldset class="optional-to-delete" id="identity-1-resource-1">
+                            <fieldset class="optional-to-delete" data-content-reference="resource">
                                 <div class="fieldset-header">
                                     <h3>{{ resource }}</h3>
                                     <div class="flex">
@@ -829,14 +827,14 @@
                             <br>
                         </div>
                     </fieldset>
+                    <label class="create linked-button">
+                        <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add identity
+                    </label>
                 </div>
-                <label class="create linked-button">
-                    <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add identity
-                </label>
                 <br>
                 <div class="form-section">
                     <h2>SOURCES (1)</h2>
-                    <fieldset class="optional-to-delete" id="sources-1">
+                    <fieldset class="optional-to-delete" data-content-reference="sources">
                         <div class="fieldset-header">
                             <h3>{{ source }}</h3>
                             <div class="flex">

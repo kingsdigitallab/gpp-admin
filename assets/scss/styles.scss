@@ -179,6 +179,9 @@ input[type=submit] {
 .default {
     border: 1px solid $primary;
     color: $primary;
+    padding: 13px 25px;
+    font-size: 14px;
+    border-radius: 30px;
     .fas, .fal {
         margin-right: 10px;
     }
@@ -191,11 +194,13 @@ input[type=submit] {
     cursor: auto;
     &:hover, &:focus {
         text-decoration: none;
+        box-shadow: none;
     }
 }
 
 .icon-only {
     border: none;
+    border-radius: 0px;
     color: inherit;
     font-family: $fontawesome;
     font-weight: 300;
@@ -204,6 +209,9 @@ input[type=submit] {
     padding: 3px;
     margin-bottom: 0px;
     background-color: transparent;
+    &:hover, &:focus {
+        box-shadow: none;
+    }
 }
 
 .button-link {
@@ -215,6 +223,16 @@ input[type=submit] {
 
     &.danger {
         color: $danger;
+        &:hover, &:focus {
+            box-shadow: none;
+        }
+    }
+
+    &.create {
+        color: $add;
+        &:hover, &:focus {
+            box-shadow: none;
+        }
     }
 
     .fas, .fal {
@@ -226,10 +244,6 @@ input[type=submit] {
     .fa-question-circle, .fa-calendar-alt {
         font-size: 16px;
         margin-left: 5px;
-    }
-
-    &:hover, &:focus {
-        text-decoration: underline;
     }
 }
 
@@ -590,6 +604,10 @@ main {
             justify-self: end;
             margin-top: 20px;
         }
+        &.date {
+            grid-template-columns: auto auto;
+            justify-content: start;
+        }
     }
 
     .editable-field {
@@ -650,6 +668,19 @@ main {
         }
         .richText {
             margin-bottom: 10px;
+            border: 1px solid $input;
+            border-radius: 5px;
+            overflow: hidden;
+            .richText-toolbar ul li a{
+                border-right: 1px solid $input;
+                border-bottom: 1px solid $input;
+                &:hover, &:focus {
+                    background-color: $light-grey;
+                }
+            }
+            .richText-toolbar {
+                border-bottom: 1px solid $input;
+            }
             .richText-editor {
                 height: 100px;
                 box-sizing: border-box;
@@ -661,6 +692,7 @@ main {
         }
         .create {
             display: flex;
+            justify-content: flex-end;
             align-items: center;
             margin-left: auto;
         }
@@ -749,7 +781,7 @@ main {
 
     .modal {
         display: none;
-        &.active {
+        &.active{
             position: fixed;
             width: 100%;
             height: 100%;
@@ -781,7 +813,8 @@ main {
                 }
             }
             .modal-footer {
-                text-align: right;
+                display: flex;
+                justify-content: flex-end;
             }
         }
         
