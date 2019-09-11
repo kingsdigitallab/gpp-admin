@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="./assets/scss/all.min.css" />
     <title>GPP admin</title>
     <script src="./assets/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/js/jquery.richtext.min.js"></script>
+    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
     <script src="./assets/js/main.js"></script>
 </head>
 <body>
     <header>
         <div id="logo">
-            <img src="./assets/images/GPPLogo.png" alt="GPP logo" />
+                <a href="index.html"><img src="./assets/images/GPPLogo.png" alt="GPP logo" /></a>
           </div>
           <div id="menu-links">
             <div class="link">
@@ -44,7 +44,7 @@
                     <h4>MY DASHBOARD</h4>
                 </a>
             </div>
-            <button aria-label="logout" id="logout">LOGOUT</button>
+            <button aria-label="logout" id="logout" onclick="logout()">LOGOUT</button>
           </div>
     </header>
     <main>
@@ -76,7 +76,7 @@
                 </ul>
             </div>
             <h1>Douglas, William, 1724-1810, 4th Duke of Queensberry</h1>
-            <h4>Person</h4>
+            <h2>Person</h2>
             <form action="" method="" id="record-form">
                 <div class="flex">
                     <div>
@@ -84,14 +84,14 @@
                             <span class="required">Date from</span>
                             <input type="button" aria-label="additional info" data-content-type="general-date-from" class="icon-only additional-info-icon" value="&#xf059;">
                             <!-- indsert database values into value="" -->
-                            <input type="date" value="" name="general-date-from"/>
+                            <input type="date" value="" placeholder="dd/mm/yyyy" name="general-date-from"/>
                         </label>
                     </div>
                     <div>
                         <label>
                             <span class="required">Date to</span>
                             <input type="button" aria-label="additional info" data-content-type="general-date-to" class="icon-only additional-info-icon" value="&#xf059;">
-                            <input type="date" name="general-date-to" value=""/>
+                            <input type="date" placeholder="dd/mm/yyyy" name="general-date-to" value=""/>
                         </label>
                     </div>
                     <div>
@@ -117,10 +117,10 @@
                                 </div>
                                 <div>
                                     <label class="button-link danger">
-                                        <input type="button" class="icon-only danger-highlight" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                        <input type="button" class="icon-only danger-highlight" value="&#xf2ed;" onclick="deleteField(this)">Delete
                                     </label>
                                 </div>
-                                <a class="toggle-tab-button"></a>
+                                <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                             </div>
                         </div>
                         <div class="fieldset-body expand">
@@ -136,10 +136,10 @@
                                         </div>
                                         <div>
                                             <label class="button-link danger">
-                                                <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteField(this)">Delete
                                             </label>
                                         </div>
-                                        <a class="toggle-tab-button"></a>
+                                        <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                                     </div>
                                 </div>
                                 <div class="fieldset-body expand">
@@ -158,7 +158,7 @@
                                             <!--end REQUIRED FIELD end-->
 
                                             <!--start OPTIONAL FIELDS start-->
-                                            <div class="grid optional-to-delete">
+                                            <div class="grid optional-to-delete" data-content-reference="name-part-value">
                                                 <label>
                                                     <span hidden>Name part field</span>
                                                     <select>
@@ -205,23 +205,17 @@
                                             </div>
                                             <div class="two-column-table">
                                                 <div>
-                                                    <label>
+                                                    <label data-content-reference="name-used-from">
                                                         <span class="inline">Name used from</span>
-                                                        <input type="button" aria-label="additional info" data-content-type="name-used-from" class="icon-only additional-info-icon" value="&#xf059;"><br>
-                                                        <div class="editable-field">
-                                                            <input type="date" name="identity-1-name-entry-1-name-used-from" value=""/>
-                                                            
-                                                        </div>
+                                                        <input type="button" aria-label="additional info" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                        <input type="date" placeholder="dd/mm/yyyy" name="identity-1-name-entry-1-name-used-from" value=""/>
                                                     </label>
                                                 </div>
                                                 <div>
                                                     <label>
                                                         <span class="inline">Name used until</span>
                                                         <input type="button" aria-label="additional info" data-content-type="name-used-until" class="icon-only additional-info-icon" value="&#xf059;"><br>
-                                                        <div class="editable-field">
-                                                            <input type="date" name="identity-1-name-entry-1-name-used-until" value=""/>
-                                                            
-                                                        </div>
+                                                        <input type="date" placeholder="dd/mm/yyyy" name="identity-1-name-entry-1-name-used-until" value=""/>
                                                     </label>
                                                 </div>
                                             </div>
@@ -245,10 +239,10 @@
                                     <div class="flex">
                                         <div>
                                             <label class="button-link danger">
-                                                <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteField(this)">Delete
                                             </label>
                                         </div>
-                                        <a class="toggle-tab-button"></a>
+                                        <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                                     </div>
                                 </div>
                                 <div class="fieldset-body expand">
@@ -260,10 +254,10 @@
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteField(this)">Delete
                                                     </labels>
                                                 </div>
-                                                <a class="toggle-tab-button"></a>
+                                                <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                                             </div>
                                         </div>
                                         <div class="fieldset-body expand">
@@ -279,25 +273,19 @@
                                                     <div class="two-column-table date">
                                                         <div>
                                                             <label>Gender used from
-                                                                    <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;"><br>
-                                                                <div class="editable-field">
-                                                                    <input type="date" name="identity-1-description-1-gender-1-gender-used-from" value=""/>
-                                                                    
-                                                                </div>
+                                                                <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                                <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-gender-1-gender-used-from" value=""/>
                                                             </label>
                                                         </div>
                                                         <div>
                                                             <label>Gender used until
-                                                                    <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;"><br>
-                                                                <div class="editable-field">
-                                                                    <input type="date" name="identity-1-description-1-gender-1-gender-used-until" value=""/>
-                                                                    
-                                                                </div>
+                                                                <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                                <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-gender-1-gender-used-until" value=""/>
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <label>Display date gender used
-                                                            <input type="button" aria-label="additional info" data-content-type="display-date" class="icon-only additional-info-icon" value="&#xf059;">
+                                                        <input type="button" aria-label="additional info" data-content-type="display-date" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <input type="text" name="identity-1-description-1-gender-1-display-date-gender-used" value=""/>
                                                     </label>
                                                 </div>
@@ -327,10 +315,10 @@
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteField(this)">Delete
                                                     </label>
                                                 </div>
-                                                <a class="toggle-tab-button"></a>
+                                                <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                                             </div>
                                         </div>
                                         <div class="fieldset-body expand">
@@ -366,10 +354,10 @@
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteField(this)">Delete
                                                     </label>
                                                 </div>
-                                                <a class="toggle-tab-button"></a>
+                                                <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                                             </div>
                                         </div>
                                         <div class="fieldset-body expand">
@@ -399,10 +387,10 @@
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteField(this)">Delete
                                                     </label>
                                                 </div>
-                                                <a class="toggle-tab-button"></a>
+                                                <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                                             </div>
                                         </div>
                                         <div class="fieldset-body expand">
@@ -414,7 +402,7 @@
                                                             <select name="identity-1-description-1-place-1-place">
                                                                 <option value="">Select</option>
                                                             </select>
-                                                            <button aria-label="edit" class="icon-only"><i class="fas fa-pen"></i></button>
+                                                            <input type="button" aria-label="edit" class="icon-only" value="&#xf304;" onclick="editValue('place')"/>
                                                         </div>
                                                     </label>
                                                     <label>
@@ -425,7 +413,7 @@
                                                 <div>
                                                     <label>
                                                         <span class="required">Role</span>
-                                                        <textarea name="identity-1-description-1-place-1-role" rows="2"></textarea>
+                                                        <textarea name="identity-1-description-1-place-1-role" rows="3"></textarea>
                                                     </label>
                                                     <div class="two-column-table date">
                                                         <div>
@@ -433,7 +421,7 @@
                                                                 Date from
                                                                 <input type="button" aria-label="additional info" data-content-type="place-date-from" class="icon-only additional-info-icon" value="&#xf059;">
                                                                 <div class="editable-field">
-                                                                    <input type="date" name="identity-1-description-1-place-1-date-from" value=""/>
+                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-place-1-date-from" value=""/>
                                                                     
                                                                 </div>
                                                             </label>
@@ -442,7 +430,7 @@
                                                             <label>Date to
                                                                     <input type="button" aria-label="additional info" data-content-type="place-date-to" class="icon-only additional-info-icon" value="&#xf059;">
                                                                 <div class="editable-field">
-                                                                    <input type="date" name="identity-1-description-1-place-1-date-to" value=""/>
+                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-place-1-date-to" value=""/>
                                                                     
                                                                 </div>
                                                             </label>
@@ -466,10 +454,10 @@
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteField(this)">Delete
                                                     </label>
                                                 </div>
-                                                <a class="toggle-tab-button"></a>
+                                                <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                                             </div>
                                         </div>
                                         <div class="fieldset-body expand">
@@ -487,7 +475,7 @@
                                                             <select>
                                                                 <option>Select</option>
                                                             </select>
-                                                            <button aria-label="edit" class="icon-only"><i class="fas fa-pen"></i></button>
+                                                            <input type="button" aria-label="edit" class="icon-only" value="&#xf304;" onclick="editValue('place')"/>
                                                         </div>
                                                     </label>
                                                     <div class="two-column-table">
@@ -496,7 +484,7 @@
                                                                 <span class="required">Event date from</span>
                                                                 <input type="button" aria-label="additional info" data-content-type="event-date-from" class="icon-only additional-info-icon" value="&#xf059;">
                                                                 <div class="editable-field">
-                                                                    <input type="date" name="identity-1-description-1-event-1-date-from" value=""/>
+                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-event-1-date-from" value=""/>
                                                                     
                                                                 </div>
                                                             </label>
@@ -506,7 +494,7 @@
                                                                 <span class="required">Event date</span>
                                                                 <input type="button" aria-label="additional info" data-content-type="event-date-to" class="icon-only additional-info-icon" value="&#xf059;">
                                                                 <div class="editable-field">
-                                                                    <input type="date" name="identity-1-description-1-event-1-date-to" value=""/>
+                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-event-1-date-to" value=""/>
                                                                     
                                                                 </div>
                                                             </label>
@@ -533,10 +521,10 @@
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteField(this)">Delete
                                                     </label>
                                                 </div>
-                                                <a class="toggle-tab-button"></a>
+                                                <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                                             </div>
                                         </div>
                                         <div class="fieldset-body expand">
@@ -555,7 +543,7 @@
                                                             <label>Date from
                                                                 <input type="button" aria-label="additional info" data-content-type="mandate-date-from" class="icon-only additional-info-icon" value="&#xf059;">
                                                                 <div class="editable-field">
-                                                                    <input type="date" name="identity-1-description-1-mandate-1-date-from" value=""/>
+                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-mandate-1-date-from" value=""/>
                                                                     
                                                                 </div>
                                                             </label>
@@ -564,7 +552,7 @@
                                                             <label>Date to
                                                                 <input type="button" aria-label="additional info" data-content-type="mandate-date-to" class="icon-only additional-info-icon" value="&#xf059;">
                                                                 <div class="editable-field">
-                                                                    <input type="date" name="identity-1-description-1-mandate-1-date-to" value=""/>
+                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-mandate-1-date-to" value=""/>
                                                                     
                                                                 </div>
                                                             </label>
@@ -592,10 +580,10 @@
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteField(this)">Delete
                                                     </label>
                                                 </div>
-                                                <a class="toggle-tab-button"></a>
+                                                <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                                             </div>
                                         </div>
                                         <div class="fieldset-body expand">
@@ -614,7 +602,7 @@
                                                             <label>Date from
                                                                 <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;">
                                                                 <div class="editable-field">
-                                                                    <input type="date" name="identity-1-description-1-legal-status-1-date-from" value=""/>
+                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-legal-status-1-date-from" value=""/>
                                                                     
                                                                 </div>
                                                             </label>
@@ -623,7 +611,7 @@
                                                             <label>Date to
                                                                     <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;">
                                                                 <div class="editable-field">
-                                                                    <input type="date" name="identity-1-description-1-legal-status-1-date-to" value=""/>
+                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-legal-status-1-date-to" value=""/>
                                                                     
                                                                 </div>
                                                             </label>
@@ -652,10 +640,10 @@
                                             <div class="flex">
                                                 <div>
                                                     <label class="button-link danger">
-                                                        <input type="button" class="icon-only danger-highlight" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                        <input type="button" class="icon-only danger-highlight" value="&#xf2ed;" onclick="deleteField(this)">Delete
                                                     </label>
                                                 </div>
-                                                <a class="toggle-tab-button"></a>
+                                                <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                                             </div>
                                         </div>
                                         <div class="fieldset-body expand">
@@ -674,7 +662,7 @@
                                                             <label>Date from
                                                                 <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;">
                                                                 <div class="editable-field">
-                                                                    <input type="date" name="identity-1-description-1-function-1-date-from" value=""/>
+                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-function-1-date-from" value=""/>
                                                                     
                                                                 </div>
                                                             </label>
@@ -683,7 +671,7 @@
                                                             <label>Date to
                                                                     <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;">
                                                                 <div class="editable-field">
-                                                                    <input type="date" name="identity-1-description-1-function-1-date-to" value=""/>
+                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-function-1-date-to" value=""/>
                                                                     
                                                                 </div>
                                                             </label>
@@ -712,10 +700,10 @@
                                     <div class="flex">
                                         <div>
                                             <label class="button-link danger">
-                                                <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteField(this)">Delete
                                             </label>
                                         </div>
-                                        <a class="toggle-tab-button"></a>
+                                        <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                                     </div>
                                 </div>
                                 <div class="fieldset-body expand">
@@ -739,7 +727,7 @@
                                                         Date from
                                                         <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;"><br>
                                                         <div class="editable-field">
-                                                            <input type="date" name="identity-1-relation-1-date-from" value=""/>
+                                                            <input type="date" placeholder="dd/mm/yyyy" name="identity-1-relation-1-date-from" value=""/>
                                                             
                                                         </div>
                                                     </label>
@@ -748,7 +736,7 @@
                                                     <label>Date to
                                                         <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;"><br>
                                                         <div class="editable-field">
-                                                            <input type="date" name="identity-1-relation-1-date-to" value=""/>
+                                                            <input type="date" placeholder="dd/mm/yyyy" name="identity-1-relation-1-date-to" value=""/>
                                                             
                                                         </div>
                                                     </label>
@@ -769,7 +757,7 @@
                                                     <select name="identity-1-relation-1-place">
                                                         <option>Select</option>
                                                     </select>
-                                                    <button aria-label="edit" class="icon-only"><i class="fas fa-pen"></i></button>
+                                                    <input type="button" aria-label="edit" class="icon-only" value="&#xf304;" onclick="editValue('place')"/>
                                                 </div>
                                             </label>
                                         </div>
@@ -787,10 +775,10 @@
                                     <div class="flex">
                                         <div>
                                             <label class="button-link danger">
-                                                <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                                <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteField(this)">Delete
                                             </label>
                                         </div>
-                                        <a class="toggle-tab-button"></a>
+                                        <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                                     </div>
                                 </div>
                                 <div class="fieldset-body expand">
@@ -831,7 +819,6 @@
                         <input type="button" class="icon-only" value="&#xf067;" onclick="addBlock(this)">Add identity
                     </label>
                 </div>
-                <br>
                 <div class="form-section">
                     <h2>SOURCES (1)</h2>
                     <fieldset class="optional-to-delete" data-content-reference="sources">
@@ -840,10 +827,10 @@
                             <div class="flex">
                                 <div>
                                     <label class="button-link danger">
-                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteBlock(this)">Delete
+                                        <input type="button" class="icon-only" value="&#xf2ed;" onclick="deleteField(this)">Delete
                                     </label>
                                 </div>
-                                <a class="toggle-tab-button"></a>
+                                <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                             </div>
                         </div>
                         <div class="fieldset-body expand">
@@ -875,7 +862,7 @@
                         <div class="fieldset-header">
                             <h3>Record ID: 441</h3>
                             <div>
-                                <a class="toggle-tab-button"></a>
+                                <a class="toggle-tab-button" onclick="toggleTab(this)"></a>
                             </div>
                         </div>
                         <div class="fieldset-body expand">
@@ -917,7 +904,7 @@
         <div class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Save changes</h2>
+                    <h2>Log comments</h2>
                     <input type="button" class="icon-only" aria-label="close" onclick="closeBlock('modal')" value="&#xf00d;" />
                 </div>
                 <div class="modal-body">

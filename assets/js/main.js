@@ -19,25 +19,25 @@ $(document).ready(function() {
         $(el.target).parents('fieldset').first().addClass('border-left');
     });
 
-    // expand/collapse entity/archival record sections
-    $('.toggle-tab-button').click((event) => {
-        $(event.target).parents('.fieldset-header').siblings('.fieldset-body').toggleClass('expand');
-        $(event.target).toggleClass('active');
-    })
-
     // open popup to log changes in entity/archival record sections
     $("#record-form").submit((event) => {
         event.preventDefault();
         $(".modal").addClass('active');
     });
 
+    // open popup to add new user who can access the admin panel
+    $('#add-form').click(() => {
+        $('#add-user-form').addClass('active');
+    });
+
     // merge values from the modal and record forms
     $('#record-modal-form').submit((event) => {
         event.preventDefault();
         var formVals = $('#record-form, #record-modal-form').serialize();
-        $('.modal-footer').append('<p style="white-space: nowrap; overflow: scroll; max-width: 450px"><b>Merged values from forms:</b> ' + formVals + '</p>');
+        $('.modal-footer').append('<p style="white-space: nowrap; overflow: scroll; max-width: 450px;"><b>Merged values from forms:</b> ' + formVals + '</p>');
     });
 
+    // display additional information about the fields on hover
     $('.additional-info-icon').on({
         mouseover: (el) => {
             var key = $(el.target).attr("data-content-type");
@@ -53,15 +53,17 @@ $(document).ready(function() {
 
     // change textareas to richtext fields
     $('.richtext').richText();
-
 });
 
+// change name of the duplicated field
 function updateAttribute(idToIncrement, name) {
-    var regex = new RegExp('(?<='+idToIncrement + '-)[0-9]+');
-    var name = name.replace(regex, (n) => {return ++n});
+    // var regex = new RegExp('(?<='+idToIncrement + '-)[0-9]+'); lookbehind expression still doesn't work in Safari
+    var regex = new RegExp('(.*'+idToIncrement + '-)([0-9]+)');
+    var name = name.replace(regex, (fullMatch, n, m) => {return n+(Number(m) + 1)});
     return name;
 }
 
+// addField() might require refactoring to merge with addBlock()
 function addField(el) {
     var template = $(el).parent().prev().clone();
     var idToIncrement = template.first().attr('data-content-reference');
@@ -92,6 +94,10 @@ function addBlock(el) {
     $(el).parent().before(template);
 }
 
+
+
+//start MODAL TEMPLATES
+
 // update entity name part fields if the 'Royal name' checkbox is checked
 function updateBlock(el) {
     var val= el.name.slice(0, -10);
@@ -117,38 +123,131 @@ function updateBlock(el) {
     }
 }
 
-// var warningPopup =`<div class="warningPopup">
-//                             <div class="modal-content">
-//                                 <div class="modal-header">
-//                                     <h2>Delete record?</h2>
-//                                     <input type="button" class="icon-only" aria-label="close" onclick="closeBlock('modal')" value="&#xf00d;" />
-//                                 </div>
-//                                 <div class="modal-body">
-//                                 </div>
-//                                 <div class="modal-footer">
-//                                     <input type="button" value="Cancel" class="default" onclick="closeBlock('modal')"/>
-//                                     <input type="submit" value="Delete" class="danger" onclick=""/>
-//                                 </div>
-//                             </div>
-//                         </div>`;
+function editValue(val) {
+    if(val == 'place') {
+        $('main').append(`<div class="modal active" id="edit-place-form">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2>Find place</h2>
+                                    <input type="button" class="icon-only" aria-label="close" onclick="closeBlock('modal')" value="&#xf00d;" />
+                                </div>
+                                <div class="modal-body">
+                                    <form action="" method="" id="edit-place">
+                                        <div class="two-column-table">
+                                            <div>
+                                                <label>
+                                                    <span class="required">Geoname id</span>
+                                                    <input type="text" name="geoname-id"/>
+                                                </label>
+                                                <label>Address
+                                                    <input type="text" name="address" disabled/>
+                                                </label>
+                                                <label>Class description
+                                                    <input type="text" name="class-description" disabled/>
+                                                </label>
+                                                <label>Country
+                                                    <input type="text" name="country" disabled/>
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" class="inline" aria-label="update from geonames" name="update-geoname" onclick=""/>Update from geonames
+                                                <label>Feature class
+                                                    <input type="email" name="feature-class" disabled/>
+                                                </label>
+                                                <label>Latitude
+                                                    <input type="email" name="latitude" disabled/>
+                                                </label>
+                                                <label>Longitude
+                                                    <input type="email" name="longitude" disabled/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" value="Save" form="edit-place" class="save"/>
+                                </div>
+                            </div>
+                        </div>`);
+                        }
+}
+
+
+function warningModal() {
+    $('main').append(`<div class="modal active">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Delete this record?</h2>
+                            </div>
+                            <div class="modal-body">
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" value="Cancel" class="default"/>
+                                <input type="submit" value="Delete" class="danger"/>
+                            </div>
+                        </div>
+                    </div>`); 
+}
+
+function alertPopup(msg) {
+    $('main').append(`<div class="modal active">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <input type="button" class="icon-only" aria-label="close" onclick="closeBlock('modal')" value="&#xf00d;" />
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>`+ msg +`</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+                            </div>`);
+}
+
+//end MODAL TEMPLATES
+
+
+// delete a field or a section on the entity page
+function deleteField(el) {
+    var ref = $(el).closest('.optional-to-delete').attr('data-content-reference');
+    if ($(el).closest('.optional-to-delete').siblings('[data-content-reference='+ref+']').length >= 1) {
+        warningModal();
+        $('input[type=submit]').click((e) => {
+            $('.modal').removeClass('active');
+            if($(e.target).attr('value') == 'Delete') {
+                $(el).closest('.optional-to-delete').remove();
+            }
+            return false;
+        });
+    }
+    else {
+        alertPopup('You need to have at least one element of this type to delete selected.');
+    }
+}
+
+// delete an entire record (entity or archival record)
+function deleteRecord(el) {
+    warningModal();
+    $('input[type=submit').click((e) => {
+        $('.modal').removeClass('active');
+        if($(e.target).attr('value') == 'Delete') {
+            // DELETE RECORD
+            window.location.href = "./entities.html";
+        }
+        return false;
+    });
+}
+
+// expand/collapse entity/archival record sections
+function toggleTab(el) {
+    $(el).parents('.fieldset-header').siblings('.fieldset-body').toggleClass('expand');
+    $(el).toggleClass('active');
+}
 
 function closeBlock(el) {
     $('.'+el).removeClass('active');
 }
 
-function deleteField(el) {
-    if ($(el).closest('.optional-to-delete').siblings('.optional-to-delete').length >= 1) {
-        $(el).closest('.optional-to-delete').remove();
-    }
-}
-
-function deleteBlock(el) {
-    $(el).parents('.optional-to-delete').first().remove();
-    $(el).parent().siblings('.optional-to-delete').each((i, parent) => {
-        console.log(parent);
-    });
-}
-
-function deleteRecord(el) {
-    console.log('delete record');
+function logout() {
+    window.location.href = "./login.html";
 }

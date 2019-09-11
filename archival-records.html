@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="./assets/scss/all.min.css" />
     <title>GPP admin</title>
     <script src="./assets/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/js/jquery.richtext.min.js"></script>
+    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
     <script src="./assets/js/main.js"></script>
 </head>
 <body>
     <header>
         <div id="logo">
-            <img src="./assets/images/GPPLogo.png" alt="GPP logo" />
+                <a href="index.html"><img src="./assets/images/GPPLogo.png" alt="GPP logo" /></a>
           </div>
           <div id="menu-links">
             <div class="link">
@@ -44,7 +44,7 @@
                     <h4>MY DASHBOARD</h4>
                 </a>
             </div>
-            <button aria-label="logout" id="logout">LOGOUT</button>
+            <button aria-label="logout" id="logout" onclick="logout()">LOGOUT</button>
           </div>
     </header>
     <main>
