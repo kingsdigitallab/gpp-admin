@@ -1,7 +1,10 @@
 $(document).ready(function() {
 
     // object for popups that appear when users hover over question marks 
-    var additionalInfo = {'general-date-from': 'some information'};
+    var additionalInfo = {
+                        'general-date-from': 'some information', 
+                        'log-comments': 'how to log comments'
+                    };
 
     // check if additional information for the field exists to display the question mark icon
     $('.additional-info-icon').get().forEach((el) => {
@@ -22,6 +25,7 @@ $(document).ready(function() {
     // open popup to log changes in entity/archival record sections
     $("#record-form").submit((event) => {
         event.preventDefault();
+        // modal template is available in the files entity.html and archival-records.html (they use the same template with the same content)
         $(".modal").addClass('active');
     });
 
@@ -51,8 +55,18 @@ $(document).ready(function() {
         }
     });
 
+
+    // ADD-ONS
+    
     // change textareas to richtext fields
     $('.richtext').richText();
+
+    // add search bar to the select dropdown
+    $(".select-with-search").select2( {
+        placeholder: "Select",
+        allowClear: true
+    } );
+
 });
 
 // change name of the duplicated field
@@ -79,6 +93,7 @@ function addField(el) {
     $(el).parent().before(template);
 }
 
+// add a record section, e.g., Name entry
 function addBlock(el) {
     var template = $(el).parent().prev('fieldset').clone();
     var idToIncrement = template.closest('fieldset').attr('data-content-reference');
@@ -139,6 +154,7 @@ function editValue(val) {
                                                     <span class="required">Geoname id</span>
                                                     <input type="text" name="geoname-id"/>
                                                 </label>
+                                                <label><input type="checkbox" class="inline" name="update-geoname" onclick=""/>Update from geonames</label>
                                                 <label>Address
                                                     <input type="text" name="address" disabled/>
                                                 </label>
@@ -150,7 +166,6 @@ function editValue(val) {
                                                 </label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" class="inline" aria-label="update from geonames" name="update-geoname" onclick=""/>Update from geonames
                                                 <label>Feature class
                                                     <input type="email" name="feature-class" disabled/>
                                                 </label>

@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/scss/richtext.min.css">
-    <link rel="stylesheet" href="./assets/scss/styles.css" />
     <link rel="stylesheet" href="./assets/scss/all.min.css" />
+    <link rel="stylesheet" href="./assets/scss/select2.min.css" />
+    <link rel="stylesheet" href="./assets/scss/styles.css" />
     <title>GPP admin</title>
-    <script src="./assets/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
-    <script src="./assets/js/main.js"></script>
 </head>
 <body>
     <!-- header template if logged in -->
@@ -20,121 +18,127 @@
 
     <!-- rendering home page template below -->
     <header>
-            <div id="logo">
-                    <a href="index.html"><img src="./assets/images/GPPLogo.png" alt="GPP logo" /></a>
-              </div>
-              <div id="menu-links">
-                <div class="link active">
-                    <a href="home.html">
-                        <i class="fal fa-home"></i>
-                        <h4>HOME</h4>
-                    </a>
-                </div>
-                <div class="link">
-                    <a href="entities.html">
-                        <i class="fal fa-users"></i>
-                        <h4>ENTITIES</h4>
-                    </a>
-                </div>
-                <div class="link">
-                    <a href="archival-records.html">
-                        <i class="fal fa-archive"></i>
-                        <h4>ARCHIVAL RECORDS</h4>
-                    </a>
-                </div>
-              </div>
-              <div id="menu-account">
-                <div class="link">
-                    <a href="dashboard.html">
-                        <i class="fal fa-user"></i>
-                        <h4>MY DASHBOARD</h4>
-                    </a>
-                </div>
-                <button aria-label="logout" id="logout" onclick="logout()">LOGOUT</button>
-              </div>
-        </header>
-        <main>
-            <div id="page-header">
-                <h1>Home</h1>
-                <div class="filters">
-                    <input id="entities" type="checkbox" aria-label="entities" checked />
-                    <label for="entities" class="filter">Entity (120)</label>
-                    <input id="archival_records" type="checkbox" aria-label="archival records" />
-                    <label for="archival_records" class="filter">Archival records (420)</label>
-                    <button aria-label="create entity" class="create">Create new entity</button>
-                </div>
+        <div id="logo">
+                <a href="index.html"><img src="./assets/images/GPPLogo.png" alt="GPP logo" /></a>
             </div>
-            <table id="records">
-                <thead>
-                    <tr>
-                        <th>Name<i class="fas fa-sort"></i></th>
-                        <th>Record type<i class="fas fa-sort"></i></th>
-                        <th>Type/level<i class="fas fa-sort"></i></th>
-                        <th>Publication status<i class="fas fa-sort"></i></th>
-                        <th>Last edited<i class="fas fa-sort"></i></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <!-- add a pipe to truncate lenghty record descriptions and add '...'' -->
-                        <td class="description"><a href="entity.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
-                        <td>Entity</td>
-                        <td>Person</td>
-                        <td>In process</td>
-                        <td>May 1, 2019, 1:58 pm</td>
-                    </tr>
-                    <tr>
-                        <td class="description"><a href="archival-record.html">Account book kept by General Jacob de Budé, 1772-1784, covering personal expenses and also a few for Prince Frederick, later Duke of York, and for Prince William, later Duke of Clarence.</a></td>
-                        <td>Archival record</td>
-                        <td>File</td>
-                        <td>In process</td>
-                        <td>May 1, 2019, 1:58 pm</td>
-                    </tr>
-                    <tr>
-                        <td class="description"><a href="entity.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
-                        <td>Entity</td>
-                        <td>Person</td>
-                        <td>In process</td>
-                        <td>May 1, 2019, 1:58 pm</td>
-                    </tr>
-                    <tr>
-                        <td class="description"><a href="archival-record.html">Account book kept by General Jacob de Budé, 1772-1784, covering personal expenses and also a few for Prince Frederick, later Duke of York, and for Prince William, later Duke of Clarence.</a></td>
-                        <td>Archival record</td>
-                        <td>File</td>
-                        <td>In process</td>
-                        <td>May 1, 2019, 1:58 pm</td>
-                    </tr>
-                    <tr>
-                        <td class="description"><a href="entity.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
-                        <td>Entity</td>
-                        <td>Person</td>
-                        <td>In process</td>
-                        <td>May 1, 2019, 1:58 pm</td>
-                    </tr>
-                    <tr>
-                        <td class="description"><a href="archival-record.html">Account book kept by General Jacob de Budé, 1772-1784, covering personal expenses and also a few for Prince Frederick, later Duke of York, and for Prince William, later Duke of Clarence.</a></td>
-                        <td>Archival record</td>
-                        <td>File</td>
-                        <td>In process</td>
-                        <td>May 1, 2019, 1:58 pm</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div id="pagination">
-                <button id="first" class="inactive"><i class="fal fa-step-backward"></i></button>
-                <button id="prev" class="inactive"><i class="fal fa-caret-left"></i></button>
-                <ul>
-                    <li class="active">1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>...</li>
-                    <li>24</li>
-                    <li>25</li>
-                    <li>26</li>
-                </ul>
-                <button id="next"><i class="fal fa-caret-right"></i></button>
-                <button id="last"><i class="fal fa-step-forward"></i></button>
+            <div id="menu-links">
+            <div class="link active">
+                <a href="home.html">
+                    <i class="fal fa-home"></i>
+                    <h4>HOME</h4>
+                </a>
             </div>
-        </main>
-    </body>
-    </html>
+            <div class="link">
+                <a href="entities.html">
+                    <i class="fal fa-users"></i>
+                    <h4>ENTITIES</h4>
+                </a>
+            </div>
+            <div class="link">
+                <a href="archival-records.html">
+                    <i class="fal fa-archive"></i>
+                    <h4>ARCHIVAL RECORDS</h4>
+                </a>
+            </div>
+            </div>
+            <div id="menu-account">
+            <div class="link">
+                <a href="dashboard.html">
+                    <i class="fal fa-user"></i>
+                    <h4>MY DASHBOARD</h4>
+                </a>
+            </div>
+            <button aria-label="logout" id="logout" onclick="logout()">LOGOUT</button>
+            </div>
+    </header>
+    <main>
+        <div id="page-header">
+            <h1>Home</h1>
+            <div class="filters">
+                <input id="entities" type="checkbox" aria-label="entities" checked />
+                <label for="entities" class="filter">Entity (120)</label>
+                <input id="archival_records" type="checkbox" aria-label="archival records" />
+                <label for="archival_records" class="filter">Archival records (420)</label>
+                <button aria-label="create entity" class="create">Create new entity</button>
+            </div>
+        </div>
+        <table id="records">
+            <thead>
+                <tr>
+                    <th>Name<i class="fas fa-sort"></i></th>
+                    <th>Record type<i class="fas fa-sort"></i></th>
+                    <th>Type/level<i class="fas fa-sort"></i></th>
+                    <th>Publication status<i class="fas fa-sort"></i></th>
+                    <th>Last edited<i class="fas fa-sort"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- add a pipe to truncate lenghty record descriptions and add '...'' -->
+                    <td class="description"><a href="entity-record.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
+                    <td>Entity</td>
+                    <td>Person</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record.html">Account book kept by General Jacob de Budé, 1772-1784, covering personal expenses and also a few for Prince Frederick, later Duke of York, and for Prince William, later Duke of Clarence.</a></td>
+                    <td>Archival record</td>
+                    <td>File</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="entity-record.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
+                    <td>Entity</td>
+                    <td>Person</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record.html">Account book kept by General Jacob de Budé, 1772-1784, covering personal expenses and also a few for Prince Frederick, later Duke of York, and for Prince William, later Duke of Clarence.</a></td>
+                    <td>Archival record</td>
+                    <td>File</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="entity-record.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
+                    <td>Entity</td>
+                    <td>Person</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record.html">Account book kept by General Jacob de Budé, 1772-1784, covering personal expenses and also a few for Prince Frederick, later Duke of York, and for Prince William, later Duke of Clarence.</a></td>
+                    <td>Archival record</td>
+                    <td>File</td>
+                    <td>In process</td>
+                    <td>May 1, 2019, 1:58 pm</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="pagination">
+            <button id="first" class="inactive"><i class="fal fa-step-backward"></i></button>
+            <button id="prev" class="inactive"><i class="fal fa-caret-left"></i></button>
+            <ul>
+                <li class="active">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>...</li>
+                <li>24</li>
+                <li>25</li>
+                <li>26</li>
+            </ul>
+            <button id="next"><i class="fal fa-caret-right"></i></button>
+            <button id="last"><i class="fal fa-step-forward"></i></button>
+        </div>
+    </main>
+
+    <!-- JS SCRIPTS -->
+    <script src="./assets/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
+    <script src="./assets/js/select2/select2.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>

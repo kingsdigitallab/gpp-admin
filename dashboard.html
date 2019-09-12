@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/scss/richtext.min.css">
-    <link rel="stylesheet" href="./assets/scss/styles.css" />
     <link rel="stylesheet" href="./assets/scss/all.min.css" />
+    <link rel="stylesheet" href="./assets/scss/select2.min.css" />
+    <link rel="stylesheet" href="./assets/scss/styles.css" />
     <title>GPP admin</title>
-    <script src="./assets/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
-    <script src="./assets/js/main.js"></script>
 </head>
 <body>
     <header>
@@ -116,7 +114,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="optional-to-delete">
+                    <tr class="optional-to-delete" data-content-reference="user">
                         <td>{{ username }}</td>
                         <td>{{ first_name }}</td>
                         <td>{{ last_name }}</td>
@@ -126,10 +124,10 @@
                             <button aria-label="reset password" class="button-link"><i class="fas fa-unlock-alt"></i>Reset password</button>
                         </td>
                         <td class="button-cell">
-                            <button aria-label="delete user" class="button-link danger" onclick="deleteBlock(this)"><i class="fas fa-trash-alt"></i>Delete user</button>
+                            <button aria-label="delete user" class="button-link danger" onclick="deleteField(this)"><i class="fas fa-trash-alt"></i>Delete user</button>
                         </td>
                     </tr>
-                    <tr class="optional-to-delete">
+                    <tr class="optional-to-delete" data-content-reference="user">
                         <td>{{ username }}</td>
                         <td>{{ first_name }}</td>
                         <td>{{ last_name }}</td>
@@ -139,10 +137,10 @@
                             <button aria-label="reset password" class="button-link"><i class="fas fa-unlock-alt"></i>Reset password</button>
                         </td>
                         <td class="button-cell">
-                            <button aria-label="delete user" class="button-link danger" onclick="deleteBlock(this)"><i class="fas fa-trash-alt"></i>Delete user</button>
+                            <button aria-label="delete user" class="button-link danger" onclick="deleteField(this)"><i class="fas fa-trash-alt"></i>Delete user</button>
                         </td>
                     </tr>
-                    <tr class="optional-to-delete">
+                    <tr class="optional-to-delete" data-content-reference="user">
                         <td>{{ username }}</td>
                         <td>{{ first_name }}</td>
                         <td>{{ last_name }}</td>
@@ -152,7 +150,7 @@
                             <button aria-label="reset password" class="button-link"><i class="fas fa-unlock-alt"></i>Reset password</button>
                         </td>
                         <td class="button-cell">
-                            <button aria-label="delete user" class="button-link danger" onclick="deleteBlock(this)"><i class="fas fa-trash-alt"></i>Delete user</button>
+                            <button aria-label="delete user" class="button-link danger" onclick="deleteField(this)"><i class="fas fa-trash-alt"></i>Delete user</button>
                         </td>
                     </tr>
                 </tbody>
@@ -206,5 +204,11 @@
             </div>
         </div>
     </main>
+
+    <!-- JS SCRIPTS -->
+    <script src="./assets/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
+    <script src="./assets/js/select2/select2.min.js"></script>
+    <script src="./assets/js/main.js"></script>
 </body>
 </html>

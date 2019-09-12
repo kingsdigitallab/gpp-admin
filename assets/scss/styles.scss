@@ -60,15 +60,6 @@ body {
     width: 100%;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr 0.1fr;
-    grid-column-gap: 10px;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-}
-
 .flex {
     display: flex;
     align-items: center;
@@ -179,9 +170,9 @@ input[type=submit] {
 }
 
 .default {
-    border: 1px solid $primary !important;
+    border: 1px solid $primary;
     background-color: white;
-    color: $primary !important;
+    color: $primary;
     padding: 13px 25px;
     font-size: 14px;
     border-radius: 30px;
@@ -426,8 +417,7 @@ main {
             max-width: 300px;
             display: flex;
             flex-direction: column;
-            input,label {
-                margin-right: 0px;
+            input,label, .default {
                 width: 100%;
                 margin: auto;
                 margin-bottom: 10px;
@@ -435,8 +425,11 @@ main {
             }
             a {
                 text-align: right;
+                &.default {
+                    max-width: max-content;
+                }
             }
-            input[type=submit] {
+            input[type=submit], .default {
                 margin-top: 20px;
             }
         }
@@ -451,47 +444,11 @@ main {
             @include inline-list("|");
             font-size: 14px;
         }
-        .filters {
-            margin: 10px 0px;
-            .filter {
-                background-color: $background;
-                color: $primary;
-                margin-right: 10px;
-                border: 1px solid $primary;
-                border-radius: 30px;
-                padding: 10px 25px;
-                font-size: 13px;
-                cursor: pointer;
-                &:hover, &:focus {
-                    box-shadow: 0px 2px 2px $medium-grey;
-                }
-            }
-            input {
-                display: none;
-            }
-            input[type=checkbox]:checked + label {
-                background-color: $primary;
-                color: white;
-                border: none;
-                height: 40px;
-                &:before {
-                    font-family: $fontawesome;
-                    content:"\f00d";
-                    font-weight: 300;
-                    margin-right: 10px;
-                }
-            }
-        }
-        button {
-            &:not(:last-child) {
-                margin-right: 10px;
-            }
-            &.create {
-                margin-left: 20px;
-            }
+        .create {
+            margin-left: 20px;
         }
     }
-
+    
     .header-fixed {
         background-color: white;
         border-bottom: 1px solid $medium-grey;
@@ -502,6 +459,44 @@ main {
         z-index: 9;
         margin-left: 200px;
         padding: 10px 40px;
+    }
+
+    .filters {
+        margin: 10px 0px;
+        :not(:last-child) {
+            margin-right: 10px;
+        }
+        .create {
+            margin-left: 20px;
+        }
+        .filter {
+            background-color: $background;
+            color: $primary;
+            margin-right: 10px;
+            border: 1px solid $primary;
+            border-radius: 30px;
+            padding: 10px 25px;
+            font-size: 13px;
+            cursor: pointer;
+            &:hover, &:focus {
+                box-shadow: 0px 2px 2px $medium-grey;
+            }
+        }
+        input[type=checkbox], input[type=radio] {
+            display: none;
+        }
+        input[type=checkbox]:checked + label, input[type=radio]:checked + label {
+            background-color: $primary;
+            color: white;
+        }
+        input[type=checkbox]:checked + label {
+            &:before {
+                font-family: $fontawesome;
+                content:"\f00d";
+                font-weight: 300;
+                margin-right: 10px;
+            }
+        }
     }
 
     .user-control {
@@ -531,8 +526,6 @@ main {
             @include inline-list("\f0da");
             a {
                 color: $dark-grey;
-                font-size: 13px;
-                text-decoration: none;
                 border-bottom: 1px dotted $medium-grey;
                 &:hover, &:focus {
                     border-bottom: 1px dotted $dark-grey;
@@ -617,6 +610,15 @@ main {
         }
     }
 
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr 0.1fr;
+        grid-column-gap: 10px;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+
     .editable-field {
         display: grid;
         grid-template-columns: 1fr auto;
@@ -630,7 +632,7 @@ main {
             font-size: 14px;
             display: block;
             position: relative;
-            input, select {
+            input:not([type=checkbox]), select {
                 margin-top: 0px !important;
                 margin-bottom: 0px !important;
             }
@@ -638,14 +640,13 @@ main {
             //     margin-bottom: 10px;
             // }
         }
-
-
-        input, select, textarea {
+        input, select, .select2-selection--single, textarea {
             font-family: $font-primary;
             border-radius: 5px;
             font-size: 14px;
             padding: 10px;
             border: 1px solid $input;
+            
             // margin-right: 20px;
             &[type=date] {
                 margin-right: 5px;
@@ -673,6 +674,7 @@ main {
             background-repeat: no-repeat;
             background-color: #ffffff;
         }
+        
         textarea {
             width: 100%;
             display: block;
@@ -685,7 +687,6 @@ main {
             border: 1px solid $input;
             border-radius: 5px;
             overflow: hidden;
-            
             .richText-toolbar ul li a{
                 border-right: 1px solid $input;
                 border-bottom: 1px solid $input;
@@ -701,6 +702,25 @@ main {
                 box-sizing: border-box;
             }
         }
+        .select2-selection--single{
+            height: 40px !important;
+        }
+        .select2-container--default {
+            width: -moz-available !important;
+            width: -webkit-fill-available !important;
+            width: fill-available !important;
+            .select2-selection--single {
+                border: 1px solid $input;
+                .select2-selection__rendered {
+                    line-height:1.4em
+                }
+                .select2-selection__arrow {
+                    top:8px; right:8px
+                }
+            }
+            
+        }
+        
         :disabled {
             background-color: $light-grey;
             border: none;
@@ -750,6 +770,7 @@ main {
                             display: flex;
                             align-items: center;
                             justify-content: center;
+                            margin-right: 1px;
                             &:after{
                                 font-family: $fontawesome;
                                 content: "\f078";
@@ -918,6 +939,15 @@ footer {
     img{
         max-width: 200px;
     }
+}
+
+// select2 add-on inserts a dropdown out of the main tag
+.select2-search--dropdown {
+    padding:10px;
+    .select2-search__field{
+        padding:10px;
+        font-size: 16px;
+    }   
 }
 
 @keyframes modalSlide {

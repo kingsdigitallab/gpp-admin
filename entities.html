@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/scss/richtext.min.css">
-    <link rel="stylesheet" href="./assets/scss/styles.css" />
     <link rel="stylesheet" href="./assets/scss/all.min.css" />
+    <link rel="stylesheet" href="./assets/scss/select2.min.css" />
+    <link rel="stylesheet" href="./assets/scss/styles.css" />
     <title>GPP admin</title>
-    <script src="./assets/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
-    <script src="./assets/js/main.js"></script>
 </head>
 <body>
     <header>
@@ -55,7 +53,7 @@
                 <label for="person" class="filter">Person (120)</label>
                 <input id="corporate_body" type="checkbox" aria-label="corporate body" />
                 <label for="corporate_body" class="filter">Corporate Body (40)</label>
-                <button aria-label="create entity" class="create">Create new entity</button>
+                <a href="new-entity.html" class="create">Create new entity</a>
             </div>
         </div>
         <table id="records">
@@ -70,49 +68,49 @@
             <tbody>
                 <tr>
                     <!-- add a pipe to truncate lenghty record descriptions and add '...'' -->
-                    <td class="description"><a href="entity.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
+                    <td class="description"><a href="entity-record.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
                     <td>Person</td>
                     <td>In process</td>
                     <td>May 1, 2019, 1:58 pm</td>
                 </tr>
                 <tr>
-                    <td class="description"><a href="entity.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
+                    <td class="description"><a href="entity-record.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
                     <td>Person</td>
                     <td>In process</td>
                     <td>May 1, 2019, 1:58 pm</td>
                 </tr>
                 <tr>
-                    <td class="description"><a href="entity.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
+                    <td class="description"><a href="entity-record.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
                     <td>Person</td>
                     <td>In process</td>
                     <td>May 1, 2019, 1:58 pm</td>
                 </tr>
                 <tr>
-                    <td class="description"><a href="entity.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
+                    <td class="description"><a href="entity-record.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
                     <td>Person</td>
                     <td>In process</td>
                     <td>May 1, 2019, 1:58 pm</td>
                 </tr>
                 <tr>
-                    <td class="description"><a href="entity.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
+                    <td class="description"><a href="entity-record.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
                     <td>Person</td>
                     <td>In process</td>
                     <td>May 1, 2019, 1:58 pm</td>
                 </tr>
                 <tr>
-                    <td class="description"><a href="entity.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
+                    <td class="description"><a href="entity-record.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
                     <td>Person</td>
                     <td>In process</td>
                     <td>May 1, 2019, 1:58 pm</td>
                 </tr>
                 <tr>
-                    <td class="description"><a href="entity.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
+                    <td class="description"><a href="entity-record.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
                     <td>Person</td>
                     <td>In process</td>
                     <td>May 1, 2019, 1:58 pm</td>
                 </tr>
                 <tr>
-                    <td class="description"><a href="entity.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
+                    <td class="description"><a href="entity-record.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
                     <td>Person</td>
                     <td>In process</td>
                     <td>May 1, 2019, 1:58 pm</td>
@@ -135,5 +133,11 @@
             <button id="last"><i class="fal fa-step-forward"></i></button>
         </div>
     </main>
+
+    <!-- JS SCRIPTS -->
+    <script src="./assets/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
+    <script src="./assets/js/select2/select2.min.js"></script>
+    <script src="./assets/js/main.js"></script>
 </body>
 </html>

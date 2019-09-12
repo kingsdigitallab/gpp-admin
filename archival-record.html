@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/scss/richtext.min.css">
-    <link rel="stylesheet" href="./assets/scss/styles.css" />
     <link rel="stylesheet" href="./assets/scss/all.min.css" />
+    <link rel="stylesheet" href="./assets/scss/select2.min.css" />
+    <link rel="stylesheet" href="./assets/scss/styles.css" />
     <title>GPP admin</title>
-    <script src="./assets/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
-    <script src="./assets/js/main.js"></script>
 </head>
 <body>
     <header>
@@ -62,9 +60,8 @@
                 </a>
             </div>
             <div>
-                <button aria-label="delete" class="danger-clear">Delete</button>
+                <button aria-label="delete" class="danger-clear" onclick="deleteRecord()">Delete</button>
                 <input type="submit" value="Save" form="record-form" class="save"/>
-                <button aria-label="create new entity" class="create"><i class="fas fa-plus"></i></button>
             </div>
         </div>
         <div id="form-header">
@@ -94,7 +91,8 @@
                                     <label>
                                         <span class="required">Repository</span>
                                         <select name="repository" disabled>
-                                            <option value="">Select</option>
+                                            <option>Select</option>
+                                            <option value="Royal Archives">Royal Archives</option>
                                         </select>
                                     </label>
                                     <label>
@@ -103,13 +101,13 @@
                                     </label>
                                     <label>
                                         Parent series
-                                        <select name="parent-series">
+                                        <select name="parent-series" class="select-with-search">
                                             <option value="">Select</option>
                                         </select>
                                     </label>
                                     <label>
                                         Parent file
-                                        <select name="parent-series">
+                                        <select name="parent-series" class="select-with-search">
                                             <option value="">Select</option>
                                         </select>
                                     </label>
@@ -129,6 +127,16 @@
                                         <span class="required">Record type</span>
                                         <select name="record-type-1" disabled>
                                             <option value="">Select</option>
+                                            <option value="Financial records">Financial records</option>
+                                            <option value="Correspondence">Correspondence</option>
+                                            <option value="Diaries">Diaries</option>
+                                            <option value="Commonplace Books">Commonplace Books</option>
+                                            <option value="Writings (documents)">Writings (documents)</option>
+                                            <option value="Legal documents">Legal documents</option>
+                                            <option value="Wills">Wills</option>
+                                            <option value="Maps (documents)">Maps (documents)</option>
+                                            <option value="Prints (visual works)">Prints (visual works)</option>
+                                            <option value="Registers (lists)">Registers (lists)</option>
                                         </select>
                                     </label>
                                     <label>
@@ -465,13 +473,20 @@
                                 <label>
                                     <span class="required">Publication status</span>
                                     <select name="publication-status" required>
-                                        <option value="In process">In process</option>
+                                        <option value="published">Published</option>
+                                        <option value="in process" selected>In process</option>
+                                        <option value="approved">Approved</option>
                                     </select>
                                 </label>
                                 <label>
                                     <span class="required">Editing event type</span>
                                     <select name="maintenance-status" required>
-                                        <option value="Revised">Revised</option>
+                                        <option value="cancelled">Cancelled</option>
+                                        <option value="created">Created</option>
+                                        <option value="revised" selected>Revised</option>
+                                        <option value="deleted">Deleted</option>
+                                        <option value="derived">Derived</option>
+                                        <option value="unknown">Unknown</option>
                                     </select>
                                 </label>
                             </div>
@@ -497,5 +512,11 @@
             </div>
         </div>
     </main>
+
+    <!-- JS SCRIPTS -->
+    <script src="./assets/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
+    <script src="./assets/js/select2/select2.min.js"></script>
+    <script src="./assets/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/scss/richtext.min.css">
+    <link rel="stylesheet" href="./assets/scss/all.min.css" />
+    <link rel="stylesheet" href="./assets/scss/select2.min.css" />
+    <link rel="stylesheet" href="./assets/scss/styles.css" />
+    <title>GPP admin</title>
+</head>
+<body>
+    <header>
+        <div id="logo">
+                <a href="index.html"><img src="./assets/images/GPPLogo.png" alt="GPP logo" /></a>
+          </div>
+          <div id="menu-links">
+            <div class="link">
+                <a href="home.html">
+                    <i class="fal fa-home"></i>
+                    <h4>HOME</h4>
+                </a>
+            </div>
+            <div class="link active">
+                <a href="entities.html">
+                    <i class="fal fa-users"></i>
+                    <h4>ENTITIES</h4>
+                </a>
+            </div>
+            <div class="link">
+                <a href="archival-records.html">
+                    <i class="fal fa-archive"></i>
+                    <h4>ARCHIVAL RECORDS</h4>
+                </a>
+            </div>
+          </div>
+          <div id="menu-account">
+            <div class="link">
+                <a href="dashboard.html">
+                    <i class="fal fa-user"></i>
+                    <h4>MY DASHBOARD</h4>
+                </a>
+            </div>
+            <button aria-label="logout" id="logout" onclick="logout()">LOGOUT</button>
+          </div>
+    </header>
+    <main id="form-page">
+        <h1>Create new entity</h1>
+        <form action="" method="">
+            <div class="filters">
+                <input type="radio" name="level" value="entity" id="entity" aria-label="entity">
+                <label for="entity" class="filter">Entity</label>
+                <input type="radio" name="level" value="corporate body" id="corporate-body" aria-label="corporate body">
+                <label for="corporate-body" class="filter">Corporate Body</label>
+            </div>
+            <div class="two-column-table">
+                <a href="entity-record.html" class="default">Cancel</a>
+                <input type="submit" value="Continue" class="create" aria-label="submit and continue"/>
+            </div>
+        </form>
+    </main>
+
+    <!-- JS SCRIPTS -->
+    <script src="./assets/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
+    <script src="./assets/js/select2/select2.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>

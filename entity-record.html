@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/scss/richtext.min.css">
-    <link rel="stylesheet" href="./assets/scss/styles.css" />
     <link rel="stylesheet" href="./assets/scss/all.min.css" />
+    <link rel="stylesheet" href="./assets/scss/select2.min.css" />
+    <link rel="stylesheet" href="./assets/scss/styles.css" />
     <title>GPP admin</title>
-    <script src="./assets/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
-    <script src="./assets/js/main.js"></script>
 </head>
 <body>
     <header>
@@ -64,7 +62,7 @@
             <div>
                 <button aria-label="delete" class="danger-clear" onclick="deleteRecord()">Delete</button>
                 <input type="submit" value="Save" form="record-form" class="save"/>
-                <button aria-label="create new entity" class="create"><i class="fas fa-plus"></i></button>
+                <a href="new-entity.html" class="create"><i class="fas fa-plus"></i></a>
             </div>
         </div>
         <div id="form-header">
@@ -83,7 +81,7 @@
                         <label>
                             <span class="required">Date from</span>
                             <input type="button" aria-label="additional info" data-content-type="general-date-from" class="icon-only additional-info-icon" value="&#xf059;">
-                            <!-- indsert database values into value="" -->
+                            <!-- insert database values into value="" -->
                             <input type="date" value="" placeholder="dd/mm/yyyy" name="general-date-from"/>
                         </label>
                     </div>
@@ -112,7 +110,7 @@
                                 <div>
                                     <label>
                                         <!-- add 'checked' attribute for preferred identity -->
-                                        <input type="radio" name="identity-1-preferred-identity" checked/> Preferred identity
+                                        <input type="radio" name="preferred-identity" checked/> Preferred identity
                                     </label>
                                 </div>
                                 <div>
@@ -131,7 +129,7 @@
                                     <div class="flex">
                                         <div>
                                             <label>
-                                                <input type="radio" name="identity-1-name-entry-1-preferred-name" checked/> Preferred name form
+                                                <input type="radio" name="identity-1-preferred-name" checked/> Preferred name form
                                             </label>
                                         </div>
                                         <div>
@@ -161,7 +159,7 @@
                                             <div class="grid optional-to-delete" data-content-reference="name-part-value">
                                                 <label>
                                                     <span hidden>Name part field</span>
-                                                    <select>
+                                                    <select class="select-with-search">
                                                         <!-- add 'selected' attribute to selected option -->
                                                         <!-- add a loop for all possible options for titles (e.g., for o in options...) -->  
                                                         <option value="{{ o.value }}">{{ o.value }}</option>
@@ -189,7 +187,7 @@
                                                 <div>
                                                     <label>
                                                         <span class="required">Language</span>
-                                                        <select name="identity-1-name-entry-1-language">
+                                                        <select name="identity-1-name-entry-1-language" class="select-with-search">
                                                             <option value="English">English</option>
                                                         </select>
                                                     </label>
@@ -197,7 +195,7 @@
                                                 <div>
                                                     <label>
                                                         <span class="required">Script</span>
-                                                        <select name="identity-1-name-entry-1-script">
+                                                        <select name="identity-1-name-entry-1-script" class="select-with-search">
                                                             <option value="Latn, 215, Latin">Latn, 215, Latin</option>
                                                         </select>
                                                     </label>
@@ -265,7 +263,7 @@
                                                 <div>
                                                     <label>
                                                         <span class="required">Gender</span>
-                                                        <select name="identity-1-description-1-gender-1-gender">
+                                                        <select name="identity-1-description-1-gender-1-gender" class="select-with-search">
                                                             <!-- for g in gender -->
                                                             <option value="{{ g.value }}">{{ g.value }}</option>
                                                         </select>
@@ -364,13 +362,13 @@
                                             <div class="two-column-table">
                                                 <div>
                                                     <label>Language</label>
-                                                    <select name="identity-1-description-1-languages-1-language">
+                                                    <select name="identity-1-description-1-languages-1-language" class="select-with-search">
                                                         <option value="English">English</option>
                                                     </select>
                                                 </div>
                                                 <div>
                                                     <label>Script</label>
-                                                    <select name="identity-1-description-1-languages-1-script">
+                                                    <select name="identity-1-description-1-languages-1-script" class="select-with-search">
                                                         <option value="Latn">Script: Latn, 215, Latin</option>
                                                     </select>
                                                 </div>
@@ -399,7 +397,7 @@
                                                     <label>
                                                         <span class="required">Place</span>
                                                         <div class="editable-field">
-                                                            <select name="identity-1-description-1-place-1-place">
+                                                            <select name="identity-1-description-1-place-1-place" class="select-with-search">
                                                                 <option value="">Select</option>
                                                             </select>
                                                             <input type="button" aria-label="edit" class="icon-only" value="&#xf304;" onclick="editValue('place')"/>
@@ -418,21 +416,15 @@
                                                     <div class="two-column-table date">
                                                         <div>
                                                             <label>
-                                                                Date from
+                                                                Date from<br>
                                                                 <input type="button" aria-label="additional info" data-content-type="place-date-from" class="icon-only additional-info-icon" value="&#xf059;">
-                                                                <div class="editable-field">
-                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-place-1-date-from" value=""/>
-                                                                    
-                                                                </div>
+                                                                <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-place-1-date-from" value=""/>
                                                             </label>
                                                         </div>
                                                         <div>
-                                                            <label>Date to
+                                                            <label>Date to<br>
                                                                     <input type="button" aria-label="additional info" data-content-type="place-date-to" class="icon-only additional-info-icon" value="&#xf059;">
-                                                                <div class="editable-field">
                                                                     <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-place-1-date-to" value=""/>
-                                                                    
-                                                                </div>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -472,7 +464,7 @@
                                                     <label>
                                                         <span class="required">Place</span>
                                                         <div class="editable-field">
-                                                            <select>
+                                                            <select class="select-with-search">
                                                                 <option>Select</option>
                                                             </select>
                                                             <input type="button" aria-label="edit" class="icon-only" value="&#xf304;" onclick="editValue('place')"/>
@@ -481,22 +473,16 @@
                                                     <div class="two-column-table">
                                                         <div>
                                                             <label>
-                                                                <span class="required">Event date from</span>
+                                                                <span class="required">Event date from</span><br>
                                                                 <input type="button" aria-label="additional info" data-content-type="event-date-from" class="icon-only additional-info-icon" value="&#xf059;">
-                                                                <div class="editable-field">
-                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-event-1-date-from" value=""/>
-                                                                    
-                                                                </div>
+                                                                <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-event-1-date-from" value=""/> 
                                                             </label>
                                                         </div>
                                                         <div>
                                                             <label>
-                                                                <span class="required">Event date</span>
+                                                                <span class="required">Event date</span><br>
                                                                 <input type="button" aria-label="additional info" data-content-type="event-date-to" class="icon-only additional-info-icon" value="&#xf059;">
-                                                                <div class="editable-field">
-                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-event-1-date-to" value=""/>
-                                                                    
-                                                                </div>
+                                                                <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-event-1-date-to" value=""/>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -540,21 +526,15 @@
                                                 <div>
                                                     <div class="two-column-table date">
                                                         <div>
-                                                            <label>Date from
+                                                            <label>Date from<br>
                                                                 <input type="button" aria-label="additional info" data-content-type="mandate-date-from" class="icon-only additional-info-icon" value="&#xf059;">
-                                                                <div class="editable-field">
-                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-mandate-1-date-from" value=""/>
-                                                                    
-                                                                </div>
+                                                                <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-mandate-1-date-from" value=""/>
                                                             </label>
                                                         </div>
                                                         <div>
-                                                            <label>Date to
+                                                            <label>Date to<br>
                                                                 <input type="button" aria-label="additional info" data-content-type="mandate-date-to" class="icon-only additional-info-icon" value="&#xf059;">
-                                                                <div class="editable-field">
-                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-mandate-1-date-to" value=""/>
-                                                                    
-                                                                </div>
+                                                                <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-mandate-1-date-to" value=""/>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -599,21 +579,15 @@
                                                 <div>
                                                     <div class="two-column-table date">
                                                         <div>
-                                                            <label>Date from
+                                                            <label>Date from<br>
                                                                 <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;">
-                                                                <div class="editable-field">
-                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-legal-status-1-date-from" value=""/>
-                                                                    
-                                                                </div>
+                                                                <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-legal-status-1-date-from" value=""/>
                                                             </label>
                                                         </div>
                                                         <div>
-                                                            <label>Date to
+                                                            <label>Date to<br>
                                                                     <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;">
-                                                                <div class="editable-field">
                                                                     <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-legal-status-1-date-to" value=""/>
-                                                                    
-                                                                </div>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -659,21 +633,15 @@
                                                 <div>
                                                     <div class="two-column-table date">
                                                         <div>
-                                                            <label>Date from
+                                                            <label>Date from<br>
                                                                 <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;">
-                                                                <div class="editable-field">
-                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-function-1-date-from" value=""/>
-                                                                    
-                                                                </div>
+                                                                <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-function-1-date-from" value=""/>
                                                             </label>
                                                         </div>
                                                         <div>
-                                                            <label>Date to
+                                                            <label>Date to<br>
                                                                     <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;">
-                                                                <div class="editable-field">
                                                                     <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-function-1-date-to" value=""/>
-                                                                    
-                                                                </div>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -711,8 +679,18 @@
                                         <div>
                                             <label>
                                                 <span class="required">Relationship type</span>
-                                                <select name="identity-1-relation-1-relationship-type">
+                                                <select name="identity-1-relation-1-relationship-type" class="select-with-search">
                                                     <option value="">Select</option>
+                                                    <option value="identity">Identity</option>
+                                                    <option value="hierarchical">Hierarchical</option>
+                                                    <option value="hierarchical-parent">Hierarchical parent</option>
+                                                    <option value="hierarchical-child">Hierarchical child</option>
+                                                    <option value="temporal">Temporal</option>
+                                                    <option value="temporal-earlier">Temporal earlier</option>
+                                                    <option value="temporal-later">Temporal later</option>
+                                                    <option value="family">Family</option>
+                                                    <option value="associative">Associative</option>
+                                                    <option value="family-spouse">Family spouse</option>
                                                 </select>
                                             </label>
                                             <label>
@@ -724,21 +702,15 @@
                                             <div class="two-column-table date">
                                                 <div>
                                                     <label>
-                                                        Date from
+                                                        Date from<br>
                                                         <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;"><br>
-                                                        <div class="editable-field">
-                                                            <input type="date" placeholder="dd/mm/yyyy" name="identity-1-relation-1-date-from" value=""/>
-                                                            
-                                                        </div>
+                                                        <input type="date" placeholder="dd/mm/yyyy" name="identity-1-relation-1-date-from" value=""/>
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <label>Date to
+                                                    <label>Date to<br>
                                                         <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;"><br>
-                                                        <div class="editable-field">
-                                                            <input type="date" placeholder="dd/mm/yyyy" name="identity-1-relation-1-date-to" value=""/>
-                                                            
-                                                        </div>
+                                                        <input type="date" placeholder="dd/mm/yyyy" name="identity-1-relation-1-date-to" value=""/>
                                                     </label>
                                                 </div>
                                             </div>
@@ -754,7 +726,7 @@
                                             </label>
                                             <label>Place related to relationship
                                                 <div class="editable-field">
-                                                    <select name="identity-1-relation-1-place">
+                                                    <select name="identity-1-relation-1-place" class="select-with-search">
                                                         <option>Select</option>
                                                     </select>
                                                     <input type="button" aria-label="edit" class="icon-only" value="&#xf304;" onclick="editValue('place')"/>
@@ -786,8 +758,11 @@
                                             <div>
                                                 <label>
                                                     <span class="required">Resource relationship type</span>
-                                                    <select name="identity-1-resource-1-relationship-type">
+                                                    <select name="identity-1-resource-1-relationship-type" class="select-with-search">
                                                         <option>Select</option>
+                                                        <option value="creatorOf">Creator of</option>
+                                                        <option value="subjectOf">Subject of</option>
+                                                        <option value="other">Other</option>
                                                     </select>
                                                 </label>
                                                
@@ -870,7 +845,7 @@
                                 <div>
                                     <label>
                                         <span class="required">Language</span>
-                                        <select name="language">
+                                        <select name="language" class="select-with-search">
                                             <option value="English">English</option>
                                         </select>
                                     </label>
@@ -914,13 +889,20 @@
                                 <label>
                                     <span class="required">Publication status</span>
                                     <select name="publication-status" required>
-                                        <option value="In process">In process</option>
+                                        <option value="published">Published</option>
+                                        <option value="in process" selected>In process</option>
+                                        <option value="approved">Approved</option>
                                     </select>
                                 </label>
                                 <label>
                                     <span class="required">Editing event type</span>
                                     <select name="maintenance-status" required>
-                                        <option value="Revised">Revised</option>
+                                        <option value="cancelled">Cancelled</option>
+                                        <option value="created">Created</option>
+                                        <option value="revised" selected>Revised</option>
+                                        <option value="deleted">Deleted</option>
+                                        <option value="derived">Derived</option>
+                                        <option value="unknown">Unknown</option>
                                     </select>
                                 </label>
                             </div>
@@ -928,7 +910,12 @@
                                 <label>
                                     <span class="required">Maintenance status</span>
                                     <select name="maintenance-status">
-                                        <option value="New">New</option>
+                                        <option value="new">New</option>
+                                        <option value="revised">Revised</option>
+                                        <option value="cancelled">Cancelled</option>
+                                        <option value="deleted">Deleted</option>
+                                        <option value="deletedReplaced">Deleted Replaced</option>
+                                        <option value="deletedSplit">Deleted Split</option>
                                     </select>
                                 </label>
                             </div>
@@ -936,6 +923,7 @@
                         </div>
                         <label>
                             <span class="required">Comments</span>
+                            <input type="button" aria-label="additional info" data-content-type="log-comments" class="icon-only additional-info-icon" value="&#xf059;">
                             <textarea rows="4"></textarea>
                         </label>
                     </form>
@@ -946,5 +934,11 @@
             </div>
         </div>
     </main>
+
+    <!-- JS SCRIPTS -->
+    <script src="./assets/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
+    <script src="./assets/js/select2/select2.min.js"></script>
+    <script src="./assets/js/main.js"></script>
 </body>
 </html>

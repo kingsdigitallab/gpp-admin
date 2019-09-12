@@ -9,15 +9,6 @@ body {
   width: 100%;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 2fr 0.1fr;
-  grid-column-gap: 10px;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-}
-
 .flex {
   display: flex;
   align-items: center;
@@ -132,9 +123,9 @@ input[type=submit] {
 }
 
 .default {
-  border: 1px solid #002465 !important;
+  border: 1px solid #002465;
   background-color: white;
-  color: #002465 !important;
+  color: #002465;
   padding: 13px 25px;
   font-size: 14px;
   border-radius: 30px;
@@ -361,8 +352,7 @@ main#form-page form {
   display: flex;
   flex-direction: column;
 }
-main#form-page form input, main#form-page form label {
-  margin-right: 0px;
+main#form-page form input, main#form-page form label, main#form-page form .default {
   width: 100%;
   margin: auto;
   margin-bottom: 10px;
@@ -371,7 +361,10 @@ main#form-page form input, main#form-page form label {
 main#form-page form a {
   text-align: right;
 }
-main#form-page form input[type=submit] {
+main#form-page form a.default {
+  max-width: max-content;
+}
+main#form-page form input[type=submit], main#form-page form .default {
   margin-top: 20px;
 }
 main #page-header {
@@ -401,41 +394,7 @@ main #page-header #status-bar ul li:not(:last-child):after {
   font-family: "Font Awesome 5 Pro";
   font-weight: 600;
 }
-main #page-header .filters {
-  margin: 10px 0px;
-}
-main #page-header .filters .filter {
-  background-color: #FCFCFC;
-  color: #002465;
-  margin-right: 10px;
-  border: 1px solid #002465;
-  border-radius: 30px;
-  padding: 10px 25px;
-  font-size: 13px;
-  cursor: pointer;
-}
-main #page-header .filters .filter:hover, main #page-header .filters .filter:focus {
-  box-shadow: 0px 2px 2px #BABABA;
-}
-main #page-header .filters input {
-  display: none;
-}
-main #page-header .filters input[type=checkbox]:checked + label {
-  background-color: #002465;
-  color: white;
-  border: none;
-  height: 40px;
-}
-main #page-header .filters input[type=checkbox]:checked + label:before {
-  font-family: "Font Awesome 5 Pro";
-  content: "";
-  font-weight: 300;
-  margin-right: 10px;
-}
-main #page-header button:not(:last-child) {
-  margin-right: 10px;
-}
-main #page-header button.create {
+main #page-header .create {
   margin-left: 20px;
 }
 main .header-fixed {
@@ -448,6 +407,41 @@ main .header-fixed {
   z-index: 9;
   margin-left: 200px;
   padding: 10px 40px;
+}
+main .filters {
+  margin: 10px 0px;
+}
+main .filters :not(:last-child) {
+  margin-right: 10px;
+}
+main .filters .create {
+  margin-left: 20px;
+}
+main .filters .filter {
+  background-color: #FCFCFC;
+  color: #002465;
+  margin-right: 10px;
+  border: 1px solid #002465;
+  border-radius: 30px;
+  padding: 10px 25px;
+  font-size: 13px;
+  cursor: pointer;
+}
+main .filters .filter:hover, main .filters .filter:focus {
+  box-shadow: 0px 2px 2px #BABABA;
+}
+main .filters input[type=checkbox], main .filters input[type=radio] {
+  display: none;
+}
+main .filters input[type=checkbox]:checked + label, main .filters input[type=radio]:checked + label {
+  background-color: #002465;
+  color: white;
+}
+main .filters input[type=checkbox]:checked + label:before {
+  font-family: "Font Awesome 5 Pro";
+  content: "";
+  font-weight: 300;
+  margin-right: 10px;
 }
 main .user-control {
   display: flex;
@@ -493,8 +487,6 @@ main #form-header #breadcrumbs ul li:not(:last-child):after {
 }
 main #form-header #breadcrumbs a {
   color: #424242;
-  font-size: 13px;
-  text-decoration: none;
   border-bottom: 1px dotted #BABABA;
 }
 main #form-header #breadcrumbs a:hover, main #form-header #breadcrumbs a:focus {
@@ -572,6 +564,14 @@ main .two-column-table.date {
   grid-template-columns: auto auto;
   justify-content: start;
 }
+main .grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 0.1fr;
+  grid-column-gap: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
 main .editable-field {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -585,25 +585,25 @@ main form label {
   display: block;
   position: relative;
 }
-main form label input, main form label select {
+main form label input:not([type=checkbox]), main form label select {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
 }
-main form input, main form select, main form textarea {
+main form input, main form select, main form .select2-selection--single, main form textarea {
   font-family: "Roboto", sans-serif;
   border-radius: 5px;
   font-size: 14px;
   padding: 10px;
   border: 1px solid #707070;
 }
-main form input[type=date], main form select[type=date], main form textarea[type=date] {
+main form input[type=date], main form select[type=date], main form .select2-selection--single[type=date], main form textarea[type=date] {
   margin-right: 5px;
   max-width: max-content;
 }
-main form input[type=button], main form select[type=button], main form textarea[type=button] {
+main form input[type=button], main form select[type=button], main form .select2-selection--single[type=button], main form textarea[type=button] {
   max-width: max-content;
 }
-main form input[type=radio], main form input[type=checkbox], main form select[type=radio], main form select[type=checkbox], main form textarea[type=radio], main form textarea[type=checkbox] {
+main form input[type=radio], main form input[type=checkbox], main form select[type=radio], main form select[type=checkbox], main form .select2-selection--single[type=radio], main form .select2-selection--single[type=checkbox], main form textarea[type=radio], main form textarea[type=checkbox] {
   height: 10px;
   width: 10px;
   margin: 0px;
@@ -647,6 +647,24 @@ main form .richText .richText-toolbar {
 main form .richText .richText-editor {
   height: 100px;
   box-sizing: border-box;
+}
+main form .select2-selection--single {
+  height: 40px !important;
+}
+main form .select2-container--default {
+  width: -moz-available !important;
+  width: -webkit-fill-available !important;
+  width: fill-available !important;
+}
+main form .select2-container--default .select2-selection--single {
+  border: 1px solid #707070;
+}
+main form .select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 1.4em;
+}
+main form .select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 8px;
+  right: 8px;
 }
 main form :disabled {
   background-color: #EBEBEB;
@@ -700,6 +718,7 @@ main form .form-section fieldset .fieldset-header > div .toggle-tab-button {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 1px;
 }
 main form .form-section fieldset .fieldset-header > div .toggle-tab-button:after {
   font-family: "Font Awesome 5 Pro";
@@ -853,6 +872,14 @@ footer {
 }
 footer img {
   max-width: 200px;
+}
+
+.select2-search--dropdown {
+  padding: 10px;
+}
+.select2-search--dropdown .select2-search__field {
+  padding: 10px;
+  font-size: 16px;
 }
 
 @keyframes modalSlide {

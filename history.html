@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/scss/richtext.min.css">
-    <link rel="stylesheet" href="./assets/scss/styles.css" />
     <link rel="stylesheet" href="./assets/scss/all.min.css" />
+    <link rel="stylesheet" href="./assets/scss/select2.min.css" />
+    <link rel="stylesheet" href="./assets/scss/styles.css" />
     <title>GPP admin</title>
-    <script src="./assets/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
-    <script src="./assets/js/main.js"></script>
 </head>
 <body>
     <header>
@@ -48,7 +46,7 @@
           </div>
     </header>
     <main>
-        <a href="entity.html"><i class="fas fa-chevron-left margin-right"></i><span class="dotted-underline">Back to {{ display_name }}</span></a>
+        <a href="entity-record.html"><i class="fas fa-chevron-left margin-right"></i><span class="dotted-underline">Back to {{ display_name }}</span></a>
         <!-- add a pipe to truncate lenghty record descriptions and add '...'' -->
         <h1><span class="highlight">Change history:</span> Douglas, William, 1724-1810, 4th Duke of Queensberry</h1>
         <table>
@@ -141,5 +139,11 @@
             <button id="last"><i class="fal fa-step-forward"></i></button>
         </div>
     </main>
+
+    <!-- JS SCRIPTS -->
+    <script src="./assets/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/js/richtext/jquery.richtext.min.js"></script>
+    <script src="./assets/js/select2/select2.min.js"></script>
+    <script src="./assets/js/main.js"></script>
 </body>
 </html>
