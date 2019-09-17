@@ -42,7 +42,7 @@
                     <h4>MY DASHBOARD</h4>
                 </a>
             </div>
-            <button aria-label="logout" id="logout" onclick="logout()">LOGOUT</button>
+            <button aria-label="logout" id="logout" onclick="logout()"></button>
           </div>
     </header>
     <main>
@@ -73,6 +73,13 @@
                     <li>Douglas, William, 1724-1810, 4th Duke of Queensberry</li>
                 </ul>
             </div>
+
+            <!-- FORM ERROR MESSAGE - add active to show notification -->
+            <!-- <div class="error-notification">
+                <h3>{{ error.title }}</h3>
+                <p>{{ error.message }}</p>
+            </div> -->
+
             <h1>Douglas, William, 1724-1810, 4th Duke of Queensberry</h1>
             <h2>Person</h2>
             <form action="" method="" id="record-form">
@@ -129,7 +136,7 @@
                                     <div class="flex">
                                         <div>
                                             <label>
-                                                <input type="radio" name="identity-1-preferred-name" checked/> Preferred name form
+                                                <input type="radio" name="identity-1-preferred-name"  checked/> Preferred name form
                                             </label>
                                         </div>
                                         <div>
@@ -144,12 +151,17 @@
                                     <div class="two-column-table">
                                         <div>
                                             <input type="checkbox" class="inline" aria-label="royal name" name="identity-1-name-entry-1-royal-name" onclick="updateBlock(this)"/>Royal name
-
                                             <!--start REQUIRED FIELD start-->
                                             <!-- required fields when royal name is checked are different from the field below -->
                                             <div class="required-fields">
+                                                <!-- {% if form.errors %}
+                                                    {% for error in field.errors %} -->
+                                                    <!-- <p class="error-message">{{ error }}</p> -->
+                                                    <!-- {% endfor %}
+                                                {% endif %} -->
                                                 <div class="grid">
                                                     <span class="required">Surname</span>
+                                                    <!-- add class error when error occurs -->
                                                     <input type="text"  placeholder="Surname" onfocus="this.placeholder=''" onblur="this.placeholder='Surname'" value="" aria-label="surname" name="identity-1-name-entry-1-surname"/>
                                                 </div>
                                             </div>
@@ -181,12 +193,14 @@
                                         <div>
                                             <label>
                                                 <span class="required">Display Name</span>
+                                                <input type="button" aria-label="additional info" data-content-type="display-name" class="icon-only additional-info-icon" value="&#xf059;">
                                                 <input type="text" name="identity-1-name-entry-1-display-name" value=""/>
                                             </label>
                                             <div class="two-column-table">
                                                 <div>
                                                     <label>
                                                         <span class="required">Language</span>
+                                                        <input type="button" aria-label="additional info" data-content-type="name-entity-language" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <select name="identity-1-name-entry-1-language" class="select-with-search">
                                                             <option value="English">English</option>
                                                         </select>
@@ -195,6 +209,7 @@
                                                 <div>
                                                     <label>
                                                         <span class="required">Script</span>
+                                                        <input type="button" aria-label="additional info" data-content-type="name-entity-script" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <select name="identity-1-name-entry-1-script" class="select-with-search">
                                                             <option value="Latn, 215, Latin">Latn, 215, Latin</option>
                                                         </select>
@@ -205,21 +220,21 @@
                                                 <div>
                                                     <label data-content-reference="name-used-from">
                                                         <span class="inline">Name used from</span>
-                                                        <input type="button" aria-label="additional info" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                        <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;"><br>
                                                         <input type="date" placeholder="dd/mm/yyyy" name="identity-1-name-entry-1-name-used-from" value=""/>
                                                     </label>
                                                 </div>
                                                 <div>
                                                     <label>
                                                         <span class="inline">Name used until</span>
-                                                        <input type="button" aria-label="additional info" data-content-type="name-used-until" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                        <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;"><br>
                                                         <input type="date" placeholder="dd/mm/yyyy" name="identity-1-name-entry-1-name-used-until" value=""/>
                                                     </label>
                                                 </div>
                                             </div>
                                             <label>
                                                 <span class="inline">Display date name used</span>
-                                                <input type="button" aria-label="additional info" data-content-type="display-date-name-used" class="icon-only additional-info-icon" value="&#xf059;">
+                                                <input type="button" aria-label="additional info" data-content-type="display-date" class="icon-only additional-info-icon" value="&#xf059;">
                                                 <input type="text" name="identity-1-name-entry-1-display-date-name-used" value=""/>
                                             </label>
                                         </div>
@@ -263,6 +278,7 @@
                                                 <div>
                                                     <label>
                                                         <span class="required">Gender</span>
+                                                        <input type="button" aria-label="additional info" data-content-type="gender" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <select name="identity-1-description-1-gender-1-gender" class="select-with-search">
                                                             <!-- for g in gender -->
                                                             <option value="{{ g.value }}">{{ g.value }}</option>
@@ -271,13 +287,13 @@
                                                     <div class="two-column-table date">
                                                         <div>
                                                             <label>Gender used from
-                                                                <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                                <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;"><br>
                                                                 <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-gender-1-gender-used-from" value=""/>
                                                             </label>
                                                         </div>
                                                         <div>
                                                             <label>Gender used until
-                                                                <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                                <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;"><br>
                                                                 <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-gender-1-gender-used-until" value=""/>
                                                             </label>
                                                         </div>
@@ -289,10 +305,11 @@
                                                 </div>
                                                 <div>
                                                     <label>Descriptive notes
-                                                        <input type="button" aria-label="additional info" data-content-type="descriptive-notes" class="icon-only additional-info-icon" value="&#xf059;">
+                                                        <input type="button" aria-label="additional info" data-content-type="gender-descriptive-notes" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <input type="text" name="identity-1-description-1-gender-1-descriptive-notes" value=""/>
                                                     </label>
                                                     <label>Citation
+                                                        <input type="button" aria-label="additional info" data-content-type="gender-citation" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <textarea class="richtext" name="identity-1-description-1-gender-1-citation" rows="3"></textarea>
                                                     </label>
                                                 </label>
@@ -322,22 +339,27 @@
                                         <div class="fieldset-body expand">
                                             <label>
                                                 <span class="required">Abstract</span>
+                                                <input type="button" aria-label="additional info" data-content-type="biography-abstract" class="icon-only additional-info-icon" value="&#xf059;">
                                                 <textarea class="richtext" name="identity-1-description-1-biography-1-abstract" rows="8"></textarea>
                                             </label>
                                             <label>
                                                 <span>Content</span>
+                                                <input type="button" aria-label="additional info" data-content-type="biography-content" class="icon-only additional-info-icon" value="&#xf059;">
                                                 <textarea class="richtext" name="identity-1-description-1-biography-1-content" rows="8"></textarea>
                                             </label>
                                             <label>
                                                 <span>Structure or genealogy</span>
+                                                <input type="button" aria-label="additional info" data-content-type="biography-structure-genealogy" class="icon-only additional-info-icon" value="&#xf059;">
                                                 <textarea class="richtext" name="identity-1-description-1-biography-1-structure" rows="8"></textarea>
                                             </label>
                                             <label>
                                                 <span>Sources</span>
+                                                <input type="button" aria-label="additional info" data-content-type="biography-sources" class="icon-only additional-info-icon" value="&#xf059;">
                                                 <textarea class="richtext" name="identity-1-description-1-biography-1-sources" rows="8"></textarea>
                                             </label>
                                             <label>
                                                 <span>Copyright</span>
+                                                <input type="button" aria-label="additional info" data-content-type="biography-copyright" class="icon-only additional-info-icon" value="&#xf059;">
                                                 <textarea class="richtext" name="identity-1-description-1-biography-1-copyright" rows="8"></textarea>
                                             </label>
                                         </div>
@@ -361,13 +383,17 @@
                                         <div class="fieldset-body expand">
                                             <div class="two-column-table">
                                                 <div>
-                                                    <label>Language</label>
+                                                    <label>Language
+                                                        <input type="button" aria-label="additional info" data-content-type="language" class="icon-only additional-info-icon" value="&#xf059;">
+                                                    </label>
                                                     <select name="identity-1-description-1-languages-1-language" class="select-with-search">
                                                         <option value="English">English</option>
                                                     </select>
                                                 </div>
                                                 <div>
-                                                    <label>Script</label>
+                                                    <label>Script
+                                                        <input type="button" aria-label="additional info" data-content-type="script" class="icon-only additional-info-icon" value="&#xf059;">
+                                                    </label>
                                                     <select name="identity-1-description-1-languages-1-script" class="select-with-search">
                                                         <option value="Latn">Script: Latn, 215, Latin</option>
                                                     </select>
@@ -396,6 +422,7 @@
                                                 <div>
                                                     <label>
                                                         <span class="required">Place</span>
+                                                        <input type="button" aria-label="additional info" data-content-type="place" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <div class="editable-field">
                                                             <select name="identity-1-description-1-place-1-place" class="select-with-search">
                                                                 <option value="">Select</option>
@@ -405,26 +432,30 @@
                                                     </label>
                                                     <label>
                                                         <span class="required">Address</span>
+                                                        <input type="button" aria-label="additional info" data-content-type="place-address" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <textarea name="identity-1-description-1-place-1-address" rows="8"></textarea>
                                                     </label>
                                                 </div>
                                                 <div>
                                                     <label>
                                                         <span class="required">Role</span>
+                                                        <input type="button" aria-label="additional info" data-content-type="place-role" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <textarea name="identity-1-description-1-place-1-role" rows="3"></textarea>
                                                     </label>
                                                     <div class="two-column-table date">
                                                         <div>
                                                             <label>
-                                                                Date from<br>
-                                                                <input type="button" aria-label="additional info" data-content-type="place-date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                Date from
+                                                                <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <br>
                                                                 <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-place-1-date-from" value=""/>
                                                             </label>
                                                         </div>
                                                         <div>
-                                                            <label>Date to<br>
-                                                                    <input type="button" aria-label="additional info" data-content-type="place-date-to" class="icon-only additional-info-icon" value="&#xf059;">
-                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-place-1-date-to" value=""/>
+                                                            <label>Date to
+                                                                <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <br>
+                                                                <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-place-1-date-to" value=""/>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -457,12 +488,14 @@
                                                 <div>
                                                     <label>
                                                         <span class="required">Event</span>
+                                                        <input type="button" aria-label="additional info" data-content-type="event" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <textarea name="identity-1-description-1-event-1-event" rows="9"></textarea>
                                                     </label>
                                                 </div>
                                                 <div>
                                                     <label>
                                                         <span class="required">Place</span>
+                                                        <input type="button" aria-label="additional info" data-content-type="event-place" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <div class="editable-field">
                                                             <select class="select-with-search">
                                                                 <option>Select</option>
@@ -473,15 +506,17 @@
                                                     <div class="two-column-table">
                                                         <div>
                                                             <label>
-                                                                <span class="required">Event date from</span><br>
-                                                                <input type="button" aria-label="additional info" data-content-type="event-date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <span class="required">Event date from</span>
+                                                                <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <br>
                                                                 <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-event-1-date-from" value=""/> 
                                                             </label>
                                                         </div>
                                                         <div>
                                                             <label>
-                                                                <span class="required">Event date</span><br>
-                                                                <input type="button" aria-label="additional info" data-content-type="event-date-to" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <span class="required">Event date</span>
+                                                                <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <br>
                                                                 <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-event-1-date-to" value=""/>
                                                             </label>
                                                         </div>
@@ -517,23 +552,27 @@
                                             <div class="two-column-table">
                                                 <div>
                                                     <label>Term
+                                                        <input type="button" aria-label="additional info" data-content-type="mandate-term" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <input type="text" name="identity-1-description-1-mandate-1-term" value=""/>
                                                     </label>
                                                     <label>Descriptive notes
+                                                        <input type="button" aria-label="additional info" data-content-type="mandate-descriptive-notes" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <textarea class="richtext" name="identity-1-description-1-mandate-1-descriptive-notes" rows="8"></textarea>
                                                     </label>
                                                 </div>
                                                 <div>
                                                     <div class="two-column-table date">
                                                         <div>
-                                                            <label>Date from<br>
-                                                                <input type="button" aria-label="additional info" data-content-type="mandate-date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                                                            <label>Date from
+                                                                <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <br>
                                                                 <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-mandate-1-date-from" value=""/>
                                                             </label>
                                                         </div>
                                                         <div>
-                                                            <label>Date to<br>
-                                                                <input type="button" aria-label="additional info" data-content-type="mandate-date-to" class="icon-only additional-info-icon" value="&#xf059;">
+                                                            <label>Date to
+                                                                <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <br>
                                                                 <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-mandate-1-date-to" value=""/>
                                                             </label>
                                                         </div>
@@ -544,6 +583,7 @@
                                                     </label>
                                                     
                                                     <label>Citation
+                                                        <input type="button" aria-label="additional info" data-content-type="mandate-citation" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <textarea class="richtext" name="identity-1-description-1-mandate-1-citation" rows="3"></textarea>
                                                     </label>
                                                 </div>
@@ -570,24 +610,28 @@
                                             <div class="two-column-table">
                                                 <div>
                                                     <label>Term
+                                                        <input type="button" aria-label="additional info" data-content-type="legal-status-term" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <input type="text" name="identity-1-description-1-legal-status-1-term">
                                                     </label>
                                                     <label>Descriptive notes
+                                                        <input type="button" aria-label="additional info" data-content-type="legal-status-descriptive-notes" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <textarea class="richtext" name="identity-1-description-1-legal-status-1-descriptive-notes" rows="8"></textarea>
                                                     </label>
                                                 </div>
                                                 <div>
                                                     <div class="two-column-table date">
                                                         <div>
-                                                            <label>Date from<br>
+                                                            <label>Date from
                                                                 <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <br>
                                                                 <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-legal-status-1-date-from" value=""/>
                                                             </label>
                                                         </div>
                                                         <div>
-                                                            <label>Date to<br>
-                                                                    <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;">
-                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-legal-status-1-date-to" value=""/>
+                                                            <label>Date to
+                                                                <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;">
+                                                                <br>
+                                                                <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-legal-status-1-date-to" value=""/>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -596,6 +640,7 @@
                                                         <input type="text" name="identity-1-description-1-legal-status-1-display-date" value=""/>
                                                     </label>
                                                     <label>Citation
+                                                        <input type="button" aria-label="additional info" data-content-type="legal-status-citation" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <textarea class="richtext" name="identity-1-description-1-legal-status-1-citation" rows="3"></textarea>
                                                     </label>
                                                 </div>
@@ -625,6 +670,7 @@
                                                 <div>
                                                     <label>
                                                         <span class="required">Function</span>
+                                                        <input type="button" aria-label="additional info" data-content-type="function" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <select name="identity-1-description-1-function-1-function">
                                                             <option value="">Select</option>
                                                         </select>
@@ -633,20 +679,20 @@
                                                 <div>
                                                     <div class="two-column-table date">
                                                         <div>
-                                                            <label>Date from<br>
-                                                                <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                                                            <label>Date from
+                                                                <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;"><br>
                                                                 <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-function-1-date-from" value=""/>
                                                             </label>
                                                         </div>
                                                         <div>
-                                                            <label>Date to<br>
-                                                                    <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;">
-                                                                    <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-function-1-date-to" value=""/>
+                                                            <label>Date to
+                                                                <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                                <input type="date" placeholder="dd/mm/yyyy" name="identity-1-description-1-function-1-date-to" value=""/>
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <label>Display date
-                                                        <input type="button" aria-label="additional info" data-content-type="display-date" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                        <input type="button" aria-label="additional info" data-content-type="display-date" class="icon-only additional-info-icon" value="&#xf059;">
                                                         <input type="text" name="identity-1-description-1-function-1-display-date" value=""/>
                                                     </label>
                                                 </div>
@@ -679,6 +725,7 @@
                                         <div>
                                             <label>
                                                 <span class="required">Relationship type</span>
+                                                <input type="button" aria-label="additional info" data-content-type="relationship-type" class="icon-only additional-info-icon" value="&#xf059;">
                                                 <select name="identity-1-relation-1-relationship-type" class="select-with-search">
                                                     <option value="">Select</option>
                                                     <option value="identity">Identity</option>
@@ -694,7 +741,8 @@
                                                 </select>
                                             </label>
                                             <label>
-                                                <span class="required">Relatated person or corporate body</span>
+                                                <span class="required">Related person or corporate body</span>
+                                                <input type="button" aria-label="additional info" data-content-type="related-person-corporate-body" class="icon-only additional-info-icon" value="&#xf059;">
                                                 <select name="identity-1-relation-1-related">
                                                     <option value="">Select</option>
                                                 </select>
@@ -702,14 +750,16 @@
                                             <div class="two-column-table date">
                                                 <div>
                                                     <label>
-                                                        Date from<br>
-                                                        <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                        Date from
+                                                        <input type="button" aria-label="additional info" data-content-type="date-from" class="icon-only additional-info-icon" value="&#xf059;">
+                                                        <br>
                                                         <input type="date" placeholder="dd/mm/yyyy" name="identity-1-relation-1-date-from" value=""/>
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <label>Date to<br>
-                                                        <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;"><br>
+                                                    <label>Date to
+                                                        <input type="button" aria-label="additional info" data-content-type="date-to" class="icon-only additional-info-icon" value="&#xf059;">
+                                                        <br>
                                                         <input type="date" placeholder="dd/mm/yyyy" name="identity-1-relation-1-date-to" value=""/>
                                                     </label>
                                                 </div>
@@ -722,9 +772,11 @@
                                         <div>
                                             <label>
                                                 <span class="required">Description</span>
+                                                <input type="button" aria-label="additional info" data-content-type="relations-description" class="icon-only additional-info-icon" value="&#xf059;">
                                                 <textarea name="identity-1-relation-1-description" rows="9"></textarea>
                                             </label>
                                             <label>Place related to relationship
+                                                <input type="button" aria-label="additional info" data-content-type="relations-place" class="icon-only additional-info-icon" value="&#xf059;">
                                                 <div class="editable-field">
                                                     <select name="identity-1-relation-1-place" class="select-with-search">
                                                         <option>Select</option>
@@ -758,6 +810,7 @@
                                             <div>
                                                 <label>
                                                     <span class="required">Resource relationship type</span>
+                                                    <input type="button" aria-label="additional info" data-content-type="resource-relationship-type" class="icon-only additional-info-icon" value="&#xf059;">
                                                     <select name="identity-1-resource-1-relationship-type" class="select-with-search">
                                                         <option>Select</option>
                                                         <option value="creatorOf">Creator of</option>
@@ -768,16 +821,19 @@
                                                
                                                 <label>
                                                     <span class="required">Citation</span>
+                                                    <input type="button" aria-label="additional info" data-content-type="resource-citation" class="icon-only additional-info-icon" value="&#xf059;">
                                                     <textarea name="identity-1-resource-1-citation" class="richtext" rows="4"></textarea>
                                                 </label>
                                             </div>
                                             <div>
                                                 <label>
                                                     <span class="required">URL</span>
+                                                    <input type="button" aria-label="additional info" data-content-type="resource-url" class="icon-only additional-info-icon" value="&#xf059;">
                                                     <input type="text" name="identity-1-resource-1-url"/>
                                                 </label>
                                                 <label>
                                                     <span class="required">Notes</span>
+                                                    <input type="button" aria-label="additional info" data-content-type="resource-notes" class="icon-only additional-info-icon" value="&#xf059;">
                                                     <textarea name="identity-1-resource-1-notes" rows="4"></textarea>
                                                 </label>
                                             </div>
@@ -811,17 +867,22 @@
                         <div class="fieldset-body expand">
                             <div class="two-column-table">
                                 <div>
-                                    <label><span class="required">Name</span></label>
-                                    <input type="text" name="sources-1-name" value=""/>
+                                    <label>
+                                        <span class="required">Name</span>
+                                        <input type="button" aria-label="additional info" data-content-type="source-name" class="icon-only additional-info-icon" value="&#xf059;">
+                                        <input type="text" name="sources-1-name" value=""/>
+                                    </label>
                                 </div>
                                 <div>
                                     <label>URL
+                                        <input type="button" aria-label="additional info" data-content-type="source-url" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="text" name="sources-1-url"/>
                                     </label>
                                 </div>
                             </div>
                             <label>
                                 <span class="required">Notes</span>
+                                <input type="button" aria-label="additional info" data-content-type="source-notes" class="icon-only additional-info-icon" value="&#xf059;">
                                 <textarea name="sources-1-notes" rows="4"></textarea>
                             </label>
                         </div>
@@ -845,30 +906,35 @@
                                 <div>
                                     <label>
                                         <span class="required">Language</span>
+                                        <input type="button" aria-label="additional info" data-content-type="control-language" class="icon-only additional-info-icon" value="&#xf059;">
                                         <select name="language" class="select-with-search">
                                             <option value="English">English</option>
                                         </select>
                                     </label>
                                     <label>
                                         <span class="required">Rights citation</span>
+                                        <input type="button" aria-label="additional info" data-content-type="control-rights-declaration" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="text" name="rights-citation" disabled/>
                                     </label>
                                 </div>
                                 <div>
                                     <label>
                                         <span class="required">Script</span>
+                                        <input type="button" aria-label="additional info" data-content-type="control-script" class="icon-only additional-info-icon" value="&#xf059;">
                                         <select name="script">
                                             <option value="Latn">Latn, 215, Latin</option>
                                         </select>
                                     </label>
                                     <label>
                                         <span class="required">Rights abbreviation</span>
+                                        <input type="button" aria-label="additional info" data-content-type="control-rights-abbreviation" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="text" name="rights-abbreviation" disabled/>
                                     </label>
                                 </div>
                             </div>
                             <label>
                                 <span class="required">Rights declaration</span>
+                                <input type="button" aria-label="additional info" data-content-type="control-rights-declaration" class="icon-only additional-info-icon" value="&#xf059;">
                                 <textarea class="richtext" name="rights-declaration" rows="4"></textarea>
                             </label>
                         </div>

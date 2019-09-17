@@ -70,7 +70,7 @@ button, .create, input[type=submit] {
   font-size: 14px;
   border-radius: 30px;
 }
-button:hover:not(.icon-only), button:focus:not(.icon-only), .create:hover:not(.icon-only), .create:focus:not(.icon-only), input[type=submit]:hover:not(.icon-only), input[type=submit]:focus:not(.icon-only) {
+button:hover:not(.icon-only, #logout), button:focus:not(.icon-only, #logout), .create:hover:not(.icon-only, #logout), .create:focus:not(.icon-only, #logout), input[type=submit]:hover:not(.icon-only, #logout), input[type=submit]:focus:not(.icon-only, #logout) {
   box-shadow: 0px 2px 2px #BABABA;
 }
 
@@ -204,6 +204,9 @@ input[type=submit] {
   border-radius: 0px;
   margin-bottom: 0px;
 }
+#logout:after {
+  content: "LOGOUT";
+}
 
 a {
   color: #002465;
@@ -219,6 +222,7 @@ h1 {
   font-size: 26px;
   font-weight: 500;
   color: #002465;
+  line-height: 1.1em;
 }
 
 h2 {
@@ -323,7 +327,7 @@ header #menu-account #logout {
   cursor: pointer;
   background-color: #b40000;
   color: white;
-  padding: 20px 0px;
+  padding: 20px;
   text-align: center;
   width: 100%;
   border: none;
@@ -346,6 +350,7 @@ main#form-page {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0px 10px;
 }
 main#form-page form {
   max-width: 300px;
@@ -604,11 +609,8 @@ main form input[type=button], main form select[type=button], main form .select2-
   max-width: max-content;
 }
 main form input[type=radio], main form input[type=checkbox], main form select[type=radio], main form select[type=checkbox], main form .select2-selection--single[type=radio], main form .select2-selection--single[type=checkbox], main form textarea[type=radio], main form textarea[type=checkbox] {
-  height: 10px;
-  width: 10px;
   margin: 0px;
   margin-right: 10px;
-  vertical-align: middle;
 }
 main form select {
   height: 39.76px;
@@ -756,6 +758,23 @@ main form .form-section fieldset .fieldset-body > h3:not(:first-child) {
 main form .form-section fieldset .fieldset-body label, main form .form-section fieldset .fieldset-body input, main form .form-section fieldset .fieldset-body textarea {
   margin-bottom: 10px;
 }
+main .modal-error {
+  position: fixed;
+  width: 100%;
+  height: max-content;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+main .modal-error .modal-content {
+  max-width: 400px;
+  margin: 0px 10px 10px auto;
+  background-color: #580000;
+  border-radius: 10px;
+  box-shadow: 0px 0px 3px #BABABA;
+  padding: 20px;
+  color: #e6e6e6;
+}
 main .modal {
   display: none;
 }
@@ -780,24 +799,24 @@ main .modal.active .modal-content {
   animation-duration: 0.3s;
   animation-name: modalSlide;
 }
+main .modal.active .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main .modal.active .modal-header h2 {
+  margin-bottom: 0px;
+}
+main .modal.active .modal-header input[type=button] {
+  margin-right: 0px;
+  margin-left: auto;
+}
 main .modal.active .modal-header, main .modal.active .modal-body {
   margin-bottom: 30px;
 }
 main .modal.active .modal-header p, main .modal.active .modal-body p {
   font-size: 16px;
   text-align: center;
-}
-main .modal.active .modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-main .modal.active .modal-header input[type=button] {
-  margin-left: auto;
-  font-size: 26px;
-}
-main .modal.active .modal-header h2 {
-  margin-bottom: 0px;
 }
 main .modal.active .modal-footer input[type=submit]:only-child {
   float: right;
@@ -807,6 +826,33 @@ main .modal.active .modal-footer input[type=submit]:not(:only-child) {
 }
 main .modal.active .modal-footer input[type=submit]:not(:only-child):not(:last-child) {
   margin-right: 50px;
+}
+main .error-notification {
+  display: block;
+  border-radius: 10px;
+  border-left: 10px solid #b40000;
+  background-color: #ffe7e7;
+  padding: 20px;
+  margin: 10px 0px 30px 0px;
+}
+main .error-notification h3 {
+  margin: 0px;
+  margin-bottom: 10px;
+  color: #810000;
+}
+main .error-notification p {
+  margin-bottom: 0px;
+}
+main .error {
+  border: 1px solid #b40000;
+  border-left: 5px solid #b40000;
+  background-color: #ffe7e7;
+}
+main .error-message {
+  color: #b40000;
+  margin: 0px;
+  margin-bottom: 5px !important;
+  text-align: right;
 }
 main #pagination {
   background-color: white;
@@ -888,6 +934,72 @@ footer img {
   }
   to {
     margin-top: 0%;
+  }
+}
+@media only screen and (max-width: 1020px) {
+  body {
+    display: block;
+  }
+
+  header {
+    background: #002465 url("..//images/background-header.svg") no-repeat bottom right;
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    margin-bottom: 20px;
+  }
+  header #logo {
+    width: max-content;
+  }
+  header #logo a img {
+    height: 60px;
+    width: auto;
+  }
+  header #menu-links, header #menu-account {
+    position: relative;
+    width: max-content;
+    margin-top: 0px;
+    display: flex;
+  }
+  header #menu-links .active a, header #menu-account .active a {
+    padding-left: 20px;
+  }
+  header #menu-account {
+    margin-left: auto;
+    margin-right: 0px;
+  }
+
+  main:not(#form-page) {
+    margin-left: 0px;
+    padding: 0px 10px;
+  }
+  main #page-header {
+    display: flex;
+    flex-direction: column;
+  }
+  main #page-header .create {
+    margin-left: 0px;
+  }
+  main .filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  main .filters > * {
+    margin: 0px 5px 20px 5px;
+  }
+}
+@media only screen and (max-width: 880px) {
+  header #logo, header h4 {
+    visibility: hidden;
+    width: 0px;
+  }
+  header #menu-account #logout:after {
+    font-family: "Font Awesome 5 Pro";
+    content: "";
+    font-weight: 300;
   }
 }
 

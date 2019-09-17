@@ -1,25 +1,62 @@
+// object for popups that appear when users hover over question marks 
+var additionalInfo = {
+    'general-date-from': 'general-date-from', 
+    'general-date-to': 'general-date-to', 
+    'general-display-date': 'general-display-date',
+    'display-name': 'display-name',
+    'name-entity-language': 'name-entity-language',
+    'name-entity-script': 'name-entity-script',
+    'date-from': 'date-from',
+    'date-to': 'date-to',
+    'display-date': 'display-date',
+    'gender': 'gender',
+    'gender-descriptive-notes': 'gender-descriptive-notes',
+    'gender-citation': 'gender-citation',
+    'biography-abstract': 'biography-abstract',
+    'biography-content': 'biography-content',
+    'biography-structure-genealogy': 'biography-structure-genealogy',
+    'biography-sources': 'biography-sources',
+    'biography-copyright': 'biography-copyright',
+    'language': 'language',
+    'script': 'script',
+    'place': 'place',
+    'place-address': 'place-address',
+    'place-role': 'place-role',
+    'event': 'event',
+    'event-place': 'event-place',
+    'mandate-term': 'mandate-term',
+    'mandate-descriptive-notes': 'mandate-descriptive-notes',
+    'mandate-citation': 'mandate-citation',
+    'legal-status-term': 'legal-status-term',
+    'legal-status-descriptive-notes': 'legal-status-descriptive-notes',
+    'legal-status-citation': 'legal-status-citation',
+    'function': 'function',
+    'relationship-type': 'relationship-type',
+    'related-person-corporate-body': 'related-person-corporate-body',
+    'relations-description': 'relations-description', 
+    'relations-place': 'relations-place',
+    'resource-relationship-type': 'resource-relationship-type',
+    'resource-citation': 'resource-citation',
+    'resource-url': 'resource-url',
+    'resource-notes': 'resource-notes',
+    'source-name': 'source-name',
+    'source-url': 'source-url',
+    'source-notes': 'source-notes',
+    'control-language': 'control-language',
+    'control-rights-declaration': 'control-rights-declaration',
+    'control-script': 'control-script',
+    'control-rights-abbreviation': 'control-rights-abbreviation',
+    'control-rights-declaration': 'control-rights-declaration',
+    'log-comments': 'how to log comments',
+};
+
 $(document).ready(function() {
-
-    // object for popups that appear when users hover over question marks 
-    var additionalInfo = {
-                        'general-date-from': 'some information', 
-                        'log-comments': 'how to log comments'
-                    };
-
     // check if additional information for the field exists to display the question mark icon
     $('.additional-info-icon').get().forEach((el) => {
         var key = $(el).attr("data-content-type");
         if (!additionalInfo[key]) {
             $(el).addClass('none');
         }
-    });
-
-    // style border for preferred names and identities
-    $( "fieldset:has(input[name*='preferred']:checked)" ).addClass('border-left');
-
-    // change border of the preferred section
-    $("input[name*='preferred']").change((el) => {
-        $(el.target).parents('fieldset').first().addClass('border-left');
     });
 
     // open popup to log changes in entity/archival record sections
@@ -51,7 +88,7 @@ $(document).ready(function() {
             }
         }, 
         mouseleave: (el) => {
-            $(el.target).siblings('p').remove();
+            $(el.target).siblings('.additional-info').remove();
         }
     });
 
@@ -67,6 +104,19 @@ $(document).ready(function() {
         allowClear: true
     } );
 
+
+    // optional functionality (can be removed if needed) - dynamic styling of the sections
+
+    // style border for preferred names and identities
+    $( "fieldset:has(input[name*='preferred']:checked)" ).addClass('border-left');
+
+    $('body').on('click', 'input[name*="preferred"]', (el) => {
+        $(el.target).parents('fieldset').siblings().removeClass('border-left');
+        if ($(el.target).is(':checked')) {
+            $(el.target).parents('fieldset').first().addClass('border-left');
+        }
+    });
+
 });
 
 // change name of the duplicated field
@@ -76,6 +126,7 @@ function updateAttribute(idToIncrement, name) {
     var name = name.replace(regex, (fullMatch, n, m) => {return n+(Number(m) + 1)});
     return name;
 }
+
 
 // addField() might require refactoring to merge with addBlock()
 function addField(el) {
@@ -90,6 +141,8 @@ function addField(el) {
         })
     }
     template.find("input[type=text], input[type=date], textarea").val("");
+    template.find("input[type=checkbox], input[type=radio]").prop('checked', false);
+
     $(el).parent().before(template);
 }
 
@@ -106,6 +159,8 @@ function addBlock(el) {
         })
     }
     template.find("input[type=text], input[type=date], textarea").val("");
+    template.find("input[type=checkbox], input[type=radio]").prop('checked', false);
+    template.find( "input[name*='preferred']" ).parents('fieldset').last().removeClass('border-left');
     $(el).parent().before(template);
 }
 
@@ -261,6 +316,10 @@ function toggleTab(el) {
 
 function closeBlock(el) {
     $('.'+el).removeClass('active');
+}
+
+function login() {
+    window.location.href = "./home.html";
 }
 
 function logout() {
