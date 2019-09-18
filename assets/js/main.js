@@ -157,11 +157,15 @@ $(document).ready(function() {
         }
     });
     
+    // to stop multiple events from firing inside labels (e.g, select and question mark button)
+    // $('.select2, .richText').click((el) => {
+    //     el.preventDefault();
+    // })
     // display additional information about the fields on hover
     $('body').on('click', '.additional-info-icon', (el) => {
         if ($(el.target).siblings('p.additional-info').length) {
             // change icon to 'question mark'
-            $(el.target).val("");
+            $(el.target).text("");
             $(el.target).siblings('p.additional-info').remove();
         }
         else {
@@ -171,7 +175,7 @@ $(document).ready(function() {
                 $(el.target).before('<p class="additional-info" style="top:'+ (position.top - 40) + 'px; left:' + (position.left + 25) + 'px">' +additionalInfo[key]+ '</p>'); 
             }
             // change icon to 'close'
-            $(el.target).val("");
+            $(el.target).text("");
         }
     });
 
@@ -188,6 +192,7 @@ function updateAttribute(idToIncrement, name) {
 
 // addField() might require refactoring to merge with addBlock()
 function addField(el) {
+    console.log('here');
     var template = $(el).parent().prev().clone();
     var idToIncrement = template.first().attr('data-content-reference');
     if (idToIncrement) {
@@ -199,6 +204,7 @@ function addField(el) {
         })
     }
     template.find("input[type=text], input[type=date], textarea").val("");
+    template.find(".richText-editor").text("");
     template.find("input[type=checkbox], input[type=radio]").prop('checked', false);
 
     $(el).parent().before(template);
@@ -217,6 +223,7 @@ function addBlock(el) {
         })
     }
     template.find("input[type=text], input[type=date], textarea").val("");
+    template.find(".richText-editor").text("");
     template.find("input[type=checkbox], input[type=radio]").prop('checked', false);
     template.find( "input[name*='preferred']" ).parents('fieldset').last().removeClass('border-left');
     $(el).parent().before(template);
@@ -356,7 +363,7 @@ function deleteField(el) {
 // delete an entire record (entity or archival record)
 function deleteRecord(el) {
     warningModal();
-    $('input[type=submit').click((e) => {
+    $('input[type=submit]').click((e) => {
         $('.modal').removeClass('active');
         if($(e.target).attr('value') == 'Delete') {
             // DELETE RECORD

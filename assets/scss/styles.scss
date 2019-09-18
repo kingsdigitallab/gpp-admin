@@ -70,7 +70,7 @@ body {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    div {
+    > *:not(:last-child) {
         margin-right: 30px;
     }
 }
@@ -118,7 +118,7 @@ body {
 
 
 
-button, a, .create, .link, input[type=submit], input[type=button] {
+button, a, .create, .link, input[type=submit], input[type=button], span[role=button] {
     cursor: pointer;
     white-space: nowrap;
     &:hover, &:focus {
@@ -139,6 +139,10 @@ button, .create, input[type=submit] {
 
 input[type=submit] {
     max-width: max-content;
+}
+
+span[role=button] {
+    margin: auto;
 }
 
 .create {
@@ -177,12 +181,13 @@ input[type=submit] {
 }
 
 .default {
-    border: 1px solid $primary;
-    background-color: white;
-    color: $primary;
+    border: 1px solid $primary !important;
+    background-color: white !important;
+    color: $primary !important;
     padding: 13px 25px;
     font-size: 14px;
     border-radius: 30px;
+    max-width: max-content;
     .fas, .fal {
         margin-right: 10px;
     }
@@ -213,6 +218,11 @@ input[type=submit] {
     &:hover, &:focus {
         box-shadow: none;
     }
+    .fa-question-circle {
+        font-size: 16px;
+        margin-left: 5px;
+        font-weight: 300;
+    }
 }
 
 .button-link {
@@ -222,7 +232,7 @@ input[type=submit] {
     text-align: center;
     white-space: nowrap;
     border-radius: 0px;
-
+    max-width: max-content;
     &.danger {
         color: $danger;
         &:hover, &:focus {
@@ -233,39 +243,27 @@ input[type=submit] {
     &.create {
         color: $add;
         &:hover, &:focus {
-            box-shadow: none;
+            box-shadow: none !important;
         }
     }
 
     .fas, .fal {
         margin-right: 5px;
     }
-    .fas {
-        font-weight: 700;
-    }
-    .fa-question-circle, .fa-calendar-alt {
-        font-size: 16px;
-        margin-left: 5px;
+    // .fas {
+    //     font-weight: 700;
+    // }
+    &:hover, &:focus {
+        text-decoration: underline;
+        cursor: pointer;
+        
     }
 }
 
 .optional-to-delete {
-    .danger-highlight, .danger {
-        color: $danger;
-        &:hover, &:focus {
-            text-decoration: underline;
-            cursor: pointer;
-        }
+    .button-link {
+        
     }
-    // .danger-highlight, .danger {
-    //     color: $medium-grey;
-    //     &:hover, &:focus {
-    //         text-decoration: none;
-    //         cursor: auto;
-    //     }
-    // }
-    // & + .optional-to-delete {
-    // }
 }
 
 #logout {
@@ -314,6 +312,7 @@ p {
     line-height: 1.4em;
 
     &.additional-info {
+        font-family: $font-primary;
         background-color: white;
         color: $primary;
         box-shadow: 0px 0px 2px black;
@@ -441,9 +440,6 @@ main {
             }
             a {
                 text-align: right;
-                &.default {
-                    max-width: max-content;
-                }
             }
             input[type=submit], .default {
                 margin-top: 20px;
@@ -631,7 +627,7 @@ main {
 
     .grid {
         display: grid;
-        grid-template-columns: 1fr 2fr 0.1fr;
+        grid-template-columns: 1fr 2fr 0.2fr;
         grid-column-gap: 10px;
         justify-content: center;
         align-items: center;
@@ -675,17 +671,15 @@ main {
             // margin-right: 20px;
             &[type=date] {
                 margin-right: 5px;
-                max-width: max-content;
+                width: max-content;
             }
             &[type=button] {
-                max-width: max-content;
+                width: max-content;
             }
             &[type=radio], &[type=checkbox] {
-                // height: 10px;
-                // width: 10px;
                 margin: 0px;
                 margin-right: 10px;
-                // vertical-align: middle;
+                width: max-content;
             }
         }
         select, .select2-selection--single {
@@ -824,7 +818,7 @@ main {
                     }
                     h3 {
                         padding: 5px 0px;
-    margin: 0px;
+                        margin: 0px;
                     }
 
                 }
@@ -856,24 +850,6 @@ main {
         }
     }
 
-    .modal-error {
-        position: fixed;
-        width: 100%;
-        height: max-content;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        .modal-content {
-            max-width: 400px;
-            margin: 0px 10px 10px auto;
-            background-color: darken($danger, 18%);
-            border-radius: 10px;
-            box-shadow: 0px 0px 3px $medium-grey;
-            padding: 20px;
-            color: darken(white, 10%);
-        }
-        
-    }
     .modal {
         display: none;
         &.active{
@@ -889,12 +865,14 @@ main {
             justify-content: center;
             align-items: center;
             background-color: rgba(31, 31, 31, 0.5);
+            
             .modal-content {
                 background-color: white;
                 padding: 40px;
                 border-radius: 20px;
                 animation-duration: 0.3s;
                 animation-name: modalSlide;
+                margin: 10px;
             }
             .modal-header {
                 display: flex;
@@ -916,11 +894,13 @@ main {
                 }
             }
             .modal-footer {
+                display: flex;
                 input[type=submit]:only-child {
-                    float: right;
+                    margin-right: 0px;
+                    margin-left: auto;
                 }
                 input[type=submit]:not(:only-child) {
-                    display: inline-block;
+                    width: max-content;
                     &:not(:last-child) {
                         margin-right: 50px;
                     }
@@ -1172,7 +1152,7 @@ footer {
             }
         }
         &:not(#form-page) {
-            .two-column-table, .grid {
+            .two-column-table {
                 display: block;
             }
         }
@@ -1197,6 +1177,11 @@ footer {
             }
             .create {
                 margin-left: 0px;
+            }
+        }
+        &:not(#form-page) {
+            .grid {
+                display: block;
             }
         }
         form {

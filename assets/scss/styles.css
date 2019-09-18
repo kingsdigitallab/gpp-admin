@@ -14,7 +14,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
 }
-.flex div {
+.flex > *:not(:last-child) {
   margin-right: 30px;
 }
 
@@ -56,11 +56,11 @@ body {
   border-left-color: #002465 !important;
 }
 
-button, a, .create, .link, input[type=submit], input[type=button] {
+button, a, .create, .link, input[type=submit], input[type=button], span[role=button] {
   cursor: pointer;
   white-space: nowrap;
 }
-button:hover, button:focus, a:hover, a:focus, .create:hover, .create:focus, .link:hover, .link:focus, input[type=submit]:hover, input[type=submit]:focus, input[type=button]:hover, input[type=button]:focus {
+button:hover, button:focus, a:hover, a:focus, .create:hover, .create:focus, .link:hover, .link:focus, input[type=submit]:hover, input[type=submit]:focus, input[type=button]:hover, input[type=button]:focus, span[role=button]:hover, span[role=button]:focus {
   transition: 0.3s;
 }
 
@@ -77,6 +77,10 @@ button:hover:not(.icon-only, #logout), button:focus:not(.icon-only, #logout), .c
 
 input[type=submit] {
   max-width: max-content;
+}
+
+span[role=button] {
+  margin: auto;
 }
 
 .create {
@@ -124,12 +128,13 @@ input[type=submit] {
 }
 
 .default {
-  border: 1px solid #002465;
-  background-color: white;
-  color: #002465;
+  border: 1px solid #002465 !important;
+  background-color: white !important;
+  color: #002465 !important;
   padding: 13px 25px;
   font-size: 14px;
   border-radius: 30px;
+  max-width: max-content;
 }
 .default .fas, .default .fal {
   margin-right: 10px;
@@ -161,6 +166,11 @@ input[type=submit] {
 .icon-only:hover, .icon-only:focus {
   box-shadow: none;
 }
+.icon-only .fa-question-circle {
+  font-size: 16px;
+  margin-left: 5px;
+  font-weight: 300;
+}
 
 .button-link {
   color: #002465;
@@ -169,6 +179,7 @@ input[type=submit] {
   text-align: center;
   white-space: nowrap;
   border-radius: 0px;
+  max-width: max-content;
 }
 .button-link.danger {
   color: #b40000;
@@ -180,23 +191,12 @@ input[type=submit] {
   color: #0791D5;
 }
 .button-link.create:hover, .button-link.create:focus {
-  box-shadow: none;
+  box-shadow: none !important;
 }
 .button-link .fas, .button-link .fal {
   margin-right: 5px;
 }
-.button-link .fas {
-  font-weight: 700;
-}
-.button-link .fa-question-circle, .button-link .fa-calendar-alt {
-  font-size: 16px;
-  margin-left: 5px;
-}
-
-.optional-to-delete .danger-highlight, .optional-to-delete .danger {
-  color: #b40000;
-}
-.optional-to-delete .danger-highlight:hover, .optional-to-delete .danger-highlight:focus, .optional-to-delete .danger:hover, .optional-to-delete .danger:focus {
+.button-link:hover, .button-link:focus {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -246,6 +246,7 @@ p {
   line-height: 1.4em;
 }
 p.additional-info {
+  font-family: "Roboto", sans-serif;
   background-color: white;
   color: #002465;
   box-shadow: 0px 0px 2px black;
@@ -370,9 +371,6 @@ main#form-page form input, main#form-page form label, main#form-page form .defau
 }
 main#form-page form a {
   text-align: right;
-}
-main#form-page form a.default {
-  max-width: max-content;
 }
 main#form-page form input[type=submit], main#form-page form .default {
   margin-top: 20px;
@@ -579,7 +577,7 @@ main .two-column-table.date {
 }
 main .grid {
   display: grid;
-  grid-template-columns: 1fr 2fr 0.1fr;
+  grid-template-columns: 1fr 2fr 0.2fr;
   grid-column-gap: 10px;
   justify-content: center;
   align-items: center;
@@ -613,14 +611,15 @@ main form input, main form select, main form .select2-selection--single, main fo
 }
 main form input[type=date], main form select[type=date], main form .select2-selection--single[type=date], main form textarea[type=date] {
   margin-right: 5px;
-  max-width: max-content;
+  width: max-content;
 }
 main form input[type=button], main form select[type=button], main form .select2-selection--single[type=button], main form textarea[type=button] {
-  max-width: max-content;
+  width: max-content;
 }
 main form input[type=radio], main form input[type=checkbox], main form select[type=radio], main form select[type=checkbox], main form .select2-selection--single[type=radio], main form .select2-selection--single[type=checkbox], main form textarea[type=radio], main form textarea[type=checkbox] {
   margin: 0px;
   margin-right: 10px;
+  width: max-content;
 }
 main form select, main form .select2-selection--single {
   height: 39.76px;
@@ -779,23 +778,6 @@ main form .form-section fieldset .fieldset-body > h3:not(:first-child) {
 main form .form-section fieldset .fieldset-body label, main form .form-section fieldset .fieldset-body input, main form .form-section fieldset .fieldset-body textarea {
   margin-bottom: 10px;
 }
-main .modal-error {
-  position: fixed;
-  width: 100%;
-  height: max-content;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-main .modal-error .modal-content {
-  max-width: 400px;
-  margin: 0px 10px 10px auto;
-  background-color: #580000;
-  border-radius: 10px;
-  box-shadow: 0px 0px 3px #BABABA;
-  padding: 20px;
-  color: #e6e6e6;
-}
 main .modal {
   display: none;
 }
@@ -819,6 +801,7 @@ main .modal.active .modal-content {
   border-radius: 20px;
   animation-duration: 0.3s;
   animation-name: modalSlide;
+  margin: 10px;
 }
 main .modal.active .modal-header {
   display: flex;
@@ -839,11 +822,15 @@ main .modal.active .modal-header p, main .modal.active .modal-body p {
   font-size: 16px;
   text-align: center;
 }
+main .modal.active .modal-footer {
+  display: flex;
+}
 main .modal.active .modal-footer input[type=submit]:only-child {
-  float: right;
+  margin-right: 0px;
+  margin-left: auto;
 }
 main .modal.active .modal-footer input[type=submit]:not(:only-child) {
-  display: inline-block;
+  width: max-content;
 }
 main .modal.active .modal-footer input[type=submit]:not(:only-child):not(:last-child) {
   margin-right: 50px;
@@ -1062,7 +1049,7 @@ footer img {
     width: 0px;
     padding: 0px;
   }
-  main:not(#form-page) .two-column-table, main:not(#form-page) .grid {
+  main:not(#form-page) .two-column-table {
     display: block;
   }
 }
@@ -1082,6 +1069,9 @@ footer img {
   }
   main #page-header .create {
     margin-left: 0px;
+  }
+  main:not(#form-page) .grid {
+    display: block;
   }
   main form .form-section fieldset .fieldset-header {
     display: flex;
