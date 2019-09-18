@@ -75,9 +75,12 @@
             <!-- Limit the length of archival record description -->
             <h1>Account book kept by General Jacob de Budé, 1772-1784</h1>
             <h2>Collection</h2>
-            <form action="" method="" id="record-form">
+        </div>
+        <form action="" method="" id="record-form">
                 <div class="form-section">
-                    <h2>SUMMARY</h2>
+                    <h2>SUMMARY
+                        <input type="button" aria-label="additional info" data-content-type="archival-record-summary" class="icon-only additional-info-icon" value="&#xf059;">
+                    </h2>
                     <fieldset id="summary">
                         <div class="fieldset-header">
                             <h3>{{ repository }}</h3>
@@ -90,6 +93,7 @@
                                 <div>
                                     <label>
                                         <span class="required">Repository</span>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-repository" class="icon-only additional-info-icon" value="&#xf059;">
                                         <select name="repository" disabled>
                                             <option>Select</option>
                                             <option value="Royal Archives">Royal Archives</option>
@@ -97,34 +101,40 @@
                                     </label>
                                     <label>
                                         <span class="required">Repository code</span>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-repository-code" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="number" name="repository-code" disabled/>
                                     </label>
                                     <label>
                                         Parent series
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-series" class="icon-only additional-info-icon" value="&#xf059;">
                                         <select name="parent-series" class="select-with-search">
                                             <option value="">Select</option>
                                         </select>
                                     </label>
                                     <label>
                                         Parent file
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-parent-file" class="icon-only additional-info-icon" value="&#xf059;">
                                         <select name="parent-series" class="select-with-search">
                                             <option value="">Select</option>
                                         </select>
                                     </label>
                                     <label>
                                         <span class="required">References</span>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-references" class="icon-only additional-info-icon" value="&#xf059;">
                                         <textarea name="references" rows="4"></textarea>
                                     </label>
                                 </div>
                                 <div>
                                     <label>
                                         <span class="required">Archival level</span>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-archival-level" class="icon-only additional-info-icon" value="&#xf059;">
                                         <select name="archival-level" disabled>
                                             <option value="">Select</option>
                                         </select>
                                     </label>
                                     <label data-content-reference="record-type">
                                         <span class="required">Record type</span>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-record-type" class="icon-only additional-info-icon" value="&#xf059;">
                                         <select name="record-type-1" disabled>
                                             <option value="">Select</option>
                                             <option value="Financial records">Financial records</option>
@@ -141,14 +151,17 @@
                                     </label>
                                     <label>
                                         <span class="required">RCIN</span>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-rcin" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="text" name="rcin" disabled/>
                                     </label>
                                     <label>
                                         URL
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-url" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="url" name="url"/>
                                     </label>
                                     <label data-content-reference="location-of-originals" class="optional-to-delete">
                                         Location of originals
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-location-of-originals" class="icon-only additional-info-icon" value="&#xf059;">
                                         <div class="editable-field">
                                             <input type="text" name="location-of-originals-1"/>
                                             <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
@@ -159,6 +172,7 @@
                                     </label>
                                     <label data-content-reference="related-materials" class="optional-to-delete">
                                         Related materials
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-related-materials" class="icon-only additional-info-icon" value="&#xf059;">
                                         <div class="editable-field">
                                             <input type="text" name="related-materials-1"/>
                                             <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
@@ -174,7 +188,9 @@
                 </div>
 
                 <div class="form-section">
-                    <h2>DESCRIPTION</h2>
+                    <h2>DESCRIPTION
+                        <input type="button" aria-label="additional info" data-content-type="archival-record-description-section" class="icon-only additional-info-icon" value="&#xf059;">
+                    </h2>
                     <fieldset id="description">
                         <div class="fieldset-header">
                             <h3>{{ title }}</h3>
@@ -187,28 +203,36 @@
                                 <div>
                                     <label>
                                         <span class="required">Title</span>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-title" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="text" name="title"/>
                                     </label>
                                     <div class="two-column-table date">
                                         <label>
-                                            <span class="required">Start date</span><br>
+                                            <span class="required">Start date</span>
+                                            <input type="button" aria-label="additional info" data-content-type="archival-record-start-date" class="icon-only additional-info-icon" value="&#xf059;">
+                                            <br>
                                             <input type="date" name="start-date" value=""/>
                                         </label>
                                         <label>
-                                            End date<br>
+                                            End date
+                                            <input type="button" aria-label="additional info" data-content-type="archival-record-end-date" class="icon-only additional-info-icon" value="&#xf059;">
+                                            <br>
                                             <input type="date" name="end-date" value=""/>
                                         </label>
                                     </div>
                                     <label>
                                         <span class="required">Creation dates</span>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-creation-dates" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="text" name="creation-dates" value=""/>
                                     </label>
                                     <label>
                                         <span class="required">Extent</span>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-extent" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="text" name="extent" disabled/>
                                     </label>
                                     <label data-content-reference="languages" class="optional-to-delete">
                                         <span class="required">Languages</span>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-languages" class="icon-only additional-info-icon" value="&#xf059;">
                                         <div class="editable-field">
                                             <input type="text" name="languages-1"/>
                                             <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
@@ -221,6 +245,7 @@
                                 <div>
                                     <label data-content-reference="writer" class="optional-to-delete">
                                         Writer
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-writer" class="icon-only additional-info-icon" value="&#xf059;">
                                         <div class="editable-field">
                                             <input type="text" name="writer-1"/>
                                             <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
@@ -231,6 +256,7 @@
                                     </label>
                                     <label data-content-reference="addressee" class="optional-to-delete">
                                         Addressee
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-addressee" class="icon-only additional-info-icon" value="&#xf059;">
                                         <div class="editable-field">
                                             <input type="text" name="addressee-1"/>
                                             <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
@@ -241,6 +267,7 @@
                                     </label>
                                     <label data-content-reference="place-of-writing" class="optional-to-delete">
                                         Place of writing
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-place-of-writing" class="icon-only additional-info-icon" value="&#xf059;">
                                         <div class="editable-field">
                                             <input type="text" name="place-of-writing-1"/>
                                             <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
@@ -251,6 +278,7 @@
                                     </label>
                                     <label data-content-reference="receiving-address" class="optional-to-delete">
                                         Receiving address
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-receiving-address" class="icon-only additional-info-icon" value="&#xf059;">
                                         <div class="editable-field">
                                             <input type="text" name="receiving-address-1"/>
                                             <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
@@ -263,10 +291,12 @@
                             </div>
                             <label>
                                 Description
+                                <input type="button" aria-label="additional info" data-content-type="archival-record-description" class="icon-only additional-info-icon" value="&#xf059;">
                                 <textarea class="richtext" name="description" rows="8"></textarea>
                             </label>
                             <label data-content-reference="notes" class="optional-to-delete">
                                 <span class="required">Notes</span>
+                                <input type="button" aria-label="additional info" data-content-type="archival-record-notes" class="icon-only additional-info-icon" value="&#xf059;">
                                 <div class="editable-field">
                                     <textarea class="richtext" name="notes-1"></textarea>
                                     <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
@@ -279,12 +309,14 @@
                                 <div>
                                     <label>
                                         Physical description
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-physical-description" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="text" name="physical-description" disabled/>
                                     </label>
                                 </div>
                             </div>
                             <label>
                                 <span class="required">Administrative history</span>
+                                <input type="button" aria-label="additional info" data-content-type="archival-record-administrative-history" class="icon-only additional-info-icon" value="&#xf059;">
                                 <textarea class="richtext" name="administrative-history" rows="8"></textarea>
                             </label>
                         </div>
@@ -292,7 +324,9 @@
                 </div>
 
                 <div class="form-section">
-                    <h2>CONTEXT AREA</h2>
+                    <h2>CONTEXT AREA
+                        <input type="button" aria-label="additional info" data-content-type="archival-record-context-area" class="icon-only additional-info-icon" value="&#xf059;">
+                    </h2>
                     <fieldset id="description">
                         <div class="fieldset-header">
                             <h3>{{ cataloguer }}</h3>
@@ -305,22 +339,27 @@
                                 <div>
                                     <label>
                                         <span class="required">Cataloguer</span>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-cataloguer" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="text" name="cataloguer" disabled/>
                                     </label>
                                     <label>
                                         <span class="required">Arrangement</span>
-                                        <textarea name="arrangement" rows="8" disabled></textarea>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-arrangement" class="icon-only additional-info-icon" value="&#xf059;">
+                                        <textarea name="arrangement" rows="6" disabled></textarea>
                                     </label>
                                 </div>
                                 <div>
                                     <label>
-                                        <span class="required">Description date</span><br>
+                                        <span class="required">Description date</span>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-description-date" class="icon-only additional-info-icon" value="&#xf059;">
+                                        <br>
                                         <input type="button" aria-label="additional info" data-content-type="general-display-date" name="general-display-date" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="date" name="description-date" value="" disabled/>
                                     </label>
                                     <label>
                                         Custodial history/Provenance
-                                        <textarea name="custodial-history" class="richtext" rows="4"></textarea>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-custodial-history-provenance" class="icon-only additional-info-icon" value="&#xf059;">
+                                        <textarea name="custodial-history" rows="6" disabled></textarea>
                                     </label>
                                 </div>
                             </div>
@@ -328,6 +367,7 @@
                                 <div>
                                     <label data-content-reference="subjects" class="optional-to-delete">
                                         Subjects
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-subjects" class="icon-only additional-info-icon" value="&#xf059;">
                                         <div class="editable-field">
                                             <input type="text" name="subjects-1"/>
                                             <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
@@ -338,6 +378,7 @@
                                     </label>    
                                     <label data-content-reference="organisations-as-subjects" class="optional-to-delete">
                                         Organisations as subjects
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-organisations-as-subjects" class="icon-only additional-info-icon" value="&#xf059;">
                                         <div class="editable-field">
                                             <input type="text" name="organisations-as-subjects-1"/>
                                             <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
@@ -350,6 +391,7 @@
                                 <div>
                                     <label data-content-reference="persons-as-subjects" class="optional-to-delete">
                                         Persons as subjects
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-persons-as-subjects" class="icon-only additional-info-icon" value="&#xf059;">
                                         <div class="editable-field">
                                             <input type="text" name="persons-as-subjects-1"/>
                                             <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
@@ -360,6 +402,7 @@
                                     </label>    
                                     <label data-content-reference="places-as-subjects" class="optional-to-delete">
                                         Places as subjects
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-places-as-subjects" class="icon-only additional-info-icon" value="&#xf059;">
                                         <div class="editable-field">
                                             <input type="text" name="places-as-subjects-1"/>
                                             <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
@@ -375,7 +418,9 @@
                 </div>
 
                 <div class="form-section">
-                    <h2>ACCESS AREA</h2>
+                    <h2>ACCESS AREA
+                        <input type="button" aria-label="additional info" data-content-type="archival-record-access-area" class="icon-only additional-info-icon" value="&#xf059;">
+                    </h2>
                     <fieldset id="description">
                         <div class="fieldset-header">
                             <h3>{{ known_previous_publications | limit length }}</h3>
@@ -388,6 +433,7 @@
                                 <div>
                                     <label data-content-reference="known-previous-publications" class="optional-to-delete">
                                         <span>Known previous publications</span>
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-known-previous-publications" class="icon-only additional-info-icon" value="&#xf059;">
                                         <div class="editable-field">
                                             <textarea class="richtext" name="known-previous-publications-1"></textarea>
                                             <input type="button" class="button-link danger icon-only" aria-label="delete field" value="&#xf2ed;" onclick="deleteField(this)">
@@ -400,14 +446,17 @@
                                 <div>
                                     <label>
                                         Copyright status
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-copyright-status" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="text" name="copyright-status" disabled/>
                                     </label>
                                     <label>
                                         Withheld
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-withheld" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="text" name="copyright-status" disabled/>
                                     </label>
                                     <label>
                                         Credit
+                                        <input type="button" aria-label="additional info" data-content-type="archival-record-credit" class="icon-only additional-info-icon" value="&#xf059;">
                                         <textarea type="text" name="credit" rows="4" disabled></textarea>
                                     </label>
                                 </div>
@@ -417,7 +466,9 @@
                 </div>
 
                 <div class="form-section">
-                    <h2>CONTROL</h2>
+                    <h2>CONTROL
+                        <input type="button" aria-label="additional info" data-content-type="control" class="icon-only additional-info-icon" value="&#xf059;">
+                    </h2>
                     <fieldset>
                         <div class="fieldset-header">
                             <h3>Record ID: 441</h3>
@@ -430,36 +481,41 @@
                                 <div>
                                     <label for="control-language">
                                         <span class="required">Language</span>
+                                        <input type="button" aria-label="additional info" data-content-type="control-language" class="icon-only additional-info-icon" value="&#xf059;">
                                         <select>
                                             <option>English</option>
                                         </select>
                                     </label>
                                     <label>
                                         <span class="required">Rights citation</span>
+                                        <input type="button" aria-label="additional info" data-content-type="rights-citation" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="text" aria-label="control rights citation" name="rights-citation" disabled/>
                                     </label>
                                 </div>
                                 <div>
                                     <label>
                                         <span class="required">Script</span>
+                                        <input type="button" aria-label="additional info" data-content-type="script" class="icon-only additional-info-icon" value="&#xf059;">
                                         <select id="control-script">
                                             <option>Latn, 215, Latin</option>
                                         </select>
                                     </label>
                                     <label>
                                         <span class="required">Rights abbreviation</span>
+                                        <input type="button" aria-label="additional info" data-content-type="rights-abbreviation" class="icon-only additional-info-icon" value="&#xf059;">
                                         <input type="text" aria-label="control rights abbreviation" name="rights-abbreviation" disabled/>
                                     </label>
                                 </div>
                             </div>
-                            <label><span class="required">Rights declaration</span></label>
-                            <!-- editable for admin users. If admin, add class="richtext".-->
-                            <textarea aria-label="rights-declaration" rows="4" disabled></textarea>
+                            <label><span class="required">Rights declaration</span>
+                                <input type="button" aria-label="additional info" data-content-type="rights-declaration" class="icon-only additional-info-icon" value="&#xf059;">
+                                <!-- editable for admin users. If admin, add class="richtext".-->
+                                <textarea aria-label="rights-declaration" rows="4" disabled></textarea>
+                            </label>
                         </div>
                     </fieldset>
                 </div>
-            </form>
-        </div>
+        </form>
         <div class="modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -494,7 +550,13 @@
                                 <label>
                                     <span class="required">Maintenance status</span>
                                     <select name="maintenance-status">
-                                        <option value="New">New</option>
+                                        <option value="new">New</option>
+                                        <option value="revised">Revised</option>
+                                        <option value="cancelled">Cancelled</option>
+                                        <option value="deleted">Deleted</option>
+                                        <option value="deletedReplaced">Deleted Replaced</option>
+                                        <option value="deletedSplit">Deleted Split</option>
+                                        <option value="derived">Derived</option>
                                     </select>
                                 </label>
                             </div>

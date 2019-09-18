@@ -12,6 +12,7 @@ body {
 .flex {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 .flex div {
   margin-right: 30px;
@@ -248,9 +249,12 @@ p.additional-info {
   background-color: white;
   color: #002465;
   box-shadow: 0px 0px 2px black;
+  border-radius: 5px;
   position: absolute;
-  max-width: 200px;
-  padding: 5px;
+  max-width: 250px;
+  padding: 7px;
+  z-index: 8;
+  word-break: break-word;
 }
 
 header {
@@ -290,7 +294,7 @@ header #menu-links .link, header #menu-account .link {
   text-align: center;
 }
 header #menu-links .link a, header #menu-account .link a {
-  padding: 20px 10px;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -316,7 +320,7 @@ header #menu-links .link:hover:not(.active), header #menu-links .link:focus:not(
 }
 header #menu-links .link .fal, header #menu-account .link .fal {
   font-size: 16px;
-  margin: 0px 15px 0px 10px;
+  margin: 0px 15px 0px 0px;
 }
 header #menu-account {
   position: absolute;
@@ -343,6 +347,7 @@ main {
 main:not(#form-page) {
   margin-left: 200px;
   padding: 20px 40px 40px 40px;
+  box-sizing: border-box;
 }
 main#form-page {
   height: calc(100vh - 120px);
@@ -413,16 +418,16 @@ main .header-fixed {
   margin-left: 200px;
   padding: 10px 40px;
 }
-main .filters {
+main .filters, main .custom-radio-filters {
   margin: 10px 0px;
 }
-main .filters :not(:last-child) {
+main .filters :not(:last-child), main .custom-radio-filters :not(:last-child) {
   margin-right: 10px;
 }
-main .filters .create {
+main .filters .create, main .custom-radio-filters .create {
   margin-left: 20px;
 }
-main .filters .filter {
+main .filters .filter, main .custom-radio-filters .filter {
   background-color: #FCFCFC;
   color: #002465;
   margin-right: 10px;
@@ -432,17 +437,17 @@ main .filters .filter {
   font-size: 13px;
   cursor: pointer;
 }
-main .filters .filter:hover, main .filters .filter:focus {
+main .filters .filter:hover, main .filters .filter:focus, main .custom-radio-filters .filter:hover, main .custom-radio-filters .filter:focus {
   box-shadow: 0px 2px 2px #BABABA;
 }
-main .filters input[type=checkbox], main .filters input[type=radio] {
+main .filters input[type=checkbox], main .filters input[type=radio], main .custom-radio-filters input[type=checkbox], main .custom-radio-filters input[type=radio] {
   display: none;
 }
-main .filters input[type=checkbox]:checked + label, main .filters input[type=radio]:checked + label {
+main .filters input[type=checkbox]:checked + label, main .filters input[type=radio]:checked + label, main .custom-radio-filters input[type=checkbox]:checked + label, main .custom-radio-filters input[type=radio]:checked + label {
   background-color: #002465;
   color: white;
 }
-main .filters input[type=checkbox]:checked + label:before {
+main .filters input[type=checkbox]:checked + label:before, main .custom-radio-filters input[type=checkbox]:checked + label:before {
   font-family: "Font Awesome 5 Pro";
   content: "";
   font-weight: 300;
@@ -559,6 +564,9 @@ main .two-column-table div label, main .two-column-table div input, main .two-co
   width: fill-available;
   margin-bottom: 10px;
 }
+main .two-column-table div label {
+  margin-top: 10px;
+}
 main .two-column-table input[type=submit] {
   grid-column-start: 2;
   width: 150px;
@@ -585,10 +593,12 @@ main .editable-field {
 main form {
   width: 100%;
 }
+main form#record-form > .flex > div {
+  margin-bottom: 10px;
+}
 main form label {
   font-size: 14px;
   display: block;
-  position: relative;
 }
 main form label input:not([type=checkbox]), main form label select {
   margin-top: 0px !important;
@@ -612,14 +622,14 @@ main form input[type=radio], main form input[type=checkbox], main form select[ty
   margin: 0px;
   margin-right: 10px;
 }
-main form select {
+main form select, main form .select2-selection--single {
   height: 39.76px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%238C98F2'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat;
   background-size: 12px;
-  background-position: calc(100% - 20px) calc(100% - 9px);
+  background-position: calc(100% - 11px) calc(100% - 9px);
   background-repeat: no-repeat;
   background-color: #ffffff;
 }
@@ -665,8 +675,7 @@ main form .select2-container--default .select2-selection--single .select2-select
   line-height: 1.4em;
 }
 main form .select2-container--default .select2-selection--single .select2-selection__arrow {
-  top: 8px;
-  right: 8px;
+  display: none;
 }
 main form :disabled {
   background-color: #EBEBEB;
@@ -699,9 +708,12 @@ main form .form-section fieldset:last-of-type {
   overflow: hidden;
 }
 main form .form-section fieldset .fieldset-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 10px;
   align-items: center;
   justify-content: space-between;
+  position: relative;
   height: 60px;
   padding-left: 20px;
   border-bottom: 1px solid #BABABA;
@@ -710,6 +722,8 @@ main form .form-section fieldset .fieldset-header > div {
   display: flex;
   align-items: center;
   height: 100%;
+  justify-content: space-between;
+  margin-right: 60px;
 }
 main form .form-section fieldset .fieldset-header > div .toggle-tab-button {
   color: #002465;
@@ -720,7 +734,9 @@ main form .form-section fieldset .fieldset-header > div .toggle-tab-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 1px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 main form .form-section fieldset .fieldset-header > div .toggle-tab-button:after {
   font-family: "Font Awesome 5 Pro";
@@ -733,7 +749,12 @@ main form .form-section fieldset .fieldset-header > div .toggle-tab-button.activ
   font-weight: 700;
 }
 main form .form-section fieldset .fieldset-header label {
+  margin-top: 0px !important;
   margin-bottom: 0px !important;
+}
+main form .form-section fieldset .fieldset-header h3 {
+  padding: 5px 0px;
+  margin: 0px;
 }
 main form .form-section fieldset .fieldset-body {
   -moz-transition: all 0.4s;
@@ -936,21 +957,25 @@ footer img {
     margin-top: 0%;
   }
 }
-@media only screen and (max-width: 1020px) {
+@media only screen and (max-width: 1280px) {
   body {
     display: block;
   }
 
   header {
     background: #002465 url("..//images/background-header.svg") no-repeat bottom right;
-    position: relative;
+    position: fixed;
     display: flex;
     width: 100%;
     height: 60px;
-    margin-bottom: 20px;
+    top: 0;
   }
   header #logo {
     width: max-content;
+    overflow: hidden;
+  }
+  header #logo a {
+    line-height: 0px;
   }
   header #logo a img {
     height: 60px;
@@ -962,44 +987,116 @@ footer img {
     margin-top: 0px;
     display: flex;
   }
-  header #menu-links .active a, header #menu-account .active a {
-    padding-left: 20px;
-  }
   header #menu-account {
     margin-left: auto;
     margin-right: 0px;
-  }
-
-  main:not(#form-page) {
-    margin-left: 0px;
-    padding: 0px 10px;
-  }
-  main #page-header {
-    display: flex;
-    flex-direction: column;
-  }
-  main #page-header .create {
-    margin-left: 0px;
-  }
-  main .filters {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  main .filters > * {
-    margin: 0px 5px 20px 5px;
-  }
-}
-@media only screen and (max-width: 880px) {
-  header #logo, header h4 {
-    visibility: hidden;
-    width: 0px;
   }
   header #menu-account #logout:after {
     font-family: "Font Awesome 5 Pro";
     content: "";
     font-weight: 300;
+    margin: 0px 5px;
+  }
+
+  main {
+    box-sizing: border-box;
+    margin-top: 80px;
+  }
+  main:not(#form-page) {
+    margin-left: 0px;
+    padding: 0px 10px 30px 10px;
+  }
+  main #page-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  main #form-header {
+    margin-top: 170px;
+  }
+  main .header-fixed {
+    margin-top: 60px;
+    margin-left: 0px;
+    padding: 10px;
+  }
+}
+@media only screen and (max-width: 1020px) {
+  main #page-header #status-bar {
+    margin-bottom: 10px;
+  }
+  main table .button-link {
+    white-space: pre-wrap;
+  }
+  main #form-header {
+    margin-top: 150px;
+  }
+  main .filters :not(.create) {
+    display: none;
+  }
+  main .user-control {
+    display: block;
+  }
+  main .user-control #user-details, main .user-control #user-password {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+@media only screen and (max-width: 880px) {
+  header h4 {
+    visibility: hidden;
+    width: 0px;
+    padding: 0px;
+  }
+  header #menu-account .link .fal, header #menu-links .link .fal {
+    margin: 0px 5px;
+  }
+
+  main #page-header #status-bar ul {
+    display: none;
+  }
+  main .filters :not(.create) {
+    display: none;
+  }
+  main #pagination ul {
+    visibility: hidden;
+    width: 0px;
+    padding: 0px;
+  }
+  main:not(#form-page) .two-column-table, main:not(#form-page) .grid {
+    display: block;
+  }
+}
+@media only screen and (max-width: 520px) {
+  header #logo {
+    visibility: hidden;
+    width: 0px;
+    padding: 0px;
+  }
+
+  main #page-header div:not(#status-bar) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  main #page-header div:not(#status-bar) > *:not(.create) {
+    margin: 5px;
+  }
+  main #page-header .create {
+    margin-left: 0px;
+  }
+  main form .form-section fieldset .fieldset-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    height: max-content;
+    min-height: 60px;
+  }
+  main form .form-section fieldset .fieldset-header h3 {
+    font-size: 14px;
+    margin-right: 60px;
+  }
+  main form .form-section fieldset .fieldset-body.expand {
+    padding: 15px;
   }
 }
 
