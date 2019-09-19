@@ -87,7 +87,9 @@
             <div class="flex">
                 <label>
                     <span class="required">Date from</span>
-                    <span role="button" aria-label="additional info" data-content-type="general-date-from" class="icon-only additional-info-icon">&#xf059;</span>
+                    <!-- {% if field.help_text %} -->
+                    <span role="button" aria-label="additional info" onclick="toggleHelpText(this, '{{ field.help_text }}')" class="icon-only additional-info-icon">&#xf059;</span>
+                    <!-- {% endif %} -->
                     <input type="date" value="" name="general-date-from"/>
                 </label>
                 <label>

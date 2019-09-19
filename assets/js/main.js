@@ -105,13 +105,6 @@ var additionalInfo = {
 };
 
 $(document).ready(function() {
-    // check if additional information for the field exists to display the question mark icon
-    $('.additional-info-icon').get().forEach((el) => {
-        var key = $(el).attr("data-content-type");
-        if (!additionalInfo[key]) {
-            $(el).addClass('none');
-        }
-    });
 
     // open popup to log changes in entity/archival record sections
     $("#record-form").submit((event) => {
@@ -161,25 +154,46 @@ $(document).ready(function() {
     // $('.select2, .richText').click((el) => {
     //     el.preventDefault();
     // })
+    // check if additional information for the field exists to display the question mark icon
+    // $('.additional-info-icon').get().forEach((el) => {
+    //     var key = $(el).attr("data-content-type");
+    //     if (!additionalInfo[key]) {
+    //         $(el).addClass('none');
+    //     }
+    // });
     // display additional information about the fields on hover
-    $('body').on('click', '.additional-info-icon', (el) => {
-        if ($(el.target).siblings('p.additional-info').length) {
-            // change icon to 'question mark'
-            $(el.target).text("");
-            $(el.target).siblings('p.additional-info').remove();
-        }
-        else {
-            var key = $(el.target).attr("data-content-type");
-            var position = $(el.target).position();
-            if (additionalInfo[key]) {
-                $(el.target).before('<p class="additional-info" style="top:'+ (position.top - 40) + 'px; left:' + (position.left + 25) + 'px">' +additionalInfo[key]+ '</p>'); 
-            }
-            // change icon to 'close'
-            $(el.target).text("");
-        }
-    });
+    // $('body').on('click', '.additional-info-icon', (el) => {
+    //     if ($(el.target).siblings('p.additional-info').length) {
+    //         // change icon to 'question mark'
+    //         $(el.target).text("");
+    //         $(el.target).siblings('p.additional-info').remove();
+    //     }
+    //     else {
+    //         var key = $(el.target).attr("data-content-type");
+    //         var position = $(el.target).position();
+    //         if (additionalInfo[key]) {
+    //             $(el.target).before('<p class="additional-info" style="top:'+ (position.top - 40) + 'px; left:' + (position.left + 25) + 'px">' +additionalInfo[key]+ '</p>'); 
+    //         }
+    //         // change icon to 'close'
+    //         $(el.target).text("");
+    //     }
+    // });
 
 });
+
+function toggleHelpText(el, help_text) {
+    if ($(el).siblings('p.additional-info').length) {
+        // change icon to 'question mark'
+        $(el).text("");
+        $(el).siblings('p.additional-info').remove();
+    }
+    else {
+        var position = $(el).position();
+        $(el).before('<p class="additional-info" style="top:'+ (position.top - 40) + 'px; left:' + (position.left + 25) + 'px">' + help_text + '</p>'); 
+        // change icon to 'close'
+        $(el).text("");
+    }
+}
 
 // change name of the duplicated field
 function updateAttribute(idToIncrement, name) {
