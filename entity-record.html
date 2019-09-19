@@ -88,7 +88,7 @@
                 <label>
                     <span class="required">Date from</span>
                     <!-- {% if field.help_text %} -->
-                    <span role="button" aria-label="additional info" onclick="toggleHelpText(this, '{{ field.help_text }}')" class="icon-only additional-info-icon">&#xf059;</span>
+                    <span role="button" aria-label="additional info" onclick="toggleHelpText(this, '{{ field.help_text | safe }}')" class="icon-only additional-info-icon">&#xf059;</span>
                     <!-- {% endif %} -->
                     <input type="date" value="" name="general-date-from"/>
                 </label>
