@@ -72,7 +72,7 @@ body {
     flex-wrap: wrap;
     > *:not(:last-child) {
         margin-right: 30px;
-        margin-bottom: 10px;
+        // margin-bottom: 10px;
     }
 }
 
@@ -127,7 +127,7 @@ button, a, .create, .link, input[type=submit], input[type=button], span[role=but
     }
 }
 
-button, .create, input[type=submit] {
+button, .create, input[type=submit], .save {
     color: white;
     border: none;
     padding: 13px 25px;
@@ -138,7 +138,7 @@ button, .create, input[type=submit] {
     }
 }
 
-input[type=submit] {
+input[type=submit], .save {
     max-width: max-content;
 }
 
@@ -236,6 +236,9 @@ span[role=button] {
     max-width: max-content;
     &.danger {
         color: $danger;
+        // &.icon-only {
+        //     margin-top: 30px;
+        // }
         &:hover, &:focus {
             box-shadow: none;
         }
@@ -613,6 +616,9 @@ main {
             label {
                 margin-top: 10px;
             }
+            select {
+                width: 100%;
+            }
         }
         input[type=submit] {
             grid-column-start: 2;
@@ -910,27 +916,30 @@ main {
         }
     }
 
-    .error-notification{
-        display: block;
-        border-radius: 10px;
-        border-left: 10px solid $danger;
-        background-color: lighten($danger, 60%);
-        padding: 20px;
-        margin: 10px 0px 30px 0px;
-        h3 {
-            margin: 0px;
-            margin-bottom: 10px;
-            color: darken($danger, 10%);
-        }
-        p {
-            margin-bottom: 0px;
-        }    
+    #error-notification{
+        display: none; 
+        &.active {
+            display: block;
+            border-radius: 10px;
+            border-left: 10px solid $danger;
+            background-color: lighten($danger, 60%);
+            padding: 20px;
+            margin: 10px 0px 30px 0px;
+            h3 {
+                margin: 0px;
+                margin-bottom: 10px;
+                color: darken($danger, 10%);
+            }
+            p {
+                margin-bottom: 0px;
+            }   
+        }  
     }
 
     .error {
-        border: 1px solid $danger;
-        border-left: 5px solid $danger;
-        background-color: lighten($danger, 60%);
+        border: 1px solid $danger !important;
+        border-left: 5px solid $danger !important;
+        background-color: lighten($danger, 60%) !important;
     }
 
     .error-message {
@@ -994,6 +1003,10 @@ main {
         font-weight: 700;
         color: $primary;
     }
+}
+
+#empty_forms {
+    display: none;
 }
 
 footer {

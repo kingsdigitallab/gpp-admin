@@ -107,24 +107,19 @@ var additionalInfo = {
 $(document).ready(function() {
 
     // open popup to log changes in entity/archival record sections
-    $("#record-form").submit((event) => {
-        event.preventDefault();
+    // $("#record-form").submit((event) => {
+    //     event.preventDefault();
         // modal template is available in the files entity.html and archival-records.html (they use the same template with the same content)
-        $(".modal").addClass('active');
-    });
+    //     $(".modal").addClass('active');
+    // });
 
     // open popup to add new user who can access the admin panel
     $('#add-form').click(() => {
         $('#add-user-form').addClass('active');
     });
 
-    // merge values from the modal and record forms
-    $('#record-modal-form').submit((event) => {
-        event.preventDefault();
-        var formVals = $('#record-form, #record-modal-form').serialize();
-        $('.modal-footer').append('<p style="white-space: nowrap; overflow: scroll; max-width: 450px;"><b>Merged values from forms:</b> ' + formVals + '</p>');
-    });
 
+    $('#error-notification').removeClass('active');
 
     // ADD-ONS
     
@@ -136,7 +131,6 @@ $(document).ready(function() {
         placeholder: "Select",
         allowClear: true
     } );
-
 
     // optional functionality (can be removed if needed) - dynamic styling of the sections
 
@@ -206,7 +200,6 @@ function updateAttribute(idToIncrement, name) {
 
 // addField() might require refactoring to merge with addBlock()
 function addField(el) {
-    console.log('here');
     var template = $(el).parent().prev().clone();
     var idToIncrement = template.first().attr('data-content-reference');
     if (idToIncrement) {
@@ -403,4 +396,51 @@ function login() {
 
 function logout() {
     window.location.href = "./login.html";
+}
+
+function openModal(modal) {
+    $(modal).addClass('active');
+}
+
+var error = []
+function throwError() {
+    $('#error-notification').addClass('active');
+    var errorMessage = [];
+    error.forEach((e) => {
+        switch(e) {
+            case 'required': 
+                errorMessage.push('Please fill in missing values in the required fields');
+        }
+    })
+    $('#error-notification').append(`<h3>Fix the following errors to submit the form:</h3><ul>`);
+    errorMessage.forEach((message) => {
+        $('#error-notification').append(`<li>`+ message +`</li>`);
+    });
+    $('#error-notification').append(`</ul>`);
+}
+
+function validateForm() {
+    $('#error-notification').html("");
+    $('#error-notification').removeClass('active');
+    $('*').removeClass('error');
+    error = [];
+
+    var errors = false;
+
+    $("form").find("*:not(span)[required]").each((i, el) => {
+        if ($(el).val()=="") {
+            errors = true;
+            $(el).addClass('error');
+            if(!error.includes('required')) {
+                error.push('required');
+            }
+        }
+    });
+
+    if (errors) {
+        throwError();
+    }
+    else {
+        openModal(".modal");
+    }
 }

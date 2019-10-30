@@ -16,7 +16,6 @@ body {
 }
 .flex > *:not(:last-child) {
   margin-right: 30px;
-  margin-bottom: 10px;
 }
 
 *:focus {
@@ -65,18 +64,18 @@ button:hover, button:focus, a:hover, a:focus, .create:hover, .create:focus, .lin
   transition: 0.3s;
 }
 
-button, .create, input[type=submit] {
+button, .create, input[type=submit], .save {
   color: white;
   border: none;
   padding: 13px 25px;
   font-size: 14px;
   border-radius: 30px;
 }
-button:hover:not(.icon-only, #logout), button:focus:not(.icon-only, #logout), .create:hover:not(.icon-only, #logout), .create:focus:not(.icon-only, #logout), input[type=submit]:hover:not(.icon-only, #logout), input[type=submit]:focus:not(.icon-only, #logout) {
+button:hover:not(.icon-only, #logout), button:focus:not(.icon-only, #logout), .create:hover:not(.icon-only, #logout), .create:focus:not(.icon-only, #logout), input[type=submit]:hover:not(.icon-only, #logout), input[type=submit]:focus:not(.icon-only, #logout), .save:hover:not(.icon-only, #logout), .save:focus:not(.icon-only, #logout) {
   box-shadow: 0px 2px 2px #BABABA;
 }
 
-input[type=submit] {
+input[type=submit], .save {
   max-width: max-content;
 }
 
@@ -566,6 +565,9 @@ main .two-column-table div label, main .two-column-table div input, main .two-co
 main .two-column-table div label {
   margin-top: 10px;
 }
+main .two-column-table div select {
+  width: 100%;
+}
 main .two-column-table input[type=submit] {
   grid-column-start: 2;
   width: 150px;
@@ -836,7 +838,10 @@ main .modal.active .modal-footer input[type=submit]:not(:only-child) {
 main .modal.active .modal-footer input[type=submit]:not(:only-child):not(:last-child) {
   margin-right: 50px;
 }
-main .error-notification {
+main #error-notification {
+  display: none;
+}
+main #error-notification.active {
   display: block;
   border-radius: 10px;
   border-left: 10px solid #b40000;
@@ -844,18 +849,18 @@ main .error-notification {
   padding: 20px;
   margin: 10px 0px 30px 0px;
 }
-main .error-notification h3 {
+main #error-notification.active h3 {
   margin: 0px;
   margin-bottom: 10px;
   color: #810000;
 }
-main .error-notification p {
+main #error-notification.active p {
   margin-bottom: 0px;
 }
 main .error {
-  border: 1px solid #b40000;
-  border-left: 5px solid #b40000;
-  background-color: #ffe7e7;
+  border: 1px solid #b40000 !important;
+  border-left: 5px solid #b40000 !important;
+  background-color: #ffe7e7 !important;
 }
 main .error-message {
   color: #b40000;
@@ -916,6 +921,10 @@ main #pagination ul li.active {
 main .highlight {
   font-weight: 700;
   color: #002465;
+}
+
+#empty_forms {
+  display: none;
 }
 
 footer {

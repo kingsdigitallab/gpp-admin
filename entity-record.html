@@ -61,7 +61,7 @@
             </div>
             <div>
                 <button aria-label="delete" class="danger-clear" onclick="deleteRecord()">Delete</button>
-                <input type="submit" value="Save" form="record-form" class="save"/>
+                <input type="button" value="Save" class="save" onclick="validateForm()"/>
                 <a href="new-entity.html" class="create"><i class="fas fa-plus"></i></a>
             </div>
         </div>
@@ -74,11 +74,7 @@
                 </ul>
             </div>
 
-            <!-- FORM ERROR MESSAGE - add active to show notification -->
-            <div class="error-notification">
-                <h3>{{ error.title }}</h3>
-                <p>{{ error.message }}</p>
-            </div>
+            <div id="error-notification"></div>
 
             <h1>Douglas, William, 1724-1810, 4th Duke of Queensberry</h1>
             <h2>Person</h2>
@@ -100,7 +96,7 @@
                 <label>
                     <span class="required">Display date</span>
                     <span role="button" aria-label="additional info" data-content-type="general-display-date" class="icon-only additional-info-icon">&#xf059;</span>
-                    <input type="text" name="general-display-date" value=""/>
+                    <input type="text" name="general-display-date" value="" required/>
                 </label>
             </div>
             <div class="form-section">
@@ -161,7 +157,7 @@
                                             <div class="grid">
                                                 <span class="required">Surname</span>
                                                 <!-- add class error when error occurs -->
-                                                <input type="text"  placeholder="Surname" onfocus="this.placeholder=''" class="error" onblur="this.placeholder='Surname'" value="" aria-label="surname" name="identity-1-name-entry-1-surname"/>
+                                                <input type="text"  placeholder="Surname" onfocus="this.placeholder=''" onblur="this.placeholder='Surname'" value="" aria-label="surname" name="identity-1-name-entry-1-surname"/>
                                             </div>
                                         </div>
                                         <!--end REQUIRED FIELD end-->
@@ -965,15 +961,13 @@
                     </div>
                 </fieldset>
             </div>
-        </form>
-        <div class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Log comments</h2>
-                    <input type="button" class="icon-only" aria-label="close" onclick="closeBlock('modal')" value="&#xf00d;" />
-                </div>
-                <div class="modal-body">
-                    <form action="" method="" id="record-modal-form">
+            <div class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Log comments</h2>
+                        <input type="button" class="icon-only" aria-label="close" onclick="closeBlock('modal')" value="&#xf00d;" />
+                    </div>
+                    <div class="modal-body">
                         <div class="two-column-table">
                             <div>
                                 <label>
@@ -981,7 +975,7 @@
                                     <select name="publication-status" required>
                                         <option value="">Select</option>
                                         <option value="published">Published</option>
-                                        <option value="in process" selected>In process</option>
+                                        <option value="in process">In process</option>
                                         <option value="approved">Approved</option>
                                     </select>
                                 </label>
@@ -991,7 +985,7 @@
                                         <option value="">Select</option>
                                         <option value="cancelled">Cancelled</option>
                                         <option value="created">Created</option>
-                                        <option value="revised" selected>Revised</option>
+                                        <option value="revised">Revised</option>
                                         <option value="deleted">Deleted</option>
                                         <option value="derived">Derived</option>
                                         <option value="unknown">Unknown</option>
@@ -1019,13 +1013,13 @@
                             <span role="button" aria-label="additional info" data-content-type="log-comments" class="icon-only additional-info-icon">&#xf059;</span>
                             <textarea rows="4"></textarea>
                         </label>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <input type="submit" value="Save" form="record-modal-form" class="save"/>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" value="Save" class="save"/>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </main>
 
     <!-- JS SCRIPTS -->
