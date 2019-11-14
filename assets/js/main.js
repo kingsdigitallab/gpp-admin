@@ -124,7 +124,9 @@ $(document).ready(function() {
     // ADD-ONS
     
     // change textareas to richtext fields
-    $('.richtext').richText();
+    $('.richtext').each(function(index) {
+        $(this).richText({id: "richtext-" + index});
+    });
 
     // add search bar to the select dropdown
     $(".select-with-search").select2( {
@@ -145,33 +147,33 @@ $(document).ready(function() {
     });
     
     // to stop multiple events from firing inside labels (e.g, select and question mark button)
-    // $('.select2, .richText').click((el) => {
-    //     el.preventDefault();
-    // })
+    $('.select2, .richText').click((el) => {
+        el.preventDefault();
+    })
     // check if additional information for the field exists to display the question mark icon
-    // $('.additional-info-icon').get().forEach((el) => {
-    //     var key = $(el).attr("data-content-type");
-    //     if (!additionalInfo[key]) {
-    //         $(el).addClass('none');
-    //     }
-    // });
+    $('.additional-info-icon').get().forEach((el) => {
+        var key = $(el).attr("data-content-type");
+        if (!additionalInfo[key]) {
+            $(el).addClass('none');
+        }
+    });
     // display additional information about the fields on hover
-    // $('body').on('click', '.additional-info-icon', (el) => {
-    //     if ($(el.target).siblings('p.additional-info').length) {
-    //         // change icon to 'question mark'
-    //         $(el.target).text("");
-    //         $(el.target).siblings('p.additional-info').remove();
-    //     }
-    //     else {
-    //         var key = $(el.target).attr("data-content-type");
-    //         var position = $(el.target).position();
-    //         if (additionalInfo[key]) {
-    //             $(el.target).before('<p class="additional-info" style="top:'+ (position.top - 40) + 'px; left:' + (position.left + 25) + 'px">' +additionalInfo[key]+ '</p>'); 
-    //         }
-    //         // change icon to 'close'
-    //         $(el.target).text("");
-    //     }
-    // });
+    $('body').on('click', '.additional-info-icon', (el) => {
+        if ($(el.target).siblings('p.additional-info').length) {
+            // change icon to 'question mark'
+            $(el.target).text("");
+            $(el.target).siblings('p.additional-info').remove();
+        }
+        else {
+            var key = $(el.target).attr("data-content-type");
+            var position = $(el.target).position();
+            if (additionalInfo[key]) {
+                $(el.target).before('<p class="additional-info" style="top:'+ (position.top - 40) + 'px; left:' + (position.left + 25) + 'px">' +additionalInfo[key]+ '</p>'); 
+            }
+            // change icon to 'close'
+            $(el.target).text("");
+        }
+    });
 
 });
 
@@ -427,7 +429,7 @@ function validateForm() {
 
     var errors = false;
 
-    $("form").find("*:not(span)[required]").each((i, el) => {
+    $(".form").find("*:not(span)[required]").each((i, el) => {
         if ($(el).val()=="") {
             errors = true;
             $(el).addClass('error');

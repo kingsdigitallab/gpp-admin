@@ -79,6 +79,29 @@ input[type=submit], .save {
   max-width: max-content;
 }
 
+.search {
+  position: relative;
+  max-width: 700px;
+  min-width: 280px;
+}
+.search input[type=search] {
+  font-family: "Roboto", sans-serif;
+  border-radius: 30px;
+  font-size: 14px;
+  padding: 10px 10px 10px 20px;
+  border: 1px solid #BABABA;
+  width: 100%;
+}
+.search .search-button {
+  position: absolute;
+  background: none;
+  top: 0px;
+  right: 0px;
+  color: #002465;
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 600;
+}
+
 span[role=button] {
   margin: auto;
 }
@@ -223,7 +246,7 @@ h1 {
   font-size: 26px;
   font-weight: 500;
   color: #002465;
-  line-height: 1.1em;
+  line-height: 1.4em;
 }
 
 h2 {
@@ -294,13 +317,14 @@ header #menu-links .link, header #menu-account .link {
   max-height: 120px;
   text-align: center;
 }
-header #menu-links .link a, header #menu-account .link a {
+header #menu-links .link a, header #menu-links .link button, header #menu-account .link a, header #menu-account .link button {
+  text-decoration: none;
   padding: 20px;
   display: flex;
   align-items: center;
   justify-content: start;
 }
-header #menu-links .link a h4, header #menu-account .link a h4 {
+header #menu-links .link a h4, header #menu-links .link button h4, header #menu-account .link a h4, header #menu-account .link button h4 {
   font-weight: 400;
   margin: 0;
 }
@@ -376,10 +400,17 @@ main#form-page form input[type=submit], main#form-page form .default {
   margin-top: 20px;
 }
 main #page-header {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-column-gap: 10px;
   align-items: center;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-column-gap: 10px;
+}
+main #page-header :not(:first-child) {
+  justify-self: right;
+}
+main #page-header .header-buttons > * {
+  display: inline-block;
+  margin: 5px;
 }
 main #page-header #status-bar {
   font-size: 14px;
@@ -402,9 +433,6 @@ main #page-header #status-bar ul li:not(:last-child):after {
   font-family: "Font Awesome 5 Pro";
   font-weight: 600;
 }
-main #page-header .create {
-  margin-left: 20px;
-}
 main .header-fixed {
   background-color: white;
   border-bottom: 1px solid #BABABA;
@@ -416,8 +444,12 @@ main .header-fixed {
   margin-left: 200px;
   padding: 10px 40px;
 }
+main .filters {
+  display: inline-block;
+}
 main .filters, main .custom-radio-filters {
   margin: 10px 0px;
+  justify-self: right;
 }
 main .filters :not(:last-child), main .custom-radio-filters :not(:last-child) {
   margin-right: 10px;
@@ -428,11 +460,13 @@ main .filters .create, main .custom-radio-filters .create {
 main .filters .filter, main .custom-radio-filters .filter {
   background-color: #FCFCFC;
   color: #002465;
-  margin-right: 10px;
   border: 1px solid #002465;
   border-radius: 30px;
   padding: 10px 25px;
   font-size: 13px;
+  white-space: nowrap;
+  display: inline-block;
+  margin: 5px 0px;
   cursor: pointer;
 }
 main .filters .filter:hover, main .filters .filter:focus, main .custom-radio-filters .filter:hover, main .custom-radio-filters .filter:focus {
@@ -555,15 +589,13 @@ main .two-column-table p {
 }
 main .two-column-table div {
   width: 100%;
+  overflow: hidden;
 }
 main .two-column-table div label, main .two-column-table div input, main .two-column-table div select, main .two-column-table div textarea {
   width: -moz-available;
   width: -webkit-fill-available;
   width: fill-available;
   margin-bottom: 10px;
-}
-main .two-column-table div label {
-  margin-top: 10px;
 }
 main .two-column-table div select {
   width: 100%;
@@ -757,6 +789,7 @@ main form .form-section fieldset .fieldset-header label {
 main form .form-section fieldset .fieldset-header h3 {
   padding: 5px 0px;
   margin: 0px;
+  overflow: hidden;
 }
 main form .form-section fieldset .fieldset-body {
   -moz-transition: all 0.4s;
@@ -954,7 +987,7 @@ footer img {
     margin-top: 0%;
   }
 }
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1380px) {
   body {
     display: block;
   }
@@ -1004,9 +1037,8 @@ footer img {
     padding: 0px 10px 30px 10px;
   }
   main #page-header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
   }
   main #form-header {
     margin-top: 170px;
@@ -1018,17 +1050,17 @@ footer img {
   }
 }
 @media only screen and (max-width: 1020px) {
+  main #page-header {
+    display: block;
+  }
+  main #page-header .filter {
+    margin-bottom: 10px;
+  }
   main #page-header #status-bar {
     margin-bottom: 10px;
   }
   main table .button-link {
     white-space: pre-wrap;
-  }
-  main #form-header {
-    margin-top: 150px;
-  }
-  main .filters :not(.create) {
-    display: none;
   }
   main .user-control {
     display: block;
@@ -1048,12 +1080,6 @@ footer img {
     margin: 0px 5px;
   }
 
-  main #page-header #status-bar ul {
-    display: none;
-  }
-  main .filters :not(.create) {
-    display: none;
-  }
   main #pagination ul {
     visibility: hidden;
     width: 0px;
@@ -1063,6 +1089,11 @@ footer img {
     display: block;
   }
 }
+@media only screen and (max-width: 750px) {
+  main #form-header {
+    margin-top: 200px;
+  }
+}
 @media only screen and (max-width: 520px) {
   header #logo {
     visibility: hidden;
@@ -1070,15 +1101,10 @@ footer img {
     padding: 0px;
   }
 
-  main #page-header div:not(#status-bar) {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  main #page-header div:not(#status-bar) > *:not(.create) {
-    margin: 5px;
-  }
   main #page-header .create {
     margin-left: 0px;
+    display: block;
+    text-align: center;
   }
   main:not(#form-page) .grid {
     display: block;

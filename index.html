@@ -11,17 +11,11 @@
     <title>GPP admin</title>
 </head>
 <body>
-    <!-- header template if logged in -->
-        <!-- login template if not logged in -->
-        <!-- home template if logged in -->
-    <!-- footer template if not logged in-->
-
-    <!-- rendering home page template below -->
     <header>
         <div id="logo">
-                <a href="index.html"><img src="./assets/images/GPPLogo.png" alt="GPP logo" /></a>
-            </div>
-            <div id="menu-links">
+            <a href="index.html"><img src="./assets/images/GPPLogo.png" alt="GPP logo" /></a>
+        </div>
+        <div id="menu-links">
             <div class="link active">
                 <a href="home.html">
                     <i class="fal fa-home"></i>
@@ -40,8 +34,8 @@
                     <h4>ARCHIVAL RECORDS</h4>
                 </a>
             </div>
-            </div>
-            <div id="menu-account">
+        </div>
+        <div id="menu-account">
             <div class="link">
                 <a href="dashboard.html">
                     <i class="fal fa-user"></i>
@@ -49,14 +43,14 @@
                 </a>
             </div>
             <button aria-label="logout" id="logout" onclick="logout()"></button>
-            </div>
+        </div>
     </header>
     <main>
         <div id="page-header">
             <h1>Home</h1>
             <div class="filters">
                 <input id="entities" type="checkbox" aria-label="entities" checked />
-                <label for="entities" class="filter">Entity (120)</label>
+                <label for="entities" class="filter">Entities (120)</label>
                 <input id="archival_records" type="checkbox" aria-label="archival records" />
                 <label for="archival_records" class="filter">Archival records (420)</label>
                 <a href="new-entity.html" class="create">Create new entity</a>
@@ -74,47 +68,95 @@
             </thead>
             <tbody>
                 <tr>
-                    <!-- add a pipe to truncate lenghty record descriptions and add '...'' -->
+                    <td class="description"><a href="entity-record-111.html">Stuart, Charles Edward, 1720-1788, Prince</a></td>
+                    <td>Entity</td>
+                    <td>Person</td>
+                    <td>In process</td>
+                    <td>Oct 21, 2019, 1:17 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record-3247.html">Menu book for William IV, the Queen consort, and Queen Victoria, together with their Household, principally held at Windsor Castle</a></td>
+                    <td>Archival record</td>
+                    <td>File</td>
+                    <td>In process</td>
+                    <td>Nov 1, 2019, 1:14 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record-2340.html">Letter from Frederick, Duke of York, to General Jacob de Budé from Tournai, thanking him for speaking to the King about a false rumour that...</a></td>
+                    <td>Archival record</td>
+                    <td>Item</td>
+                    <td>In process</td>
+                    <td>Oct 29, 2019, 2:11 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="entity-record-3513.html">Budé, Jacob, de, ? 1736-1818, General of Infantry</a></td>
+                    <td>Entity</td>
+                    <td>Person</td>
+                    <td>In process</td>
+                    <td>Oct 27, 2019, 3:16 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record-2511.html">Duplicate of a letter from Rear-Adm. Robert Digby to King George III, replying to instructions received and reporting that he will place Prince William with Lord Hood...</a></td>
+                    <td>Archival record</td>
+                    <td>Item</td>
+                    <td>In process</td>
+                    <td>Oct 25, 2019, 4:05 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="entity-record-03.html">10th Royal Hussars</a></td>
+                    <td>Entity</td>
+                    <td>Corporate Body</td>
+                    <td>In process</td>
+                    <td>Oct 27, 2019, 5:56 pm</td>
+                </tr>
+                <tr>
+                    <td class="description"><a href="archival-record.html">Plan of a water closet (enclosure to 506)</a></td>
+                    <td>Archival record</td>
+                    <td>Item</td>
+                    <td>In process</td>
+                    <td>Oct 16, 2019, 4:32 pm</td>
+                </tr>
+                <tr>
                     <td class="description"><a href="entity-record.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
                     <td>Entity</td>
                     <td>Person</td>
                     <td>In process</td>
-                    <td>May 1, 2019, 1:58 pm</td>
+                    <td>Nov 2, 2019, 2:12 pm</td>
                 </tr>
                 <tr>
-                    <td class="description"><a href="archival-record.html">Account book kept by General Jacob de Budé, 1772-1784, covering personal expenses and also a few for Prince Frederick, later Duke of York, and for Prince William, later Duke of Clarence.</a></td>
+                    <td class="description"><a href="archival-record.html">Letter from Frederick, Duke of York, to General Jacob de Budé from Bergen op Zoom stating that he has heard that Pitt has promised the Prince of Wales...</a></td>
                     <td>Archival record</td>
-                    <td>File</td>
+                    <td>Item</td>
                     <td>In process</td>
-                    <td>May 1, 2019, 1:58 pm</td>
+                    <td>Nov 1, 2019, 3:51 pm</td>
                 </tr>
                 <tr>
-                    <td class="description"><a href="entity-record.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
+                    <td class="description"><a href="entity-record.html">Charlotte, 1744-1818, Queen consort of Great Britain and Ireland</a></td>
                     <td>Entity</td>
                     <td>Person</td>
                     <td>In process</td>
-                    <td>May 1, 2019, 1:58 pm</td>
+                    <td>Oct 24, 2019, 3:25 pm</td>
                 </tr>
                 <tr>
-                    <td class="description"><a href="archival-record.html">Account book kept by General Jacob de Budé, 1772-1784, covering personal expenses and also a few for Prince Frederick, later Duke of York, and for Prince William, later Duke of Clarence.</a></td>
+                    <td class="description"><a href="archival-record.html">Letter from Frederick, Duke of York, to General Jacob de Budé concerning the Commercial Treaty [with France], the wine Budé has ordered for the Duke at Allerton...</a></td>
                     <td>Archival record</td>
-                    <td>File</td>
+                    <td>Item</td>
                     <td>In process</td>
-                    <td>May 1, 2019, 1:58 pm</td>
+                    <td>Oct 23, 2019, 2:28 pm</td>
                 </tr>
                 <tr>
-                    <td class="description"><a href="entity-record.html">Douglas, William, 1724-1810, 4th Duke of Queensberry</a></td>
+                    <td class="description"><a href="archival-record.html">Letter from Rear-Adm. Lord Hood to General Jacob de Budé, reporting the arrival of Prince William on board the 'Barfleur' and enclosing a copy of the instructions...</a></td>
                     <td>Entity</td>
                     <td>Person</td>
                     <td>In process</td>
-                    <td>May 1, 2019, 1:58 pm</td>
+                    <td>Oct 29, 2019, 4:11 pm</td>
                 </tr>
                 <tr>
-                    <td class="description"><a href="archival-record.html">Account book kept by General Jacob de Budé, 1772-1784, covering personal expenses and also a few for Prince Frederick, later Duke of York, and for Prince William, later Duke of Clarence.</a></td>
+                    <td class="description"><a href="archival-record.html">Draft letter from George III to Prince William, reporting his election to the Order of the Garter and sending 'the George and Garter' to him</a></td>
                     <td>Archival record</td>
-                    <td>File</td>
+                    <td>Item</td>
                     <td>In process</td>
-                    <td>May 1, 2019, 1:58 pm</td>
+                    <td>Oct 26, 2019, 1:58 pm</td>
                 </tr>
             </tbody>
         </table>

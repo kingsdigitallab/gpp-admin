@@ -142,6 +142,29 @@ input[type=submit], .save {
     max-width: max-content;
 }
 
+.search {
+    position: relative;
+    max-width: 700px;
+    min-width: 280px;
+    input[type=search] {
+        font-family: "Roboto", sans-serif;
+        border-radius: 30px;
+        font-size: 14px;
+        padding: 10px 10px 10px 20px;
+        border: 1px solid $medium-grey;
+        width: 100%;
+    }
+    .search-button {
+        position: absolute;
+        background: none;
+    	top: 0px;
+    	right: 0px;
+		color: $primary;
+		font-family: $fontawesome;
+		font-weight: 600;
+	}
+}
+
 span[role=button] {
     margin: auto;
 }
@@ -264,12 +287,6 @@ span[role=button] {
     }
 }
 
-.optional-to-delete {
-    .button-link {
-        
-    }
-}
-
 #logout {
     border-radius: 0px;
     margin-bottom: 0px;
@@ -293,7 +310,7 @@ h1 {
     font-size: 26px;
     font-weight: 500;
     color: $primary;
-    line-height: 1.1em;
+    line-height: 1.4em;
 }
 
 h2 {
@@ -363,7 +380,8 @@ header {
         .link {
             max-height: 120px;
             text-align: center;
-            a {
+            a, button {
+                text-decoration: none;
                 padding: 20px;
                 display: flex;
                 align-items: center;
@@ -452,16 +470,25 @@ main {
     }
 
     #page-header {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        grid-column-gap: 10px;
+        // display: grid;
+        // grid-template-columns: 1fr auto;
+        // grid-column-gap: 10px;
         align-items: center;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-column-gap: 10px;
+        :not(:first-child) {
+            justify-self: right;
+        }
+        .header-buttons {
+            > * {
+                display: inline-block;
+                margin: 5px;
+            }
+        }
         #status-bar {
             @include inline-list("|");
             font-size: 14px;
-        }
-        .create {
-            margin-left: 20px;
         }
     }
     
@@ -477,8 +504,13 @@ main {
         padding: 10px 40px;
     }
 
+    .filters {
+        display: inline-block;
+    }
+
     .filters, .custom-radio-filters {
         margin: 10px 0px;
+        justify-self: right;
         :not(:last-child) {
             margin-right: 10px;
         }
@@ -488,11 +520,14 @@ main {
         .filter {
             background-color: $background;
             color: $primary;
-            margin-right: 10px;
+            // margin-right: 10px;
             border: 1px solid $primary;
             border-radius: 30px;
             padding: 10px 25px;
             font-size: 13px;
+            white-space: nowrap;
+            display: inline-block;
+            margin: 5px 0px;
             cursor: pointer;
             &:hover, &:focus {
                 box-shadow: 0px 2px 2px $medium-grey;
@@ -607,15 +642,16 @@ main {
         }
         div {
             width: 100%;
+            overflow: hidden;
             label, input, select, textarea {
                 width: -moz-available;
                 width: -webkit-fill-available;
                 width: fill-available;
                 margin-bottom: 10px;
             }
-            label {
-                margin-top: 10px;
-            }
+            // label {
+            //     margin-top: 10px;
+            // }
             select {
                 width: 100%;
             }
@@ -826,6 +862,7 @@ main {
                     h3 {
                         padding: 5px 0px;
                         margin: 0px;
+                        overflow: hidden;
                     }
 
                 }
@@ -1039,7 +1076,7 @@ footer {
     }
   }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1380px) {
     body {
         display: block;
     }
@@ -1090,9 +1127,11 @@ footer {
             padding: 0px 10px 30px 10px;
         } 
         #page-header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            // display: flex;
+            // flex-wrap: wrap;
+            // justify-content: space-between;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
         }
         #form-header {
             margin-top: 170px;
@@ -1109,6 +1148,10 @@ footer {
     
     main {
         #page-header {
+            display: block;
+            .filter {
+                margin-bottom: 10px;
+            }
             #status-bar {
                 margin-bottom: 10px;
             }
@@ -1116,14 +1159,6 @@ footer {
         table {
             .button-link {
                 white-space: pre-wrap;
-            }
-        }
-        #form-header{
-            margin-top: 150px;
-        }
-        .filters {
-            :not(.create) {
-                display: none;
             }
         }
         .user-control {
@@ -1146,20 +1181,9 @@ footer {
                 margin: 0px 5px;
             }
         }
+
     }
     main {
-        #page-header {
-            #status-bar {
-                ul {
-                    display: none;
-                }
-            }
-        }
-        .filters {
-            :not(.create) {
-                display: none;
-            }
-        }
         #pagination {
             ul {
                 @include hidden();
@@ -1174,6 +1198,14 @@ footer {
     }
 }
 
+@media only screen and (max-width: 750px) {
+    main {
+        #form-header{
+            margin-top: 200px;
+        }
+    }
+}
+
 @media only screen and (max-width: 520px) {
     header {
         #logo {
@@ -1182,15 +1214,10 @@ footer {
     }
     main {
         #page-header {
-            div:not(#status-bar) {
-                display: flex;
-                flex-wrap: wrap;
-                > *:not(.create) {
-                    margin: 5px;
-                }
-            }
             .create {
                 margin-left: 0px;
+                display: block;
+                text-align: center;
             }
         }
         &:not(#form-page) {
